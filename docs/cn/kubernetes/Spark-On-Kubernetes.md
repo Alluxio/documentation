@@ -63,8 +63,8 @@ $ docker build -t spark-alluxio -f kubernetes/dockerfiles/spark/Dockerfile .
 
 根据设置不同，Alluxio worker上的domain socket可以是`hostPath`卷，也可以是`PersistententVolumeClaim`。有关如何配置Alluxio worker来使用短路读的详细信息，请点击[此处](../kubernetes/Running-Alluxio-On-Kubernetes.md#短路访问)。上述两个选项的spark-submit参数会有所不同。有关如何将卷挂载到 Spark executor的详细信息，请参见Spark[文档](https://spark.apache.org/docs/2.4.4/running-on-kubernetes.html#using-kubernetes-volumes)。
 
-{% navtabs domainSocket %}
-  {% navtab hostPath %}
+
+<details><summary>hostPath</summary>
 
   如果您使用的是`hostPath` domain socket，则应将下述属性传递给Spark：
 
@@ -74,8 +74,8 @@ $ docker build -t spark-alluxio -f kubernetes/dockerfiles/spark/Dockerfile .
   spark.kubernetes.executor.volumes.hostPath.alluxio-domain.options.path=/tmp/alluxio-domain
   spark.kubernetes.executor.volumes.hostPath.alluxio-domain.options.type=Directory
   ```
-  {% endnavtab %}
-  {% navtab PersistententVolumeClaim %}
+</details>
+<details><summary>PersistententVolumeClaim</summary>
 
   如果您使用的是`PersistententVolumeClaim`domain socket，则应将下述属性传递给Spark：
   
@@ -84,9 +84,9 @@ $ docker build -t spark-alluxio -f kubernetes/dockerfiles/spark/Dockerfile .
   spark.kubernetes.executor.volumes.persistentVolumeClaim.alluxio-domain.mount.readOnly=true \
   spark.kubernetes.executor.volumes.persistentVolumeClaim.alluxio-domain.options.claimName=<domainSocketPVC name>
   ```
-  
-  {% endnavtab %}
-{% endnavtabs %}
+
+</details>
+
 
 > 注: 
 > - Spark 2.4.0版本中新增了卷支持。

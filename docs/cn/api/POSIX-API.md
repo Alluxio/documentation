@@ -159,16 +159,57 @@ INFO  NativeLibraryLoader - Loaded libjnifuse with libfuse version 2(或者3).
 以下是Alluxio-FUSE相关的配置参数。
 
 <table class="table table-striped">
-<tr><th>参数</th><th>默认值</th><th>描述</th></tr>
-{% for item in site.data.table.Alluxio-FUSE-parameter %}
-  <tr>
-    <td>{{ item.parameter }}</td>
-    <td>{{ item.defaultValue }}</td>
-    <td>{{ site.data.table.cn.Alluxio-FUSE-parameter[item.parameter] }}</td>
-  </tr>
-{% endfor %}
-</table>
+<tbody><tr><th>参数</th><th>默认值</th><th>描述</th></tr>
 
+  <tr>
+    <td>alluxio.fuse.cached.paths.max</td>
+    <td>500</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.debug.enabled</td>
+    <td>false</td>
+    <td>允许FUSE调试输出， 该输出会被重定向到`alluxio.logs.dir`指定目录中的`fuse.out`日志文件。</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.fs.name</td>
+    <td>alluxio-fuse</td>
+    <td>FUSE挂载文件系统使用的描述性名称。</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.jnifuse.enabled</td>
+    <td>true</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.shared.caching.reader.enabled</td>
+    <td>false</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.logging.threshold</td>
+    <td>10s</td>
+    <td></td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.maxwrite.bytes</td>
+    <td>131072</td>
+    <td>FUSE写操作的粒度（bytes），注意目前128KB是linux内核限制的上界。</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.user.group.translation.enabled</td>
+    <td>false</td>
+    <td>是否在FUSE API中将Alluxio的用户与组转化为对应的Unix用户与组。当设为false时，所有FUSE文件的用户与组 将会显示为挂载alluxio-fuse线程的用户与组。</td>
+  </tr>
+
+</tbody></table>
 ## 致谢
 
 该项目使用[jnr-fuse](https://github.com/SerCeMan/jnr-fuse)以支持基于Java的FUSE。

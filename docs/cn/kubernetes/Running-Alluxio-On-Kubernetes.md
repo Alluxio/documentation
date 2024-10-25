@@ -16,8 +16,7 @@ Alluxio可以在Kubernetes上运行。本指南演示了如何使用Docker映像
 >注意:从Alluxio 2.3起，Alluxio仅支持helm 3。
 >参阅如何[从helm 2迁移到helm 3](https://helm.sh/docs/topics/v2_v3_migration/)。
 
-{% accordion setup %}
-  {% collapsible (Optional) Extract Kubernetes Specifications %}
+<details><summary>(Optional) Extract Kubernetes Specifications</summary>
 
 如果使用私有`helm` 仓库或使用原生Kubernetes规范，从Docker镜像中提取部署Alluxio所需的Kubernetes规范。
 
@@ -29,8 +28,9 @@ $ tar -xvf kubernetes.tar
 $ cd kubernetes
 ```
 
- {% endcollapsible %}
-  {% collapsible (Optional) Provision a Persistent Volume %}
+</details>
+<details><summary>(Optional) Provision a Persistent Volume</summary>
+
 注意:[嵌入式日志](../operation/Journal.md#日志)
 需要为每个要发放的 master Pod设置一个持久卷，这是Alluxio运行在kubernetes上的首选HA机制。一旦创建了该卷，即使master进程重启不会影响持久卷的内容。
 
@@ -69,13 +69,12 @@ $ kubectl create -f alluxio-master-journal-pv.yaml
 
 
 还有其他方法来创建持久卷如[文档](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
-  {% endcollapsible %}
-{% endaccordion %}
+
+</details>
 
 ### 部署
 
-{% navtabs deploy %} 
-{% navtab helm %}
+<details><summary>helm</summary>
 
 #### 前提条件
 
@@ -110,8 +109,8 @@ $ helm inspect values alluxio-charts/alluxio
 
 本节的剩余部分通过例子描述各种配置选项。
 
-{% accordion helmConfig %}
-  {% collapsible Example: Amazon S3 as the under store %}
+<details><summary>Example: Amazon S3 as the under store</summary>
+
 To [mount S3](../ufs/S3.md#根挂载)
 在Alluxio根名称空间以key-value pair方式指定所有必须属性。
 
@@ -122,9 +121,9 @@ properties:
   alluxio.master.mount.table.root.option.s3a.secretKey: "<secretKey>"
 ```
 
-{% endcollapsible %}
+</details>
+<details><summary>Example: Single Master and Journal in a Persistent Volume</summary>
 
-  {% collapsible Example: Single Master and Journal in a Persistent Volume %}
  The following configures [UFS Journal](../operation/Journal.md#日志) 将一个持久卷本地挂载在master Pod的位置 `/journal`。
 
 ```properties
@@ -145,9 +144,9 @@ journal:
     - ReadWriteOnce
 ```
 
-{% endcollapsible %}
+</details>
+<details><summary>Example: 下方举例说明如何将一个持久卷挂载在本地master pod</summary>
 
-   {% collapsible Example: 下方举例说明如何将一个持久卷挂载在本地master pod %}
 '/journal'位置来配置 [UFS Journal](../operation/Journal.md#日志)
  将一个`emptyDir` 卷本地挂载在master Pod的位置`/journal` 
 
@@ -173,9 +172,8 @@ journal:
  它不是持久性存储。
 当Pod重新启动或被重新调度时，Alluxio日志将丢失。请仅在实验用例中使用。检查[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)了解更详细信息。
 
-  {% endcollapsible %}
-
-{% collapsible Example: HDFS as Journal %} 
+</details>
+<details><summary>Example: HDFS as Journal</summary>
 
 首先为HDFS客户端所需的任何配置创建secrets。它们将挂载在`/secrets`下。
 
@@ -199,10 +197,9 @@ secrets:
   worker:
     alluxio-hdfs-config: hdfsConfig
 ```
- 
-{% endcollapsible %}
 
-{% collapsible Example: Multi-master with Embedded Journal in Persistent Volumes %}
+</details>
+<details><summary>Example: Multi-master with Embedded Journal in Persistent Volumes</summary>
 
  ```properties
 master:
@@ -221,8 +218,8 @@ journal:
     - ReadWriteOnce
 ```
 
-{% endcollapsible %}
-{% collapsible Example: Multi-master with Embedded Journal in emptyDir Volumes %}
+</details>
+<details><summary>Example: Multi-master with Embedded Journal in emptyDir Volumes</summary>
 
 ```properties
 master:
@@ -243,8 +240,8 @@ journal:
 
 >注意:`emptyDir`卷的寿命与Pod寿命相同。 它不是持久性存储。当Pod重新启动或被重新调度时，Alluxio日志将丢失。请仅在实验用例中使用。检查[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)了解更详细信息。
 
-{% endcollapsible %}
-{% collapsible Example: HDFS as the under store %}
+</details>
+<details><summary>Example: HDFS as the under store</summary>
 
 首先为HDFS客户端所需的任何配置创建secrets。它们将挂载在`/secrets`下。
 
@@ -263,8 +260,8 @@ secrets:
     alluxio-hdfs-config: hdfsConfig
 ```
 
-{% endcollapsible %}
-{% collapsible Example: Off-heap Metastore Management in Persistent Volumes %} 
+</details>
+<details><summary>Example: Off-heap Metastore Management in Persistent Volumes</summary>
 
 以下配置为每个Alluxio master Pod创建一个`PersistentVolumeClaim`，并将Pod
 配置为使用该卷作为一个on-disk基于RocksDB的metastore。
@@ -283,10 +280,9 @@ metastore:
   accessModes:
    - ReadWriteOnce
 ```
-  
-{% endcollapsible %}
 
- {% collapsible Example: Off-heap Metastore Management in `emptyDir` Volumes %} 
+</details>
+<details><summary>Example: Off-heap Metastore Management in `emptyDir` Volumes</summary>
 
 以下配置为每个Alluxio master Pod创建一个`emptyDir`卷，并将Pod配置为使用该卷作为一个on-disk基于RocksDB的metastore。
 
@@ -307,9 +303,8 @@ metastore:
 它不是持久性存储。
 当Pod重新启动或被重新调度时，Alluxio日志将丢失。请仅在实验用例中使用。检查[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)了解更详细信息)。
 
-{% endcollapsible %}
-
-  {% collapsible Example: Multiple Secrets %} 
+</details>
+<details><summary>Example: Multiple Secrets</summary>
 
  可以将多个secrets同时挂载到master和workerPods。每个Pod区域的格式为`<secretName>:<mountPath>`
 
@@ -324,8 +319,8 @@ secrets:
 ```
 
 
-{% endcollapsible %}
-  {% collapsible Examples: Alluxio Storage Management %} 
+</details>
+<details><summary>Examples: Alluxio Storage Management</summary>
 
 Alluxio在worker Pods上管理本地存储，包括内存。[Multiple-Tier Storage](../core-services/Caching.md#分层存储管理) 可以使用以下参考配置来设置。
 
@@ -409,8 +404,7 @@ tieredstore:
     high: 0.95
     low: 0.7
 ```
- {% endcollapsible %}
-{% endaccordion %}
+</details>
 
 
 #### 安装
@@ -446,8 +440,9 @@ $ helm upgrade alluxio -f config.yaml --set journal.format.runFormat=true alluxi
 $ helm install alluxio -f config.yaml --set journal.format.runFormat=true alluxio-charts/alluxio
 ```
 
-{% endnavtab %}
- {% navtab kubectl %}
+</details>
+
+<details><summary>kubectl</summary>
 
 #### 选择YAML模板样例
 
@@ -507,8 +502,8 @@ $ mv worker/alluxio-worker-daemonset.yaml.template worker/alluxio-worker-daemons
 ```
 注意:确保该Kubernetes规范版本与所使用Alluxio Docker镜像版本是一致的。
 
-{% accordion remoteAccess %}
-  {% collapsible (Optional) Remote Storage Access %}
+<details><summary>(Optional) Remote Storage Access</summary>
+
 当Alluxio要连接到所部署在的Kubernetes集群之外存储主机时，可能还需要执行额外步骤。本节以下部分将说明如何配置可访问但不受Kubernetes管理的远程HDFS连接。
 
 **步骤1:为HDFS连接添加`hostAliases`。**Kubernetes Pods无法识别不由Kubernetes管理的网络主机名(因为不是一个Kubernetes Service)，除非已经通过hostAliases定义好。
@@ -554,8 +549,7 @@ kubectl create secret generic alluxio-hdfs-config --from-file=${HADOOP_CONF_DIR}
 这两个配置文件在`alluxio-master-statefulset.yaml`和`alluxio-worker-daemonset.yaml`中会引用到。Alluxio进程需要HDFS配置文件才能连接，这些文件在容器中的位置由属性`alluxio.underfs.hdfs.configuration`控制。
 
 **步骤3:修改`alluxio-configmap.yaml.template`。现在Pods已经知道如何连接到HDFS服务，下面更新`alluxio.master.journal.folder`和`alluxio.master.mount.table .root.ufs`并指向要连接的目标HDFS服务。
- {% endcollapsible %}
-{% endaccordion %}
+</details>
 
 一旦完成所有先决条件和配置，就可以部署部署Alluxio了。
 
@@ -594,8 +588,9 @@ $ kubectl delete configmap alluxio-config
 #### 升级
 
 本节将介绍如何使用`kubectl`升级Kubernetes集群中的Alluxio。
-{% accordion kubectlUpgrade %}
-  {% collapsible Upgrading Alluxio %}
+
+<details><summary>Upgrading Alluxio</summary>
+
 **步骤1:升级docker镜像版本标签**
 
 每个Alluxio版本发布都会有相对应的docker镜像发布在
@@ -663,12 +658,7 @@ $ kubectl create -f ./worker/
 $ kubectl get pods
 ```
 
-你可以根据以下文档做更全面的确认 [Verify Alluxio](../deploy/Running-Alluxio-Locally.md#验证alluxio是否运行).  
-{% endcollapsible %}
-{% endaccordion %}
-
-{% endnavtab %}
-{% endnavtabs %}
+你可以根据以下文档做更全面的确认 [Verify Alluxio](../deploy/Running-Alluxio-Locally.md#验证alluxio是否运行).
 
 ### 访问Web UI
 
@@ -699,6 +689,9 @@ $ alluxio runTests
 $ kubectl get pv
 $ kubectl get pvc
 ```
+</details>
+
+</details>
 
 ## 高级设置
 
@@ -708,8 +701,7 @@ $ kubectl get pvc
 
 为了使用POSIX API，首先部署Alluxio FUSE守护程序。
 
-{% navtabs posix %} 
-{% navtab helm %}
+<details><summary>helm</summary>
 
 通过配置以下属性来部署FUSE守护程序:
 
@@ -735,8 +727,9 @@ fuse:
 ```console
 $ helm upgrade alluxio -f config.yaml --set fuse.enabled=true --set fuse.clientEnabled=true alluxio-charts/alluxio
 ```
-{% endnavtab %} 
-{% navtab kubectl %}
+</details>
+<details><summary>kubectl</summary>
+
 
 ```console
 $ cp alluxio-fuse.yaml.template alluxio-fuse.yaml
@@ -755,8 +748,7 @@ $ kubectl create -f alluxio-fuse-client.yaml
 ```
 如果使用模板，Alluxio会挂载到`/alluxio-fuse`，可以通过POSIX的API进行跨多个容器访问。
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ### 短路访问
 
@@ -770,8 +762,9 @@ $ kubectl create -f alluxio-fuse-client.yaml
 
 >注意:如前所述，禁用对Alluxio workers短路访问会导致更低I/O吞吐量
 
-{% navtabs shortCircuit %}
-{% navtab helm %}
+
+<details><summary>helm</summary>
+
 
 
 你可以通过设置以下属性来禁用短路:
@@ -781,8 +774,9 @@ shortCircuit:
   enabled: false
 ```
 
-{% endnavtab %}
-{% navtab kubectl %}
+</details>
+<details><summary>kubectl</summary>
+
 
 您应该在`ALLUXIO_WORKER_JAVA_OPTS`把属性`alluxio.user.short.circuit.enabled`设置为`FALSE`。
 
@@ -792,8 +786,7 @@ shortCircuit:
 
 你还应该从Pod定义的卷中的`alluxio-domain`卷和每个容器中的`volumeMounts`，如果存在的话
 
-{% endnavtab %} 
-{% endnavtabs %}
+</details>
 
 ***短路模式。***
 使用短路访问有两种模式
@@ -803,8 +796,9 @@ A.`local`
 这称为*主机名自省*。
 在这种模式下，Alluxio客户端和本地Alluxio worker共享Alluxio worker的分层存储。
 
-{% navtabs modes %}
- {% navtab helm %}
+
+<details><summary>helm</summary>
+
 
 您可以通过如下设置属性来使用`local`政策
 
@@ -814,8 +808,9 @@ shortCircuit:
   policy: local
 ```
 
-{% endnavtab %}
- {% navtab kubectl %}
+</details>
+<details><summary>kubectl</summary>
+
 
 在你的`alluxio-configmap.yaml`模板中，应将以下属性添加到`ALLUXIO_WORKER_JAVA_OPTS`:
 
@@ -825,8 +820,7 @@ shortCircuit:
 
 同时，你应该删除属性`-Dalluxio.worker.data.server.domain.socket.address`。
 
-{% endnavtab %}
- {% endnavtabs %}
+</details>
 
 B. `uuid` 这是在Kubernetes中使用短路访问的默认策略
 
@@ -845,8 +839,8 @@ B. `uuid` 这是在Kubernetes中使用短路访问的默认策略
 默认情况下，此域套接字卷为`PersistentVolumeClaim`。
 你需要为此`PersistentVolumeClaim`发放一个`PersistentVolume`。这个`PersistentVolume`应该是`local`或`hostPath`。
 
-{% navtabs domainSocketPVC %}
- {% navtab helm %}
+<details><summary>helm</summary>
+
 
 你可以通过如下属性设置来使用`uuid`策略:
 
@@ -868,8 +862,9 @@ shortCircuit:
 
 `shortCircuit.pvcName`字段定义域套接字的`PersistentVolumeClaim`名称。该PVC将作为`helm install`的一部分被创建。
 
-{% endnavtab %}
-{% navtab kubectl %}
+</details>
+<details><summary>kubectl</summary>
+
 
 您应该在`ALLUXIO_WORKER_JAVA_OPTS`中验证以下属性。
 实际它们被默认设置为这些值:
@@ -891,14 +886,13 @@ volumes:
 
 `PersistenceVolumeClaim`定义于`worker/alluxio-worker-pvc.yaml.template`模板。
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ***使用hostPath卷。***
  您也可以直接定义workers将`hostPath Volume`用于域套接字。
 
-{% navtabs domainSocketHostPath %}
-{% navtab helm %}
+<details><summary>helm</summary>
+
 
 您可以切换为直接将`hostPath`卷用于域套接字。这可以通过将`shortCircuit.volumeType`字段更改为`hostPath`来完成的。注意，你还需要定义`hostPath`卷用的路径。
 
@@ -914,8 +908,8 @@ shortCircuit:
   hostPath: "/tmp/alluxio-domain" # The hostPath directory to use
 ```
 
-{% endnavtab %}
-{% navtab kubectl %}
+</details>
+<details><summary>kubectl</summary>
 
 你应该以与使用`PersistentVolumeClaim`相同的方式来验证`ALLUXIO_WORKER_JAVA_OPTS`中的属性。
 
@@ -932,8 +926,7 @@ volumes:
 
 注意:计算应用容器必须将域套接字卷挂载到为Alluxio workers配置的相同路径(`/opt/domain`)。
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ***验证。*** 要验证短路读取和写入，请监控以下显示的指标
 1. Web UI的指标`Domain Socket Alluxio Read` 和 `Domain Socket Alluxio`Write
@@ -942,8 +935,9 @@ volumes:
 
 ## 故障排除
 
-{% accordion worker_host %} 
-   {% collapsible Worker Host Unreachable %} 
+
+<details><summary>Worker Host Unreachable</summary>
+
 Alluxio worker使用以物理主机IP作为主机名的主机网络。检查集群防火墙是否遇到诸如以下错误:
 ```
 Caused by: io.netty.channel.AbstractChannel$AnnotatedConnectException: finishConnect(..) failed: Host is unreachable: <host>/<IP>:29999
@@ -961,15 +955,15 @@ $ ping <host>
 $ nc -zv <IP> 29999
 ```
 
-{% endcollapsible %}
+</details>
+<details><summary>Permission Denied</summary>
 
-{% collapsible Permission Denied %} 
 从alluxio V2.1及更高版本，默认alluxio Docker容器除了Fuse以外将以非root 具有UID 1000和GID 1000 的用户`alluxio`身份运行。
 Kubernetes [`hostPath`](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath)卷
 只能由root写入，因此你需要相应地更新权限。 
-  {% endcollapsible %}
+</details>
+<details><summary>Enable Debug Logging</summary>
 
-{% collapsible Enable Debug Logging %} 
 要更改Alluxio服务器(master and workers)的日志级别，使用CLI命令`logLevel`，如下所示:
 
 从master Pod访问Alluxio CLI。
@@ -984,9 +978,9 @@ $ kubectl exec -ti alluxio-master-0 /bin/bash
 $ alluxio logLevel --level DEBUG --logName alluxio
 ```
 
-{% endcollapsible %}
+</details>
+<details><summary>Accessing Logs</summary>
 
-{% collapsible Accessing Logs %} 
 Alluxio master 和 job master作为 master Pod的单独容器分别独立运行。同样，Alluxio worker和job worker作为worker Pod的单独容器分别独立运行。可以按以下方式访问各个容器日志。
 
 Master:
@@ -1013,9 +1007,9 @@ Job Worker:
 $ kubectl logs -f alluxio-worker-<id> -c alluxio-job-worker
 ```
 
-{% endcollapsible %}
+</details>
+<details><summary>POSIX API</summary>
 
-{% collapsible POSIX API %} 
 为了让一个应用程序容器挂载`hostPath`卷，运行容器的节点
 必须有Alluxio FUSE守护程序已在运行。默认规范`alluxio-fuse.yaml`作为DaemonSet运行
 ，在集群的每个节点上启动Alluxio FUSE守护程序。
@@ -1025,5 +1019,4 @@ $ kubectl logs -f alluxio-worker-<id> -c alluxio-job-worker
 1.使用命令`kubectl describe nodes <node>`来识别在节点上运行的`alluxio-fuse`Pod。
 1.尾部记录已识别Pod的日志以查看遇到的任何错误:
 `kubectl logs -f alluxio-fuse- <id>`。
-  {% endcollapsible %}
-{% endaccordion %}
+</details>

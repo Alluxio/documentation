@@ -196,14 +196,140 @@ $ mvn compile -Pgenerate
 开发者所用到的大多数命令都在`bin/alluxio`目录下。下面的表格有对每条命令及其参数的说明。
 
 <table class="table table-striped">
-<tr><th>命令</th><th>参数</th><th>介绍</th></tr>
-{% for dscp in site.data.table.developer-tips %}
+<tbody><tr><th>命令</th><th>参数</th><th>介绍</th></tr>
+
 <tr>
-  <td>{{dscp.command}}</td>
-  <td>{{dscp.args}}</td>
-  <td>{{site.data.table.cn.developer-tips[dscp.command]}}</td>
+  <td>extensions</td>
+  <td>None</td>
+  <td></td>
 </tr>
-{% endfor %}
-</table>
+
+<tr>
+  <td>format</td>
+  <td>[-s]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>formatMaster</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>formatWorker</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>bootstrapConf</td>
+  <td>&lt;ALLUXIO_MASTER_HOSTNAME&gt;</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>fs</td>
+  <td>[fs-commands]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>fsadmin</td>
+  <td>[fsadmin-commands]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>getConf</td>
+  <td>[key]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>logLevel</td>
+  <td>[--level &lt;arg&gt;] --logName &lt;arg&gt; [--target &lt;arg&gt;]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>runTest</td>
+  <td>&lt;Example&gt; &lt;ReadType&gt; &lt;WriteType&gt;</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>runTests</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>journalCrashTest</td>
+  <td>[-creates &lt;arg&gt;] [-deletes &lt;arg&gt;] [-renames &lt;arg&gt;] [-maxAlive &lt;arg&gt;] [-testDir &lt;arg&gt;] [-totalTime &lt;arg&gt;] [-help]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>readJournal</td>
+  <td>[-inputDir &lt;arg&gt;] [-outputDir &lt;arg&gt;] [-master &lt;arg&gt;] [-start &lt;arg&gt;] [-end &lt;arg&gt;] [-help]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>upgradeJournal</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>killAll</td>
+  <td>&lt;WORD&gt;</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>copyDir</td>
+  <td>&lt;PATH&gt;</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>clearCache</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>confDocGen</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>version</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>validateConf</td>
+  <td>None</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td>validateEnv</td>
+  <td>&lt;TARGET&gt; [NAME]</td>
+  <td></td>
+</tr>
+
+<tr>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+</tbody></table>
 
 此外，这些命令的执行有不同的先决条件。`format`，`formatWorker`，`journalCrashTest`，`readJournal`，`version`，`validateConf`和`validateEnv`命令的先决条件是你已经编译了Alluxio（见[编译Alluxio源代码](../contributor/Building-Alluxio-From-Source.md)其介绍了如何手动构建Alluxio)。而`fs`，`logLevel`, `runTest`和`runTests`命令的先决条件是你已经运行了Alluxio系统。

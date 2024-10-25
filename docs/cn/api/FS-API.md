@@ -44,30 +44,53 @@ FileOutStream out = fs.createFile(path, options);
 Alluxio有两种存储类型：Alluxio管理的存储和底层存储。Alluxio管理的存储是分配给Worker的内存、SSD、和（或）HDD。底层存储是由底层存储系统管理的存储资源，如S3，Swift或HDFS。用户可以通过指定`ReadType`和`WriteType`来与Alluxio本地存储或底层存储进行交互。在读文件的时候，`ReadType`给该数据指定了读行为，例如：该数据是否应该被保留在Alluxio存储内。在写新文件的时候，`WriteType`给该数据指定了写行为，例如：该数据是否应该被写到Alluxio存储内。
 
 下表描述了`ReadType`不同类型对应的不同行为。相较于底层存储系统，优先从Alluxio存储上进行读取。
-
 <table class="table table-striped">
 <tr><th>读类型</th><th>行为</th>
 </tr>
-{% for readtype in site.data.table.ReadType %}
+
 <tr>
-  <td>{{readtype.readtype}}</td>
-  <td>{{site.data.table.cn.ReadType[readtype.readtype]}}</td>
+  <td>CACHE_PROMOTE</td>
+  <td>如果读取的数据在Worker上时，该数据被移动到Worker的最高层。如果该数据不在本地Worker的Alluxio存储中，那么就将一个副本添加到本地Alluxio Worker中。如果没有本地Worker，那么就将副本添加到远端Alluxio Worker中。</td>
 </tr>
-{% endfor %}
+
+<tr>
+  <td>CACHE</td>
+  <td>如果该数据不在本地Worker的Alluxio存储中，那么就将一个副本添加到本地Alluxio Worker中。如果没有本地Worker，那么就将副本添加到远端Alluxio Worker中。</td>
+</tr>
+
+<tr>
+  <td>NO_CACHE</td>
+  <td>仅读取数据，不在Alluxio中存储副本。</td>
+</tr>
 </table>
 
 下表描述了`WriteType`不同类型对应的不同行为。
 
 <table class="table table-striped">
-<tr><th>写类型</th><th>行为</th>
+<tbody><tr><th>写类型</th><th>行为</th>
 </tr>
-{% for writetype in site.data.table.WriteType %}
+
 <tr>
-  <td>{{writetype.writetype}}</td>
-  <td>{{site.data.table.cn.WriteType[writetype.writetype]}}</td>
+  <td>CACHE_THROUGH</td>
+  <td>数据被同步地写入到Alluxio的Worker和底层存储系统。</td>
 </tr>
-{% endfor %}
-</table>
+
+<tr>
+  <td>MUST_CACHE</td>
+  <td>数据被同步地写入到Alluxio的Worker。但不会被写入到底层存储系统。</td>
+</tr>
+
+<tr>
+  <td>THROUGH</td>
+  <td>数据被同步地写入到底层存储系统。但不会被写入到Alluxio的Worker。</td>
+</tr>
+
+<tr>
+  <td>ASYNC_THROUGH</td>
+  <td>数据被同步地写入到Alluxio的Worker，并异步地写入到底层存储系统。这是默认写类型。</td>
+</tr>
+
+</tbody></table>
 
 ### 定位策略
 

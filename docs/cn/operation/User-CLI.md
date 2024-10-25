@@ -40,15 +40,48 @@ Usage: alluxio fs [generic options]
 ## 操作列表
 
 <table class="table table-striped">
-  <tr><th>操作</th><th>语法</th><th>描述</th></tr>
-  {% for item in site.data.table.operation-command %}
-    <tr>
-      <td>{{ item.operation }}</td>
-      <td>{{ item.syntax }}</td>
-      <td>{{ site.data.table.cn.operation-command[item.operation] }}</td>
-    </tr>
-  {% endfor %}
-</table>
+  <tbody><tr><th>操作</th><th>语法</th><th>描述</th></tr>
+<tr><td>cat</td><td>cat "path"</td><td>将Alluxio中的一个文件内容打印在控制台中</td></tr>
+<tr><td>checkConsistency</td><td>checkConsistency "path"</td><td>检查Alluxio与底层存储系统的元数据一致性</td></tr>
+<tr><td>checksum</td><td>checksum "path"</td><td>计算一个文件的md5校验码</td></tr>
+<tr><td>chgrp</td><td>chgrp "group" "path"</td><td>修改Alluxio中的文件或文件夹的所属组</td></tr>
+<tr><td>chmod</td><td>chmod "permission" "path"</td><td>修改Alluxio中文件或文件夹的访问权限</td></tr>
+<tr><td>chown</td><td>chown "owner" "path"</td><td>修改Alluxio中文件或文件夹的所有者</td></tr>
+<tr><td>copyFromLocal</td><td>copyFromLocal "source path" "remote path"</td><td>将"source path"指定的本地文件系统中的文件拷贝到Alluxio中"remote path"指定的路径 如果"remote path"已经存在该命令会失败</td></tr>
+<tr><td>copyToLocal</td><td>copyToLocal "remote path" "local path"</td><td>将"remote path"指定的Alluxio中的文件复制到本地文件系统中</td></tr>
+<tr><td>count</td><td>count "path"</td><td>输出"path"中所有名称匹配一个给定前缀的文件及文件夹的总数</td></tr>
+<tr><td>cp</td><td>cp "src" "dst"</td><td>在Alluxio文件系统中复制一个文件或目录</td></tr>
+<tr><td>du</td><td>du "path"</td><td>输出一个指定的文件或文件夹的大小</td></tr>
+<tr><td>fileInfo</td><td>fileInfo "path"</td><td>输出指定的文件的数据块信息</td></tr>
+<tr><td>free</td><td>free "path"</td><td>将Alluxio中的文件或文件夹移除，如果该文件或文件夹存在于底层存储中，那么仍然可以在那访问</td></tr>
+<tr><td>getCapacityBytes</td><td>getCapacityBytes</td><td>获取Alluxio文件系统的容量</td></tr>
+<tr><td>getfacl</td><td>getfacl "path"</td><td></td></tr>
+<tr><td>getUsedBytes</td><td>getUsedBytes</td><td>获取Alluxio文件系统已使用的字节数</td></tr>
+<tr><td>help</td><td>help "cmd"</td><td>打印给定命令的帮助信息，如果没有给定命令，打印所有支持的命令的帮助信息</td></tr>
+<tr><td>leader</td><td>leader</td><td>打印当前Alluxio leader master节点主机名</td></tr>
+<tr><td>load</td><td>load "path"</td><td>将底层文件系统的文件或者目录加载到Alluxio中</td></tr>
+<tr><td>loadMetadata</td><td>loadMetadata "path"</td><td>将底层文件系统的文件或者目录的元数据加载到Alluxio中</td></tr>
+<tr><td>location</td><td>location "path"</td><td>输出包含某个文件数据的主机</td></tr>
+<tr><td>ls</td><td>ls "path"</td><td>列出给定路径下的所有直接文件和目录的信息，例如大小</td></tr>
+<tr><td>masterInfo</td><td>masterInfo</td><td>打印Alluxio master容错相关的信息，例如leader的地址、所有master的地址列表以及配置的Zookeeper地址</td></tr>
+<tr><td>mkdir</td><td>mkdir "path1" ... "pathn"</td><td>在给定路径下创建文件夹，以及需要的父文件夹，多个路径用空格或者tab分隔，如果其中的任何一个路径已经存在，该命令失败</td></tr>
+<tr><td>mount</td><td>mount "path" "uri"</td><td>将底层文件系统的"uri"路径挂载到Alluxio命名空间中的"path"路径下，"path"路径事先不能存在并由该命令生成。 没有任何数据或者元数据从底层文件系统加载。当挂载完成后，对该挂载路径下的操作会同时作用于底层文件系统的挂载点。</td></tr>
+<tr><td>mv</td><td>mv "source" "destination"</td><td>将"source"指定的文件或文件夹移动到"destination"指定的新路径，如果"destination"已经存在该命令失败。</td></tr>
+<tr><td>persist</td><td>persist "path1" ... "pathn"</td><td>将仅存在于Alluxio中的文件或文件夹持久化到底层文件系统中</td></tr>
+<tr><td>pin</td><td>pin "path"</td><td>将给定文件锁定到内容中以防止剔除。如果是目录，递归作用于其子文件以及里面新创建的文件</td></tr>
+<tr><td>report</td><td>report "path"</td><td>向master报告一个文件已经丢失</td></tr>
+<tr><td>rm</td><td>rm "path"</td><td>删除一个文件，如果输入路径是一个目录该命令失败</td></tr>
+<tr><td>setfacl</td><td>setfacl "newACL" "path"</td><td></td></tr>
+<tr><td>setTtl</td><td>setTtl "path" "time"</td><td>设置一个文件的TTL时间，单位毫秒，注意，默认动作为 DELETE，会将文件从Alluxio命名空间和底层存储中删除</td></tr>
+<tr><td>stat</td><td>stat "path"</td><td>显示文件和目录指定路径的信息</td></tr>
+<tr><td>tail</td><td>tail "path"</td><td>将指定文件的最后1KB内容输出到控制台</td></tr>
+<tr><td>test</td><td>test "path"</td><td>测试路径的属性，如果属性正确，返回0，否则返回1</td></tr>
+<tr><td>touch</td><td>touch "path"</td><td>在指定路径创建一个空文件</td></tr>
+<tr><td>unmount</td><td>unmount "path"</td><td>卸载挂载在Alluxio中"path"指定路径上的底层文件路径，Alluxio中该挂载点的所有对象都会被删除，但底层文件系统会将其保留。</td></tr>
+<tr><td>unpin</td><td>unpin "path"</td><td>将一个文件解除锁定从而可以对其剔除，如果是目录则递归作用</td></tr>
+<tr><td>unsetTtl</td><td>unsetTtl "path"</td><td>删除文件的ttl值</td></tr>
+
+</tbody></table>
 
 ## 使用示例
 
@@ -109,15 +142,19 @@ $ ./bin/alluxio fs chgrp alluxio-group-new /input/file1
 `chmod`命令修改Alluxio中文件或文件夹的访问权限，目前可支持八进制模式：三位八进制的数字分别对应于文件所有者、所属组以及其他用户的权限。以下是数字与权限的对应表：
 
 <table class="table table-striped">
-  <tr><th>Number</th><th>Permission</th><th>rwx</th></tr>
-  {% for item in site.data.table.chmod-permission %}
-    <tr>
-      <td>{{ item.number }}</td>
-      <td>{{ item.permission }}</td>
-      <td>{{ item.rwx }}</td>
-    </tr>
-  {% endfor %}
+  <tbody>
+    <tr><th>Number</th><th>Permission</th><th>rwx</th></tr>
+    <tr><td>7</td><td>read, write and execute</td><td>rwx</td></tr>
+    <tr><td>6</td><td>read and write</td><td>rw-</td></tr>
+    <tr><td>5</td><td>read and execute</td><td>r-x</td></tr>
+    <tr><td>4</td><td>read only</td><td>r--</td></tr>
+    <tr><td>3</td><td>write and execute</td><td>-wx</td></tr>
+    <tr><td>2</td><td>write only</td><td>-w-</td></tr>
+    <tr><td>1</td><td>execute only</td><td>--x</td></tr>
+    <tr><td>0</td><td>none</td><td>---</td></tr>
+  </tbody>
 </table>
+
 
 加上`-R`选项可以递归的改变文件夹中子文件和子文件夹的权限。
 

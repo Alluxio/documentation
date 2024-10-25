@@ -43,8 +43,9 @@ $ cp conf/alluxio-site.properties.template conf/alluxio-site.properties
 $ cp conf/core-site.xml.template conf/core-site.xml
 ```
 
-{% navtabs 配置 %}
-{% navtab cephfs %}
+
+<details><summary>cephfs</summary>
+
 
 向`conf/alluxio-site.properties`文件添加以下代码：
 
@@ -56,8 +57,9 @@ alluxio.underfs.cephfs.auth.id=<client-id>
 alluxio.underfs.cephfs.auth.keyring=<client-keyring-file>
 ```
 
-{% endnavtab %}
-{% navtab cephfs-hadoop %}
+</details>
+<details><summary>cephfs-hadoop</summary>
+
 
 向`conf/alluxio-site.properties`文件添加以下代码：
 
@@ -111,9 +113,8 @@ alluxio.underfs.hdfs.configuration=${ALLUXIO_HOME}/conf/core-site.xml
   </property>
 </configuration>
 ```
+</details>
 
-{% endnavtab %}
-{% endnavtabs %}
 
 ## 使用CephFS本地运行Alluxio
 
@@ -126,8 +127,8 @@ alluxio.underfs.hdfs.configuration=${ALLUXIO_HOME}/conf/core-site.xml
 
 该命令应当会启动一个Alluxio master和一个Alluxio worker，可以在浏览器中访问[http://localhost:19999](http://localhost:19999)查看master Web UI。
 
-{% navtabs 测试 %}
-{% navtab cephfs %}
+
+<details><summary>cephfs</summary>
 
 ```
 ./bin/alluxio fs mkdir /mnt/cephfs
@@ -143,8 +144,8 @@ alluxio.underfs.hdfs.configuration=${ALLUXIO_HOME}/conf/core-site.xml
 前者，通过Alluxio的[Command Line Interface](../operation/User-CLI.md)可被访问；
 后者，通过ceph-fuse或mount的方式使用POSIX APIs[Mounting CephFS](https://docs.ceph.com/en/latest/cephfs/#mounting-cephfs)可被访问。
 
-{% endnavtab %}
-{% navtab cephfs-hadoop %}
+</details>
+<details><summary>cephfs-hadoop</summary>
 
 ```
 ./bin/alluxio fs mkdir /cephfs-hadoop
@@ -160,6 +161,5 @@ alluxio.underfs.hdfs.configuration=${ALLUXIO_HOME}/conf/core-site.xml
 前者，通过Alluxio的[Command Line Interface](../operation/User-CLI.md)可被访问；
 后者，通过ceph-fuse或mount的方式使用POSIX APIs[Mounting CephFS](https://docs.ceph.com/en/latest/cephfs/#mounting-cephfs)可被访问。
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 

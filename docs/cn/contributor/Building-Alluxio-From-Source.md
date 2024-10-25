@@ -123,8 +123,7 @@ $ mvn clean install -pl underfs/hdfs/ \
 如果你在`${ALLUXIO_HOME}/lib`目录中发现名为`alluxio-underfs-hdfs-<UFS_HADOOP_VERSION>-{{site.ALLUXIO_VERSION_STRING}}.jar`的jar，表明编译成功。
 
 查看不同HDFS发行版的标志。
-{% accordion Hdfs发行版 %}
-{% collapsible Apache %}
+<details><summary>Apache</summary>
 #### Apache
 所有主要版本都来自Apache，所以所有Apache发行版都可以直接使用。
 
@@ -142,8 +141,8 @@ $ mvn clean install -pl underfs/hdfs/ \
 -Phadoop-3 -Dhadoop.version=3.0.0
 ```
 
-{% endcollapsible %}
-{% collapsible Cloudera %}
+</details>
+<details><summary>Cloudera</summary>
 
 对于Cloudera发行版，使用该形式`$apacheRelease-cdh$cdhRelease`的版本号
 
@@ -152,8 +151,8 @@ $ mvn clean install -pl underfs/hdfs/ \
 -Phadoop-2 -Dhadoop.version=2.0.0-cdh4.7.0
 ```
 
-{% endcollapsible %}
-{% collapsible Hortonworks %}
+</details>
+<details><summary>Hortonworks</summary>
 
 对于Hortonworks发行版，使用`$apacheRelease.$hortonRelease`形式的版本号
 
@@ -163,8 +162,7 @@ $ mvn clean install -pl underfs/hdfs/ \
 -Phadoop-2 -Dhadoop.version=2.4.0.2.1.3.0-563
 ```
 
-{% endcollapsible %}
-{% endaccordion %}
+</details>
 
 ## 故障排除
 

@@ -16,15 +16,28 @@ Usage: alluxio fsadmin [generic options]
 ## 操作列表
 
 <table class="table table-striped">
-  <tr><th>操作</th><th>语法</th><th>描述</th></tr>
-  {% for item in site.data.table.fsadmin-command %}
+  <tbody><tr><th>操作</th><th>语法</th><th>描述</th></tr>
     <tr>
-      <td>{{ item.operation }}</td>
-      <td>{{ item.syntax }}</td>
-      <td>{{ site.data.table.en.fsadmin-command[item.operation] }}</td>
+      <td>backup</td>
+      <td>backup [directory] [--local]</td>
+      <td>Back up all Alluxio metadata to the backup directory configured on master.</td>
     </tr>
-  {% endfor %}
-</table>
+    <tr>
+      <td>doctor</td>
+      <td>doctor [category]</td>
+      <td>Show Alluxio errors and warnings.</td>
+    </tr>
+    <tr>
+      <td>report</td>
+      <td>report [category] [category args]</td>
+      <td>Report Alluxio running cluster information.</td>
+    </tr>
+    <tr>
+      <td>ufs</td>
+      <td>ufs --mode &lt;noAccess/readOnly/readWrite&gt; "ufsPath"</td>
+      <td>Update attributes for a mounted under storage system.</td>
+    </tr>
+</tbody></table>
 
 ## 示例用例
 

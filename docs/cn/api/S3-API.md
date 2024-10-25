@@ -8,16 +8,143 @@ Alluxio支持RESTful API，兼容[Amazon S3 API](http://docs.aws.amazon.com/Amaz
 
 # 特性支持
 下表描述了对当前Amazon S3基础特性的支持情况：
+<table>
+  <thead>
+    <tr>
+      <th>Action</th>
+      <th>Headers</th>
+      <th>Query Params</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>AbortMultipartUpload</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>CompleteMultipartUpload</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>CopyObject</td>
+      <td>Content-Type | x-amz-copy-source | x-amz-metadata-directive | x-amz-tagging-directive | x-amz-tagging</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>CreateBucket</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>CreateMultipartUpload</td>
+      <td>Content-Type | x-amz-tagging</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DeleteBucket</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DeleteBucketTagging</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DeleteObject</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DeleteObjects</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>DeleteObjectTagging</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>GetBucketTagging</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>GetObject</td>
+      <td>Range</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>GetObjectTagging</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>HeadBucket</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>HeadObject</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>ListBuckets</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>ListMultipartUploads</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>ListObjects</td>
+      <td>None</td>
+      <td>delimiter | encoding-type | marker | max-keys | prefix</td>
+    </tr>
+    <tr>
+      <td>ListObjectsV2</td>
+      <td>None</td>
+      <td>continuation-token | delimiter | encoding-type | max-keys | prefix | start-after</td>
+    </tr>
+    <tr>
+      <td>ListParts</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>PutBucketTagging</td>
+      <td>None</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PutObject</td>
+      <td>Content-Length | Content-MD5 | Content-Type | x-amz-tagging</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>PutObjectTagging</td>
+      <td>None</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <td>UploadPart</td>
+      <td>Content-Length | Content-MD5</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>UploadPartCopy</td>
+      <td>x-amz-copy-source</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
 
-<table class="table table-striped">
- <tr><th>S3 Feature</th><th>Status</th></tr>
- {% for item in site.data.table.s3-api-supported-operations %}
-   <tr>
-     <td>{{ item.S3Feature }}</td>
-     <td>{{ item.Status }}</td>
-   </tr>
- {% endfor %}
- </table>
 
 # 语言支持
 Alluxio S3 客户端支持各种编程语言，比如C++、Java、Python、Golang、Ruby等。在这个文档中，我们使用curl REST调用和python S3 client作为使用示例。
