@@ -174,42 +174,43 @@ LICENSE
         <td>描述</td>
     </tr>
     <tr>
-        <td>`direct_io`</td>
+        <td><code>direct_io</code></td>
         <td></td>
         <td>不要设置</td>
-        <td>开启`direct_io`模式，内核不会主动缓存和预读；当IO负载压力特别高时，`direct_io`模式下可能存在稳定性问题。</td>
+        <td>开启<code>direct_io</code>模式，内核不会主动缓存和预读；当IO负载压力特别高时，<code>direct_io</code>模式下可能存在稳定性问题。</td>
     </tr>
     <tr>
-        <td>`kernel_cache`</td>
+        <td><code>kernel_cache</code></td>
         <td></td>
         <td>建议启用</td>
-        <td>开启`kernel_cache`，使用更多的系统缓存，同时提升文件读取速度。</td>
+        <td>开启<code>kernel_cache</code>，使用更多的系统缓存，同时提升文件读取速度。</td>
     </tr>
     <tr>
-        <td>`max_read=N`</td>
+        <td><code>max_read=N</code></td>
         <td>131072</td>
         <td>使用默认值</td>
         <td>FUSE单次request能读取文件的大小上限。这个值在kernel被设置为32个pages，在i386上，为131072，或者说128kbytes。</td>
     </tr>
     <tr>
-        <td>`attr_timeout=N`</td>
+        <td><code>attr_timeout=N</code></td>
         <td>1.0</td>
         <td>7200</td>
         <td>设置文件属性（struct inode）被缓存的时间（单位：second）。增加inode缓存时间可减少FUSE文件元数据操作，提升性能。</td>
     </tr>
     <tr>
-        <td>`entry_timeout=N`</td>
+        <td><code>entry_timeout=N</code></td>
         <td>1.0</td>
         <td>7200</td>
         <td>设置文件项（struct dentry）被缓存的时间（单位：second）。增加entry缓存时间可减少FUSE文件元数据操作，提升性能。</td>
     </tr>
     <tr>
-        <td>`max_idle_threads`</td>
+        <td><code>max_idle_threads</code></td>
         <td>10</td>
         <td>视任务而定</td>
         <td>libfuse用户态daemon线程的最大闲置数量。在高并发下，这个属性过小会导致FUSE频繁创建销毁线程。建议视用户进程的IO活跃度配置。注意：libfuse 2并未提供这个参数，在alluxio-fuse容器镜像中，我们修改了libfuse代码，并通过环境变量的方式修改这个参数。</td>
     </tr>
 </table>
+
 
 ### AlluxioFuse相关优化配置项
 
@@ -229,7 +230,7 @@ LICENSE
         <td>描述</td>
     </tr>
     <tr>
-        <td>`alluxio.fuse.jnifuse.enabled`</td>
+        <code>alluxio.fuse.jnifuse.enabled</code>
         <td>true</td>
         <td>true</td>
         <td>使用jnifuse(true)，否则使用jnrfuse(false)。</td>
@@ -249,27 +250,27 @@ LICENSE
         <td>描述</td>
     </tr>
     <tr>
-        <td>`alluxio.user.client.cache.enabled`</td>
+        <code>alluxio.user.client.cache.enabled</code>
         <td>false</td>
         <td>是否启用client端cache。因为会产生额外的资源消耗，建议仅在IO压力特别高的场景下启用。</td>
     </tr>
     <tr>
-        <td>`alluxio.user.client.cache.store.type`</td>
+        <code>alluxio.user.client.cache.store.type</code>
         <td>LOCAL</td>
         <td>LOCAL设置client端cache的页存储类型，可选：{LOCAL, MEMORY, ROCKS}。LOCAL表示所有页存储在一个目录（通过`alluxio.user.client.cache.dir`指定）；ROCKS使用rocksDB来持久化数据；MEMORY将所有页存储在Java堆内存中。推荐使用MEMORY。</td>
     </tr>
     <tr>
-        <td>`alluxio.user.client.cache.dir`</td>
+        <code>alluxio.user.client.cache.dir</code>
         <td>/tmp/alluxio_cache</td>
         <td>client端cache存储目录（在LOCAL和ROCKS下有效）。一般将这个目录挂载为ramfs，提升cache访问速度。</td>
     </tr>
     <tr>
-        <td>`alluxio.user.client.cache.page.size`</td>
+        <code>alluxio.user.client.cache.page.size</code>
         <td>1MB</td>
         <td>client端cache的页大小。在调优时，可优先尝试2MB，4MB和8MB。注意：页大小设置过大可能导致JVM频繁GC；而太小则可能导致cache命中率过低。建议调优时，通过观察GC情况和cache命中率适当调整。</td>
     </tr>
     <tr>
-        <td>`alluxio.user.client.cache.size`</td>
+        <code>alluxio.user.client.cache.size</code>
         <td>512MB</td>
         <td>client端cache的容量上限。MEMORY模式下，建议设置在1800MB以内。</td>
     </tr>

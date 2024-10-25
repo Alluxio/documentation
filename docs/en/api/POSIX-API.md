@@ -618,13 +618,13 @@ $ ${ALLUXIO_HOME}/integration/fuse/bin/alluxio-fuse mount \
         <td>kernel_cache</td>
         <td></td>
         <td></td>
-        <td>`kernel_cache` utilizes kernel system caching and improves read performance. This should only be enabled on filesystems, where the file data is never changed externally (not through the mounted FUSE filesystem)</td>
+        <td><code>kernel_cache</code> utilizes kernel system caching and improves read performance. This should only be enabled on filesystems, where the file data is never changed externally (not through the mounted FUSE filesystem)</td>
     </tr>
     <tr>
         <td>auto_cache</td>
         <td></td>
         <td>set when deploying AlluxioFuse in plain machine</td>
-        <td>`auto_cache` utilizes kernel system caching and improves read performance. Instead of unconditionally keeping cached data, the cached data is invalidated if the modification time or the size of the file has changed since it was last opened. See [libfuse documentation](https://libfuse.github.io/doxygen/structfuse__config.html#a9db154b1f75284dd4fccc0248be71f66) for more info</td>
+        <td><code>auto_cache</code> utilizes kernel system caching and improves read performance. Instead of unconditionally keeping cached data, the cached data is invalidated if the modification time or the size of the file has changed since it was last opened. See [libfuse documentation](https://libfuse.github.io/doxygen/structfuse__config.html#a9db154b1f75284dd4fccc0248be71f66) for more info</td>
     </tr>
     <tr>
         <td>attr_timeout=N</td>
@@ -645,7 +645,7 @@ $ ${ALLUXIO_HOME}/integration/fuse/bin/alluxio-fuse mount \
         <td>The timeout in seconds for which name lookups will be cached</td>
     </tr>
     <tr>
-        <td>`max_read=N`</td>
+        <td><code>max_read=N</code></td>
         <td>131072</td>
         <td>Use default value</td>
         <td>Define the maximum size of data can be read in a single Fuse request. The default is infinite. Note that the size of read requests is limited anyway to 32 pages (which is 128kbyte on i386).</td>
