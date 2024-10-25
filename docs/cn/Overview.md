@@ -47,13 +47,13 @@ Alluxio 是发展最快的开源大数据项目之一，已经吸引了超过 30
 
 Alluxio 将三个关键领域的创新结合在一起，提供了一套独特的功能。
 
-1. **全局命名空间**：Alluxio 能够对多个独立存储系统提供单点访问，无论这些存储系统的物理位置在何处。这提供了所有数据源的统一视图和应用程序的标准接口。有关详细信息，请参阅[统一命名空间文档](../core-services/Unified-Namespace.md)。
-1. **智能多层级缓存**：Alluxio 集群能够充当底层存储系统中数据的读写缓存。可配置自动优化数据放置策略，以实现跨内存和磁盘（SSD/HDD）的性能和可靠性。缓存对用户是透明的，使用缓冲来保持与持久存储的一致性。有关详细信息，请参阅 [缓存功能文档](../core-services/Caching.md)。
+1. **全局命名空间**：Alluxio 能够对多个独立存储系统提供单点访问，无论这些存储系统的物理位置在何处。这提供了所有数据源的统一视图和应用程序的标准接口。有关详细信息，请参阅[统一命名空间文档](core-services/Unified-Namespace.md)。
+1. **智能多层级缓存**：Alluxio 集群能够充当底层存储系统中数据的读写缓存。可配置自动优化数据放置策略，以实现跨内存和磁盘（SSD/HDD）的性能和可靠性。缓存对用户是透明的，使用缓冲来保持与持久存储的一致性。有关详细信息，请参阅 [缓存功能文档](core-services/Caching.md)。
 1. **服务器端 API 翻译转换**：Alluxio支持工业界场景的API接口，例如HDFS API, S3 API, FUSE API, REST API。它能够透明地从标准客户端接口转换到任何存储接口。Alluxio 负责管理应用程序和文件或对象存储之间的通信，从而消除了对复杂系统进行配置和管理的需求。文件数据可以看起来像对象数据，反之亦然。
 
 ## 快速上手指南
 
-如果打算快速地搭建 Alluxio 并运行，请阅读[快速上手指南](../overview/Getting-Started.md)页面，该页面描述了如何部署 Alluxio 并在本地环境下运行示例。
+如果打算快速地搭建 Alluxio 并运行，请阅读[快速上手指南](overview/Getting-Started.md)页面，该页面描述了如何部署 Alluxio 并在本地环境下运行示例。
 
 或者，你也可以尝试我们为Presto & Alluxio制作好的快速上手教程，具体点击如下图片链接:
 <p align="center">
@@ -65,7 +65,7 @@ Alluxio 将三个关键领域的创新结合在一起，提供了一套独特的
 
 你可以从 [Alluxio 下载页面](https://alluxio.io/download)获取已发布版本。
 每个Alluxio发布版本都提供了与不同 Hadoop 版本兼容的预编译好的二进制文件。
-[从 Master 分支构建 Alluxio页面](../contributor/Building-Alluxio-From-Source.md)解释了如何从源代码编译生成Alluxio项目。
+[从 Master 分支构建 Alluxio页面](contributor/Building-Alluxio-From-Source.md)解释了如何从源代码编译生成Alluxio项目。
 如果你有任何疑问，请联系我们[用户邮件列表](https://groups.google.com/forum/?fromgroups#!forum/alluxio-users)
 或者我们的[社区Slack频道](https://alluxio.io/slack)。
 
@@ -75,8 +75,8 @@ Alluxio微信公众号二维码（下图）
 </p>
 
 [下载](https://alluxio.io/download/) |
-[用户文档](../overview/Getting-Started.md) |
-[开发者文档](../contributor/Contributor-Getting-Started.md) |
+[用户文档](overview/Getting-Started.md) |
+[开发者文档](contributor/Contributor-Getting-Started.md) |
 [Meetup](https://www.meetup.com/Alluxio/) |
 [Issue Tracking](https://github.com/Alluxio/alluxio/issues) |
 [社区Slack频道](https://alluxio.io/slack) |
