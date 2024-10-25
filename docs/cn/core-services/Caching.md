@@ -5,7 +5,7 @@
 本文档的目的是向用户介绍Alluxio存储和
 在Alluxio存储空间中可以执行的操作背后的概念。 与元数据相关的操作
 例如同步和名称空间，请参阅
-[有关命名空间管理的页面](../../en/core-services/Unified-Namespace.md)
+[有关命名空间管理的页面](../core-services/Unified-Namespace.md)
 
 Alluxio在帮助统一跨各种平台用户数据的同时还有助于为用户提升总体I / O吞吐量。 
 Alluxio是通过把存储分为两个不同的类别来实现这一目标的。
@@ -185,7 +185,7 @@ Alluxio从v2.3开始使用块注释策略来维护存储中数据块的严格顺
     `alluxio.worker.block.annotator.lrfu.attenuation.factor`。
 
 workers选择使用的注释策略由Alluxio属性
-[alluxio.worker.block.annotator.class](../../en/reference/Properties-List.md#worker-configuration)决定。
+[alluxio.worker.block.annotator.class](../reference/Properties-List.md#worker配置项)决定。
 该属性应在配置中指定完全验证的策略名称。当前可用的选项有:
 
 - `alluxio.worker.block.annotator.LRUAnnotator`
@@ -284,7 +284,7 @@ $ ./bin/alluxio fs free ${PATH_TO_UNUSED_DATA}
 ```
 
 这将从Alluxio存储中删除位于给定路径的数据。如果数据是持久存储到UFS的则仍然可以访问该数据。有关更多信息，参考
-[命令行界面文档](../../en/operation/User-CLI.md#free)
+[命令行界面文档](../operation/User-CLI.md#free)
 
 注意，用户通常不需要手动从Alluxio释放数据，因为
 配置的[注释策略](#块注释策略)将负责删除未使用或旧数据。
@@ -292,21 +292,21 @@ $ ./bin/alluxio fs free ${PATH_TO_UNUSED_DATA}
 ### 将数据加载到Alluxio存储中
 
 如果数据已经在UFS中，使用
-[`alluxio fs load`](../../en/operation/User-CLI.md#load)
+[`alluxio fs load`](../operation/User-CLI.md#load)
 
 ```console
 $ ./bin/alluxio fs load ${PATH_TO_FILE}
 ```
 
 要从本地文件系统加载数据，使用命令
-[`alluxio fs copyFromLocal`](../../en/operation/User-CLI.md#copyfromlocal)。
+[`alluxio fs copyFromLocal`](../operation/User-CLI.md#copyfromlocal)。
 这只会将文件加载到Alluxio存储中，而不会将数据持久保存到UFS中。
 将写入类型设置为`MUST_CACHE`写入类型将不会将数据持久保存到UFS，
 而设置为`CACHE`和`CACHE_THROUGH`将会持久化保存。不建议手动加载数据，因为，当首次使用文件时Alluxio会自动将数据加载到Alluxio缓存中。
 
 ### 在Alluxio中持久化保留数据
 
-命令[`alluxio fs persist`](../../en/operation/User-CLI.md#persist)
+命令[`alluxio fs persist`](../operation/User-CLI.md#persist)
 允许用户将数据从Alluxio缓存推送到UFS。
 
 ```console

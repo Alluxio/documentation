@@ -31,10 +31,10 @@ $ cd kubernetes
 
  {% endcollapsible %}
   {% collapsible (Optional) Provision a Persistent Volume %}
-注意:[嵌入式日志](../../en/operation/Journal.md#configuring-embedded-journal)
+注意:[嵌入式日志](../operation/Journal.md#日志)
 需要为每个要发放的 master Pod设置一个持久卷，这是Alluxio运行在kubernetes上的首选HA机制。一旦创建了该卷，即使master进程重启不会影响持久卷的内容。
 
-当使用[UFS日志](../../en/operation/Journal.md#configuring-ufs-journal)时，Alluxio master也可以配置为使用[持久卷](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
+当使用[UFS日志](../operation/Journal.md#日志)时，Alluxio master也可以配置为使用[持久卷](https://kubernetes.io/docs/concepts/storage/persistent-volumes/)
 来存储日志。如果你在用UFS日志并使用外部日志存储位置(例如HDFS)，可以跳过此节所余部分。
 
 有多种创建持久卷的方法。
@@ -112,7 +112,7 @@ $ helm inspect values alluxio-charts/alluxio
 
 {% accordion helmConfig %}
   {% collapsible Example: Amazon S3 as the under store %}
-To [mount S3](../../en/ufs/S3.md#root-mount-point)
+To [mount S3](../ufs/S3.md#根挂载)
 在Alluxio根名称空间以key-value pair方式指定所有必须属性。
 
 ```properties
@@ -125,7 +125,7 @@ properties:
 {% endcollapsible %}
 
   {% collapsible Example: Single Master and Journal in a Persistent Volume %}
- The following configures [UFS Journal](../../en/operation/Journal.md#configuring-ufs-journal) 将一个持久卷本地挂载在master Pod的位置 `/journal`。
+ The following configures [UFS Journal](../operation/Journal.md#日志) 将一个持久卷本地挂载在master Pod的位置 `/journal`。
 
 ```properties
 master:
@@ -148,7 +148,7 @@ journal:
 {% endcollapsible %}
 
    {% collapsible Example: 下方举例说明如何将一个持久卷挂载在本地master pod %}
-'/journal'位置来配置 [UFS Journal](../../en/operation/Journal.md#configuring-ufs-journal)
+'/journal'位置来配置 [UFS Journal](../operation/Journal.md#日志)
  将一个`emptyDir` 卷本地挂载在master Pod的位置`/journal` 
 
 
@@ -663,7 +663,7 @@ $ kubectl create -f ./worker/
 $ kubectl get pods
 ```
 
-你可以根据以下文档做更全面的确认 [Verify Alluxio](../../en/deploy/Running-Alluxio-Locally.md#verify-alluxio-is-running).  
+你可以根据以下文档做更全面的确认 [Verify Alluxio](../deploy/Running-Alluxio-Locally.md#验证alluxio是否运行).  
 {% endcollapsible %}
 {% endaccordion %}
 

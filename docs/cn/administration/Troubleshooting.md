@@ -16,15 +16,12 @@ Alluxio运行过程中可产生master、worker和client日志，这些日志存�
 Master和Worker日志对于理解Alluxio Master节点和Worker节点的运行过程是非常有用的，当Alluxio运行出现问题时，
 可在[Github issue](https://github.com/Alluxio/alluxio/issues)查找，错误日志的相关信息有可能之前已经讨论过。
 您也可以加入我们的 [Slack 频道](https://slackin.alluxio.io/) 并在那里寻求帮助。
-您可以在 [此处](../../en/administration/Basic-Logging.md#server-logs) 找到有关Alluxio日志的更多详细信息。
 
 当Alluxio运行在客户端侧无法连接的服务器上时，客户端侧的日志会很有用。Alluxio客户端通过log4j生成日志消息，因此日志的位置由使用Alluxio的应用程序的log4j配置确定。
-您可以在 [此处](../../en/administration/Basic-Logging.md#application-logs) 找到有关客户端日志的更多详细信息。
 
 `${ALLUXIO_HOME}/logs/user/`是Alluxio shell的日志。每个用户都有单独的日志文件。
 
 有关日志记录的更多信息，请查看
-[本页](../../en/administration/Basic-Logging.md)。
 
 ## Alluxio远程调试
 
@@ -96,7 +93,7 @@ tarball大小主要取决于您的集群大小以及您有多少子命令被执�
 从Alluxio 2.4开始`collectAlluxioInfo`将会运行`alluxio getConf`命令并打印所有配置属性，并且会隐藏证书相关字段,
 而不是拷贝 `alluxio-site.properties` 文件，因为很多用户会将UFS的证书明文信息放在此文件中。
 
-[getConf 命令](../../en/operation/User-CLI.md#getconf) 将收集所有当前节点配置。
+[getConf 命令](../operation/User-CLI.md) 将收集所有当前节点配置。
 
 因此，如果想要收集压缩包中的Alluxio配置信息，请确保运行了 `collectAlluxioInfo` 子命令。
 
@@ -328,13 +325,13 @@ Alluxio通过配置`alluxio.security.authentication.type`来提供不同的[用�
 - 通过改变`alluxio.worker.ramdisk.size`属性值增加worker节点可用内存的容量，查看[配置文档](../operation/Configuration.md) 获取更多信息。
 
 - 检查您是否有任何不必要的文件被pin在内存中，取消pin以释放空间。
-详情请见[Command-Line-Interface](../../en/operation/User-CLI.md#pin)。
+详情请见[Command-Line-Interface](../operation/User-CLI.md#pin)。
 - 增加Worker的容量[缓存](../core-services/Caching.md#配置Alluxio存储)。
 
 ### 问题： 当我正在写一个新的文件/目录，我的应用程序中出现日志错误。
 
 答：首先您应该检查您运行Alluxio是使用UFS journal还是Embedded journal。
-您可以在[这里](../../en/operation/Journal.md#embedded-journal-vs-ufs-journal)查看这两者的区别。
+您可以在[这里](../operation/Journal.md#embedded-journal-vs-ufs-journal)查看这两者的区别。
 
 此外，您还应该验证您所使用的journal是否与您当前的配置兼容。
 在一些场景下，日志无法兼容，您可以进行以下操作
@@ -387,7 +384,7 @@ A: 当向Alluxio写文件时，可以配置以下类型之一来告诉 Alluxio W
 如果您想知道在UFS中发生了什么，可以检查用户日志（默认存储路径为`${ALLUXIO_HOME}/logs/user_${USER_NAME}.log`）
 或Master日志（默认存储路径为`${ALLUXIO_HOME}/logs/master.log`，位于Master节点）。
 
-如果日志中的信息不足以丁文问题，您可以[开启更详细日志](../../en/administration/Basic-Logging.md#enabling-advanced-logging)。
+如果日志中的信息不足以丁文问题，您可以[开启更详细日志](../administration/Basic-Logging.md#enabling-advanced-logging)。
 
 ### 问题：我收到"UNKNOWN"的gRPC错误，如 "io.grpc.StatusRuntimeException: UNKNOWN"
 
