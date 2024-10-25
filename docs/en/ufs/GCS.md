@@ -57,8 +57,8 @@ alluxio.master.mount.table.root.ufs=gs://GCS_BUCKET/GCS_DIRECTORY
 
 Choose your preferred GCS UFS version and provide the corresponding Google credentials.
 
-{% navtabs rootMount %}
-{% navtab GCS version 2 %}
+<details><summary>GCS version 2</summary>
+
 
 In`conf/alluxio-site.properties`, add:
 ```properties
@@ -69,9 +69,9 @@ Google application credentials json file should be placed in all the Alluxio nod
 If the nodes running the Alluxio processes already contain the GCS credentials, this property may not be needed
 but it is always recommended to set this property explicitly.
 
-{% endnavtab %}
+</details>
+<details><summary>GCS version 1</summary>
 
-{% navtab GCS version 1 %}
 
 In`conf/alluxio-site.properties`, add:
 ```properties
@@ -87,8 +87,7 @@ Note: GCS interoperability is disabled by default. Please click on the Interoper
 in [GCS setting](https://console.cloud.google.com/storage/settings) and enable this feature.
 Click on `Create a new key` to get the Access Key and Secret pair.
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 After these changes, Alluxio should be configured to work with GCS as its under storage system, and
 you can [Run Alluxio Locally with GCS](#running-alluxio-locally-with-gcs).
@@ -104,15 +103,17 @@ alluxio.master.hostname=localhost
 ```
 
 Then, mount GCS:
-{% navtabs nestedMount %}
-{% navtab GCS version 2 %}
+
+<details><summary>GCS version 2</summary>
+
 ```console
 $ ./bin/alluxio fs mount \
   --option fs.gcs.credential.path=/path/to/<google_application_credentials>.json \
   /gcs gs://GCS_BUCKET/GCS_DIRECTORY
 ```
-{% endnavtab %}
-{% navtab GCS version 1 %}
+</details>
+<details><summary>GCS version 1</summary>
+
 ```console
 $ ./bin/alluxio fs mount \
   --option alluxio.underfs.gcs.version=1 \
@@ -120,8 +121,7 @@ $ ./bin/alluxio fs mount \
   --option fs.gcs.secretAccessKey=<GCS_SECRET_ACCESS_KEY> \
   /gcs gs://GCS_BUCKET/GCS_DIRECTORY
 ```
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ## Running Alluxio Locally with GCS
 

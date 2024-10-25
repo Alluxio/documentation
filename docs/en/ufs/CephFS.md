@@ -47,8 +47,7 @@ $ cp conf/alluxio-site.properties.template conf/alluxio-site.properties
 $ cp conf/core-site.xml.template conf/core-site.xml
 ```
 
-{% navtabs Setup %}
-{% navtab cephfs %}
+<details><summary>cephfs</summary>
 
 Modify `conf/alluxio-site.properties` to include:
 
@@ -60,8 +59,8 @@ alluxio.underfs.cephfs.auth.id=<client-id>
 alluxio.underfs.cephfs.auth.keyring=<client-keyring-file>
 ```
 
-{% endnavtab %}
-{% navtab cephfs-hadoop %}
+</details>
+<details><summary>cephfs-hadoop</summary>
 
 Modify `conf/alluxio-site.properties` to include:
 
@@ -116,8 +115,7 @@ Modify `conf/core-site.xml` to include:
 </configuration>
 ```
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ## Running Alluxio Locally with CephFS
 
@@ -131,8 +129,7 @@ $ ./bin/alluxio-start.sh local
 This should start an Alluxio master and Alluxio worker. You can see the master UI at
 [http://localhost:19999](http://localhost:19999).
 
-{% navtabs Test %}
-{% navtab cephfs %}
+<details><summary>cephfs</summary>
 
 An CephFS location can be mounted at a nested directory in the Alluxio namespace to have unified access
 to multiple under storage systems. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
@@ -164,8 +161,9 @@ In Alluxio, you can visit the nested directory in the Alluxio. Alluxio's [Comman
 /mnt/cephfs/default_tests_files/Basic_CACHE_THROUGH
 ```
 
-{% endnavtab %}
-{% navtab cephfs-hadoop %}
+</details>
+<details><summary>cephfs-hadoop</summary>
+
 
 An CephFS location can be mounted at a nested directory in the Alluxio namespace to have unified access
 to multiple under storage systems. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
@@ -197,6 +195,5 @@ In Alluxio, you can visit the nested directory in the Alluxio. Alluxio's [Comman
 /mnt/cephfs-hadoop/default_tests_files/Basic_CACHE_THROUGH
 ```
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 

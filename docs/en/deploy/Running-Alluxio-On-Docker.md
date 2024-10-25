@@ -111,8 +111,8 @@ User-defined bridge network allows containers connected to communicate,
 while providing isolation from containers not connected to that bridge network.
 It is recommended to use host network, option 1, for testing.
 
-{% navtabs network %}
-{% navtab Using Host Network %}
+
+<details><summary>Using Host Network</summary>
 
 Launch the Alluxio Master
 
@@ -160,8 +160,8 @@ Notes:
      and persist the Alluxio UFS root data in the host directory `/tmp/alluxio_ufs`,
      as explained above in the Docker volume section.
 
-{% endnavtab %}
-{% navtab Using User-Defined Network %}
+</details>
+<details><summary>Using User-Defined Network</summary>
 
 Using host network is simple, but it has disadvantages. For example
 
@@ -234,8 +234,7 @@ Notes:
      Target: 5a1a840d2a98:29999, Error: alluxio.exception.status.UnavailableException: Unable to resolve host 5a1a840d2a98
      ```
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ## Verify the Cluster
 
@@ -330,8 +329,7 @@ There are two ways to enable HA mode in Alluxio, either with internal leader ele
 Please read [running Alluxio with HA](../deploy/Running-Alluxio-On-a-HA-Cluster.md#overview) for more details.
 It is recommended to use the second option for production use case.
 
-{% navtabs HA %}
-{% navtab Internal Leader Election %}
+<details><summary>Internal Leader Election</summary>
 
 Alluxio uses internal leader election by default.
 
@@ -358,8 +356,8 @@ $ docker run -d \
 
 You can find more on Embedded Journal configuration [here](../deploy/Running-Alluxio-On-a-HA-Cluster.md#raft-based-embedded-journal).
 
-{% endnavtab %}
-{% navtab Zookeeper and Shared Journal Storage %}
+</details>
+<details><summary>Zookeeper and Shared Journal Storage</summary>
 
 To run in HA mode with Zookeeper, Alluxio needs a shared journal directory
 that all masters have access to, usually either NFS or HDFS.
@@ -391,8 +389,7 @@ $ docker run -d \
 
 You can find more on ZooKeeper and shared journal configuration [here](../deploy/Running-Alluxio-On-a-HA-Cluster.md#zookeeper-and-shared-journal-storage).
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ### Relaunch Alluxio Servers
 
@@ -420,8 +417,8 @@ First make sure a directory with the right permissions exists on the host to [bi
 $ mkdir -p /tmp/mnt && sudo chmod -R a+rwx /tmp/mnt
 ```
 
-{% navtabs Fuse-docker %}
-{% navtab Standalone FUSE %}
+
+<details><summary>Standalone FUSE</summary>
 
 The original [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}-fuse](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}-fuse/) has been deprecated. Now you can enable access to Alluxio on Docker host using the POSIX API by [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}/) Docker image, the same one used for launching Alluxio master and worker.
 
@@ -451,8 +448,8 @@ To change this path to `/foo/bar/alluxio-fuse` on host file system, replace `/tm
 capability.
 - `--device /dev/fuse` shares host device `/dev/fuse` with the container.
 
-{% endnavtab %}
-{% navtab FUSE on worker %}
+</details>
+<details><summary>FUSE on worker</summary>
 
 When running a worker container, specifying FUSE enabled:
 
@@ -489,8 +486,7 @@ This is because local path `/mnt` in worker container is mapped to host path `/t
 and mount point of Alluxio service is `/mnt/alluxio-fuse`, mapped to host path
 `/tmp/mnt/alluxio-fuse`.
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 See [Fuse configuration](../api/POSIX-API.md#alluxio-fuse-mount-configuration)
 and [Fuse mount options](../api/POSIX-API.md#fuse-mount-options)
@@ -529,8 +525,7 @@ In dockerized environments, there are two ways to enable short-circuit reads and
 Using shared volumes is slightly easier and may yield higher performance, but may result in inaccurate resource accounting.
 Using domain sockets is recommended for production deployment.
 
-{% navtabs Short-circuit %}
-{% navtab Domain socket %}
+<details><summary>Domain socket</summary>
 
 On worker host machines, create a directory for the shared domain socket.
 
@@ -556,8 +551,8 @@ $ docker run -d \
   alluxio worker
 ```
 
-{% endnavtab %}
-{% navtab Shared volume %}
+</details>
+<details><summary>Shared volume</summary>
 
 When starting both workers and clients, run their docker containers with the worker storage as shared volumes across host, worker and client pods.
 With default Alluxio setting on docker, `MEM` is the main storage on host path `/dev/shm`.
@@ -575,8 +570,7 @@ $ docker run -d \
 
 To run application containers, also pass `alluxio.user.hostname=<host ip>`.
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ## Troubleshooting
 

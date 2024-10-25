@@ -679,15 +679,17 @@ which refer to permissions for the file owner, the group and other users.
 Here is number-permission mapping table:
 
 <table class="table table-striped">
-  <tr><th>Number</th><th>Permission</th><th>rwx</th></tr>
-  {% for item in site.data.table.chmod-permission %}
-    <tr>
-      <td>{{ item.number }}</td>
-      <td>{{ item.permission }}</td>
-      <td>{{ item.rwx }}</td>
-    </tr>
-  {% endfor %}
+    <tr><th>Number</th><th>Permission</th><th>rwx</th></tr>
+    <tr><td>7</td><td>read, write and execute</td><td>rwx</td></tr>
+    <tr><td>6</td><td>read and write</td><td>rw-</td></tr>
+    <tr><td>5</td><td>read and execute</td><td>r-x</td></tr>
+    <tr><td>4</td><td>read only</td><td>r--</td></tr>
+    <tr><td>3</td><td>write and execute</td><td>-wx</td></tr>
+    <tr><td>2</td><td>write only</td><td>-w-</td></tr>
+    <tr><td>1</td><td>execute only</td><td>--x</td></tr>
+    <tr><td>0</td><td>none</td><td>---</td></tr>
 </table>
+
 
 Adding `-R` option also changes the permission of child file and child directory recursively.
 

@@ -72,15 +72,24 @@ and the master rpc port (Default:`19998`).
 ### Advanced configuration
 
 <ul>
-{% for item in site.data.table.master-configuration %}
-    {% capture journal_properties %}{{ 'alluxio.master.embedded.journal.' }}{% endcapture %} 
-    {% assign journal_prop_size = journal_properties | size %}
-    {% assign result = item.propertyName | slice: 0, journal_prop_size %}
-    
-    {% if result == journal_properties %}
-        <li><code>{{ item.propertyName }}</code>: {{ site.data.table.en.master-configuration[item.propertyName] }} Default: <code>{{ item.defaultValue }}</code></li>
-    {% endif %}
-{% endfor %}
+    <li><code>alluxio.master.embedded.journal.addresses</code>: A comma-separated list of journal addresses for all masters in the cluster. The format is 'hostname1:port1,hostname2:port2,...'. When left unset, Alluxio uses ${alluxio.master.hostname}:${alluxio.master.embedded.journal.port} by default Default: <code></code></li>
+    <li><code>alluxio.master.embedded.journal.catchup.retry.wait</code>: Time for embedded journal leader to wait before retrying a catch up. This is added to avoid excessive retries when server is not ready. Default: <code>1s</code></li>
+    <li><code>alluxio.master.embedded.journal.election.timeout.max</code>: The max election timeout for the embedded journal. When a random period between ${alluxio.master.embedded.journal.election.timeout.min} and ${alluxio.master.embedded.journal.election.timeout.max} elapses without a master receiving any messages, the master will attempt to become the primary Election timeout will be waited initially when the cluster is forming. So larger values for election timeout will cause longer start-up time. Smaller values might introduce instability to leadership. Default: <code>20s</code></li>
+    <li><code>alluxio.master.embedded.journal.election.timeout.min</code>: The min election timeout for the embedded journal. Default: <code>10s</code></li>
+    <li><code>alluxio.master.embedded.journal.entry.size.max</code>: The maximum single journal entry size allowed to be flushed. This value should be smaller than 30MB. Set to a larger value to allow larger journal entries when using the Alluxio Catalog service. Default: <code>10MB</code></li>
+    <li><code>alluxio.master.embedded.journal.flush.size.max</code>: The maximum size in bytes of journal entries allowed in concurrent journal flushing (journal IO to standby masters and IO to local disks). Default: <code>160MB</code></li>
+    <li><code>alluxio.master.embedded.journal.port</code>: The port to use for embedded journal communication with other masters. Default: <code>19200</code></li>
+    <li><code>alluxio.master.embedded.journal.raft.client.request.interval</code>: Base interval for retrying Raft client calls. The retry policy is ExponentialBackoffRetry Default: <code>100ms</code></li>
+    <li><code>alluxio.master.embedded.journal.raft.client.request.timeout</code>: Time after which calls made through the Raft client timeout. Default: <code>60sec</code></li>
+    <li><code>alluxio.master.embedded.journal.ratis.config</code>: Prefix for Apache Ratis internal configuration options. For example, setting alluxio.master.embedded.journal.ratis.config.raft.server.rpc.request.timeout will set ratis.config.raft.server.rpc.request.timeout on the Ratis service in the Alluxio master. Default: <code></code></li>
+    <li><code>alluxio.master.embedded.journal.retry.cache.expiry.time</code>: The time for embedded journal server retry cache to expire. Setting a bigger value allows embedded journal server to cache the responses for a longer time in case of journal writer retries, but will take up more memory in master. Default: <code>60s</code></li>
+    <li><code>alluxio.master.embedded.journal.snapshot.replication.chunk.size</code>: The stream chunk size used by masters to replicate snapshots. Default: <code>4MB</code></li>
+    <li><code>alluxio.master.embedded.journal.snapshot.replication.compression.level</code>: The zip compression level of sending a snapshot from one master to another. Only applicable when alluxio.master.embedded.journal.snapshot.replication.compression.type is not NO_COMPRESSION. The zip format defines ten levels of compression, ranging from 0 (no compression, but very fast) to 9 (best compression, but slow). Or -1 for the system default compression level. Default: <code>1</code></li>
+    <li><code>alluxio.master.embedded.journal.snapshot.replication.compression.type</code>: The type of compression to use when transferring a snapshot from one master to another. Options are NO_COMPRESSION, GZIP, TAR_GZIP Default: <code>NO_COMPRESSION</code></li>
+    <li><code>alluxio.master.embedded.journal.transport.max.inbound.message.size</code>: The maximum size of a message that can be sent to the embedded journal server node. Default: <code>100MB</code></li>
+    <li><code>alluxio.master.embedded.journal.transport.request.timeout.ms</code>: The duration after which embedded journal masters will timeout messages sent between each other. Lower values might cause leadership instability when the network is slow. Default: <code>5sec</code></li>
+    <li><code>alluxio.master.embedded.journal.unsafe.flush.enabled</code>: If true, embedded journal entries will be committed without waiting for the entry to be flushed to disk. This may improve performance of write operations on the Alluxio master if the journal is written to a slow or contested disk. WARNING: enabling this property may result in metadata loss if half or more of the master nodes fail. See Ratis property raft.server.log.unsafe-flush.enabled at https://github.com/apache/ratis/blob/master/ratis-docs/src/site/markdown/configuraions.md. Default: <code>false</code></li>
+    <li><code>alluxio.master.embedded.journal.write.timeout</code>: Maximum time to wait for a write/flush on embedded journal. Default: <code>30sec</code></li> 
 </ul>
 
 ### Configuring the Job service

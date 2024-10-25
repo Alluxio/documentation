@@ -90,8 +90,8 @@ The spark-submit arguments will be different for these two options.
 You can find more about how to mount volumes to Spark executors in Spark
 [documentation](https://spark.apache.org/docs/2.4.4/running-on-kubernetes.html#using-kubernetes-volumes).
 
-{% navtabs domainSocket %}
-  {% navtab hostPath %}
+<details><summary>hostPath</summary>
+
   If you are using `hostPath` domain sockets, you should pass these properties to Spark:
   
   ```properties
@@ -100,8 +100,9 @@ You can find more about how to mount volumes to Spark executors in Spark
   spark.kubernetes.executor.volumes.hostPath.alluxio-domain.options.path=/tmp/alluxio-domain
   spark.kubernetes.executor.volumes.hostPath.alluxio-domain.options.type=Directory
   ```
-  {% endnavtab %}
-  {% navtab PersistententVolumeClaim %}
+</details>
+<details><summary>PersistententVolumeClaim</summary>
+
   If you are using `PersistententVolumeClaim` domain sockets, you should pass these properties to Spark:
   
   ```properties
@@ -109,9 +110,9 @@ You can find more about how to mount volumes to Spark executors in Spark
   spark.kubernetes.executor.volumes.persistentVolumeClaim.alluxio-domain.mount.readOnly=true \
   spark.kubernetes.executor.volumes.persistentVolumeClaim.alluxio-domain.options.claimName=<domainSocketPVC name>
   ```
-  
-  {% endnavtab %}
-{% endnavtabs %}
+
+</details>
+
 
 > Note: 
 > - Volume support in Spark was added in version 2.4.0.

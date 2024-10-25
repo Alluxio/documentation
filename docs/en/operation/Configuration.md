@@ -85,14 +85,150 @@ Alluxio supports defining a few frequently used configuration settings through e
 variables, including:
 
 <table class="table table-striped">
-<tr><th>Environment Variable</th><th>Description</th></tr>
-{% for env_var in site.data.table.en.env_vars %}
+<tbody><tr><th>Environment Variable</th><th>Description</th></tr>
+
   <tr>
-    <td markdown="span">`{{env_var.name}}`</td>
-    <td markdown="span">{{env_var.description}}</td>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_CONF_DIR</code></td>
+    <td>The path to the alluxio configuration directory. This defines the value for the property key <code class="language-plaintext highlighter-rouge">alluxio.conf.dir</code> which should never be set directly outside the environment variable.
+</td>
   </tr>
-{% endfor %}
-</table>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_LOGS_DIR</code></td>
+    <td>The path to the directory that stores Alluxio server logs. This defines the value for the property key <code class="language-plaintext highlighter-rouge">alluxio.logs.dir</code> which should never be set directly outside the environment variable.
+</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_USER_LOGS_DIR</code></td>
+    <td>The path to the directory that stores Alluxio user logs. This defines the value for the property key <code class="language-plaintext highlighter-rouge">alluxio.user.logs.dir</code> which should never be set directly outside the environment variable.
+</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_MASTER_HOSTNAME</code></td>
+    <td>Hostname of the Alluxio master. Defaults to <code class="language-plaintext highlighter-rouge">localhost</code>.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_MASTER_MOUNT_TABLE_ROOT_UFS</code></td>
+    <td>The under storage system address. Defaults to <code class="language-plaintext highlighter-rouge">${ALLUXIO_HOME}</code>/underFSStorage which is a local file system.
+</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_RAM_FOLDER</code></td>
+    <td>The directory where a worker stores its in-memory data. Defaults to <code class="language-plaintext highlighter-rouge">/mnt/ramdisk</code>.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_LOGSERVER_HOSTNAME</code></td>
+    <td>Hostname of the log server. Empty by default.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_LOGSERVER_PORT</code></td>
+    <td>The port number of the log server. Defaults to <code class="language-plaintext highlighter-rouge">45600</code></td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_LOGSERVER_LOGS_DIR</code></td>
+    <td>The path to the local directory where the Alluxio log server stores logs received from the Alluxio servers.
+</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_JAVA_OPTS</code></td>
+    <td>Java VM options for the Alluxio master, worker, and shell commands. By default, <code class="language-plaintext highlighter-rouge">ALLUXIO_JAVA_OPTS</code> is prepended to other <code class="language-plaintext highlighter-rouge">ALLUXIO_*_JAVA_OPTS</code> environment variables, such as <code class="language-plaintext highlighter-rouge">ALLUXIO_MASTER_JAVA_OPTS</code> and <code class="language-plaintext highlighter-rouge">ALLUXIO_USER_JAVA_OPTS</code>.
+</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_MASTER_JAVA_OPTS</code></td>
+    <td>Additional Java VM options for Alluxio master configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_JOB_MASTER_JAVA_OPTS</code></td>
+    <td>Additional Java VM options for Alluxio job master configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_WORKER_JAVA_OPTS</code></td>
+    <td>Additional Java VM options for Alluxio worker configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_JOB_WORKER_JAVA_OPTS</code></td>
+    <td>Additional Java VM options for Alluxio job worker configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_PROXY_JAVA_OPTS</code></td>
+    <td>Additional Java VM options for Alluxio proxy configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_LOGSERVER_JAVA_OPTS</code></td>
+    <td>Additional Java VM options for Alluxio log server configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_USER_JAVA_OPTS</code></td>
+    <td>Additional Java VM options for Alluxio shell command configuration.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_CLASSPATH</code></td>
+    <td>Additional classpath entries for Alluxio processes. Empty by default.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_MASTER_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio master.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_SECONDARY_MASTER_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio secondary master.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_JOB_MASTER_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio job master.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_WORKER_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio worker.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_JOB_WORKER_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio job worker.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_PROXY_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio proxy.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_LOGSERVER_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio log server.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_FUSE_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio FUSE process.</td>
+  </tr>
+
+  <tr>
+    <td><code class="language-plaintext highlighter-rouge">ALLUXIO_USER_ATTACH_OPTS</code></td>
+    <td>Additional Java VM options to apply when attaching a debugger to Alluxio shell command.</td>
+  </tr>
+
+</tbody></table>
 
 For example, the following example will set up:
 - an Alluxio master at `localhost`

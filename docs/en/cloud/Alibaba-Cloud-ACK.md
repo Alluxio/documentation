@@ -13,24 +13,27 @@ This section introduces how to install Alluxio on Alibaba Cloud Container Servic
 ### Specify Which Nodes to Install Alluxio
 Before installing Alluxio components, you need to label the target Kubernetes nodes with "alluxio=true", the steps are as follows:
 
-{% accordion label %}
-  {% collapsible Select cluster %}
+
+<details><summary>Select cluster</summary>
+
 Login to [Container Service - Kubernetes Console](https://cs.console.aliyun.com/#/k8s/cluster/list).
 Under the Kubernetes menu, click "**Clusters**" > "**Nodes**" in the left navigation bar to enter the node list page.
 Select the specific cluster and click the "**Manage Labels**" in the upper right corner of the page.
   ![](http://application-catalog-hk.oss-cn-hongkong.aliyuncs.com/alluxio/images/image-1.jpg)
-  {% endcollapsible %}
 
-  {% collapsible Select nodes %}
+</details>
+<details><summary>Select nodes</summary>
+
 In the node list, select nodes in batches, and then click "**Add Label**".
   ![](http://application-catalog-hk.oss-cn-hongkong.aliyuncs.com/alluxio/images/image-2.jpg)
-  {% endcollapsible %}
 
-  {% collapsible Add label %}
+</details>
+<details><summary>Add label</summary>
+
 Fill in the label name as "alluxio" and the value as "true", click "**OK**".
   ![](http://application-catalog-hk.oss-cn-hongkong.aliyuncs.com/alluxio/images/image-3.jpg)
-  {% endcollapsible %}
-{% endaccordion %}
+</details>
+
 
 ### Install Alluxio Using App Catalog
 
@@ -75,17 +78,17 @@ Worker Name      Last Heartbeat   Storage       MEM
 
 ## Example: Running Spark Jobs
 
-{% accordion Spark %}
-  {% collapsible Install spark-operator %}
+<details><summary>Install spark-operator</summary>
+
 Go to [Container Service Application Catalog](https://cs.console.aliyun.com/#/k8s/catalog/list),
 search for "ack-spark-operator" in the search box in the upper right:
 ![image-4.png](http://application-catalog-hk.oss-cn-hongkong.aliyuncs.com/alluxio/images/image-4.jpg)
 
 Choose to install "ack-spark-operator" on the target cluster (the cluster in this document is "ack-create-by-openapi-1"), and then click "**create**", as shown in the figure:
 ![image-5.png](http://application-catalog-hk.oss-cn-hongkong.aliyuncs.com/alluxio/images/image-5.jpg)
-  {% endcollapsible %}
+</details>
+<details><summary>Build Spark docker image</summary>
 
-  {% collapsible Build Spark docker image %}
 Download the required Spark version from [Spark download page](https://spark.apache.org/downloads.html). The Spark version used in this example is 2.4.6.
 Run the following command to download Spark:
 
@@ -121,9 +124,9 @@ After the image is built, there are two ways to distribute the image:
 
 * If there is a private image warehouse, push the image to the private image warehouse, and ensure that the K8s cluster node can pull the image.
 * If there is no private image warehouse, you need to use the `docker save` command to export the image, then scp the image to each node of the K8s cluster, use the `docker load` command on each node to load the image.
- {% endcollapsible %}
+</details>
+<details><summary>Upload files to Alluxio</summary>
 
- {% collapsible Upload files to Alluxio %}
 As mentioned at the beginning: In this experiment we will submit a Spark job to K8s. 
 The Spark job will perform a word count calculation on a certain file. 
 Before we kick off the Spark job, we need to upload the file to the Alluxio storage. 
@@ -165,9 +168,9 @@ cn-beijing.192.168.8.15  192.168.8.15
 cn-beijing.192.168.8.16  192.168.8.16
 cn-beijing.192.168.8.17  192.168.8.17
 ```
-  {% endcollapsible %}
+</details>
+<details><summary>Submit Spark job</summary>
 
-  {% collapsible Submit Spark job %}
 The following steps will submit a Spark job to the K8s cluster. 
 The job is mainly to count the number of occurrences of each word in the `/LICENSE` file in Alluxio.
 
@@ -250,9 +253,9 @@ $ sparkctl create /tmp/spark-example.yaml
 ```
 
 * **Description**: if `sparkctl` is not installed, please refer to [sparkctl](https://github.com/GoogleCloudPlatform/spark-on-k8s-operator/tree/master/sparkctl) to install it.
-  {% endcollapsible %}
+</details>
+<details><summary>Check Results</summary>
 
-  {% collapsible Check Results %}
 After submitting the task, use `kubectl` to check the Spark driver status:
 
 ```console
@@ -305,5 +308,4 @@ Cluster.BytesReadDomainThroughput  (Type: GAUGE, Value: 47.53KB/MIN)
 From the metrics above,
 **BytesReadRemote** and **BytesReadRemoteThroughput** represent data transmission via the network stack; **BytesReadDomain** and **BytesReadDomainThroughput** represent data transmission via domain socket. 
 You can observe that all data is transferred via the domain socket.
-  {% endcollapsible %}
-{% endaccordion %}
+</details>

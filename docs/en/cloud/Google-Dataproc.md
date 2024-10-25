@@ -66,8 +66,9 @@ alluxio_site_properties="alluxio.master.mount.table.root.option.alluxio.underfs.
 
 The Alluxio deployment on Google Dataproc can customized for more complex scenarios by passing
 additional metadata labels to the `gcloud clusters create` command.
-{% accordion download %}
-  {% collapsible Enable Active Sync on HDFS Paths %}
+
+<details><summary>Enable Active Sync on HDFS Paths</summary>
+
 [Active Sync](../core-services/Unified-Namespace.md#active-sync-for-hdfs)
 can be enabled on paths in Alluxio for a root HDFS mount point using the metadata key
 `alluxio_sync_list`.
@@ -78,9 +79,9 @@ Specify a list of paths in Alluxio delimited using `;`.
 alluxio_sync_list="/tmp;/user/hadoop",\
 ...
 ```
-  {% endcollapsible %}
+</details>
+<details><summary>Download Additional Files</summary>
 
-  {% collapsible Download Additional Files %}
 Additional files can be downloaded into the Alluxio installation directory at `/opt/alluxio/conf`
 using the metadata key `alluxio_download_files_list`.
 Specify `http(s)` or `gs` uris delimited using `;`.
@@ -90,9 +91,9 @@ Specify `http(s)` or `gs` uris delimited using `;`.
 alluxio_download_files_list="gs://<my_bucket>/<my_file>;https://<server>/<file>",\
 ...
 ```
-  {% endcollapsible %}
+</details>
+<details><summary>Tiered Storage</summary>
 
-  {% collapsible Tiered Storage %}
 The default Alluxio Worker memory is set to 1/3 of the physical memory on the instance.
 If a specific value is desired, set `alluxio.worker.ramdisk.size` in the provided
 `alluxio-site.properties`.
@@ -111,8 +112,8 @@ Pass additional arguments to the `gcloud clusters create` command.
 alluxio_ssd_capacity_usage="60",\
 ...
 ``` 
-  {% endcollapsible %}
-{% endaccordion %}
+</details>
+
 
 ## Next steps
 
@@ -135,8 +136,9 @@ Alluxio is installed and configured in `/opt/alluxio/`. Alluxio services are sta
 
 Spark, Hive, and Presto on Dataproc are pre-configured to connect to Alluxio.
 
-{% navtabs compute %}
-{% navtab Spark %}
+
+<details><summary>Spark</summary>
+
 To run a Spark application accessing data from Alluxio, simply refer to the path as
 `alluxio:///<path_to_file>`.
 
@@ -153,8 +155,9 @@ scala> sc.textFile("alluxio:///default_tests_files/BASIC_NO_CACHE_MUST_CACHE").c
 For further information, visit our Spark on Alluxio
 [documentation](../compute/Spark.md#examples--use-alluxio-as-input-and-output).
 
-{% endnavtab %}
-{% navtab Hive %}
+</details>
+<details><summary>Hive</summary>
+
 Download a sample dataset.
 ```console
 $ wget http://files.grouplens.org/datasets/movielens/ml-100k.zip
@@ -193,8 +196,8 @@ hive> select * from u_user limit 10;
 For further information, visit our Hive on Alluxio 
 [documentation](../compute/Hive.md).
 
-{% endnavtab %}
-{% navtab Presto %}
+</details>
+<details><summary>Presto</summary>
 
 Note: There are two ways to install Presto on Dataproc.
 * [Optional Component for Presto](https://cloud.google.com/dataproc/docs/concepts/components/presto)
@@ -213,5 +216,4 @@ presto --execute "select * from u_user limit 10;" --catalog hive --schema defaul
 For further information, visit our Presto on Alluxio 
 [documentation](../compute/Presto.md).
 
-{% endnavtab %}
-{% endnavtabs %}
+</details>

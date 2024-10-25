@@ -132,8 +132,8 @@ scrape_configs:
 
 To read other components' metrics, use the respective pod role label and web port label.
 
-{% accordion PrometheusOnK8s %}
-{% collapsible Worker metrics %}
+<details><summary>Worker metrics</summary>
+
 An example configuration reading worker metrics
 ```yaml
 scrape_configs:
@@ -178,9 +178,9 @@ scrape_configs:
         action: replace
         target_label: cluster_name
 ```
-{% endcollapsible %}
+</details>
+<details><summary>Job master metrics</summary>
 
-{% collapsible Job master metrics %}
 An example configuration reading job master metrics
 ```yaml
 scrape_configs:
@@ -225,9 +225,9 @@ scrape_configs:
         action: replace
         target_label: cluster_name
 ```
-{% endcollapsible %}
+</details>
+<details><summary>Job worker metrics</summary>
 
-{% collapsible Job worker metrics %}
 An example configuration reading job worker metrics
 ```yaml
 scrape_configs:
@@ -272,8 +272,7 @@ scrape_configs:
         action: replace
         target_label: cluster_name
 ```
-{% endcollapsible %}
-{% endaccordion %}
+</details>
 
 #### Get Metrics Snapshot
 

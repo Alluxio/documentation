@@ -147,8 +147,8 @@ If you find a jar named `alluxio-underfs-hdfs-<UFS_HADOOP_VERSION>-{{site.ALLUXI
 
 Checkout the flags for different HDFS distributions.
 
-{% accordion HdfsDistributions %}
-  {% collapsible Apache %}
+<details><summary>Apache</summary>
+
 All main builds are from Apache so all Apache releases can be used directly
 
 ```shell
@@ -166,17 +166,18 @@ All main builds are from Apache so all Apache releases can be used directly
 -Pufs-hadoop-3 -Dufs.hadoop.version=3.0.0
 -Pufs-hadoop-3 -Dufs.hadoop.version=3.3.4
 ```
+</details>
+<details><summary>Cloudera</summary>
 
-  {% endcollapsible %}
-  {% collapsible Cloudera %}
 To build against Cloudera's releases, just use a version like `$apacheRelease-cdh$cdhRelease`
 
 ```shell
 -Pufs-hadoop-2 -Dufs.hadoop.version=2.3.0-cdh5.1.0
 -Pufs-hadoop-2 -Dufs.hadoop.version=2.0.0-cdh4.7.0
 ```
-  {% endcollapsible %}
-  {% collapsible Hortonworks %}
+</details>
+<details><summary>Hortonworks</summary>
+
 To build against a Hortonworks release, just use a version like `$apacheRelease.$hortonworksRelease`
 
 ```shell
@@ -185,8 +186,7 @@ To build against a Hortonworks release, just use a version like `$apacheRelease.
 -Pufs-hadoop-2 -Dufs.hadoop.version=2.4.0.2.1.3.0-563
 ```
 
-  {% endcollapsible %}
-{% endaccordion %}
+</details>
 
 ## TroubleShooting
 

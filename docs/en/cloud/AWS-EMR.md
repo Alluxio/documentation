@@ -33,15 +33,17 @@ r5d.8xlarge enable use of SSD as Alluxio worker storage tier.
 
 ## Basic Setup
 
-{% accordion setup %}
-  {% collapsible Set up the required IAM roles for the account to be able to use the EMR service %}
+
+<details><summary>Set up the required IAM roles for the account to be able to use the EMR service</summary>
+
 Open a terminal and use the AWS CLI to create the necessary IAM roles on your account.
 ```console
 $ aws emr create-default-roles
 ```
 
-  {% endcollapsible %}
-  {% collapsible Run the aws create-cluster command with the bootstrap action %}
+</details>
+<details><summary>Run the aws create-cluster command with the bootstrap action</summary>
+
 The [`create-cluster` command](https://docs.aws.amazon.com/cli/latest/reference/emr/create-cluster.html)
 requires passing in multiple flags to successfully execute:
 - `release-label`: The version of EMR to install with.
@@ -91,8 +93,9 @@ Args=[s3://myBucketName/mountPointFolder,\
 where `s3://myBucketName/mountPointFolder` should be replaced with a S3 URI that your AWS account can read and write to
 and `myKeyPairName` should be replaced with the name of your EC2 key pair.
 
-  {% endcollapsible %}
-  {% collapsible SSH into the EMR cluster's master node %}
+</details>
+<details><summary>SSH into the EMR cluster's master node</summary>
+
 Log into the [EMR console](https://console.aws.amazon.com/elasticmapreduce/home).
 
 Once the cluster is in the `Waiting` stage, click on the cluster details to get the `Master public DNS` if available
@@ -118,8 +121,9 @@ security group in the EC2 console, adding an inbound rule for port 22 with sourc
 Read [here](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/authorizing-access-to-an-instance.html#add-rule-authorize-access)
 for more details.
 
-  {% endcollapsible %}
-  {% collapsible Test that Alluxio is running %}
+</details>
+<details><summary>Test that Alluxio is running</summary>
+
 Once inside the master instance, run the following command to run a series of basic tests to ensure
 Alluxio can read and write files.
 
@@ -127,24 +131,24 @@ Alluxio can read and write files.
 $ sudo runuser -l alluxio -c "/opt/alluxio/bin/alluxio runTests"
 ```
 
-  {% endcollapsible %}
-  {% collapsible Cluster details %}
+</details>
+<details><summary>Cluster details</summary>
+
 Using this bootstrap script, Alluxio is installed in `/opt/alluxio/` by default.
 Hive and Presto are already configured to connect to Alluxio.
 The cluster also uses AWS Glue as the default metastore for both Presto and Hive.
 This will allow you to maintain table definitions between multiple runs of the Alluxio cluster.
 By default, the Alluxio worker is allocated one third of the instance's maximum available memory.
 
-  {% endcollapsible %}
-{% endaccordion %}
+</details>
 
 ## Creating a Table
 
 The simplest step to using EMR with Alluxio is to create a table on Alluxio and query it using
 Presto/Hive.
 
-{% accordion table %}
-  {% collapsible SSH into the master node %}
+<details><summary>SSH into the master node</summary>
+
 From your terminal, SSH into the master instance using the key pair provided in the `create-cluster`
 command.
 ```console
@@ -153,8 +157,9 @@ $ ssh -i /path/to/keypair.pem hadoop@<masterPublicDns>
 Note that we are connecting as the `hadoop` user.
 All subsequent commands assume they are being executed from within the instance.
 
-  {% endcollapsible %}
-  {% collapsible Create a directory in Alluxio to be the external location of your table %}
+</details>
+<details><summary>Create a directory in Alluxio to be the external location of your table</summary>
+
 Create the `/testTable` directory in Alluxio, then set the `hadoop` user to be the directory owner.
 Note that these commands are being executed as the `alluxio` user.
 ```console
@@ -162,8 +167,9 @@ $ sudo runuser -l alluxio -c "/opt/alluxio/bin/alluxio fs mkdir /testTable"
 $ sudo runuser -l alluxio -c "/opt/alluxio/bin/alluxio fs chown hadoop:hadoop /testTable"
 ```
 
-  {% endcollapsible %}
-  {% collapsible Create a new database in AWS GLUE %}
+</details>
+<details><summary>Create a new database in AWS GLUE</summary>
+
 Open the Hive CLI.
 ```console
 $ hive
@@ -193,8 +199,9 @@ Exit the Hive CLI.
 $ exit;
 ```
 
-  {% endcollapsible %}
-  {% collapsible Create the Presto /tmp directory %}
+</details>
+<details><summary>Create the Presto /tmp directory</summary>
+
 Similar to before, create a `/tmp` directory in Alluxio.
 Then set the directory permissions to `777`.
 ```console
@@ -202,8 +209,9 @@ $ sudo runuser -l alluxio -c "/opt/alluxio/bin/alluxio fs mkdir /tmp"
 $ sudo runuser -l alluxio -c "/opt/alluxio/bin/alluxio fs chmod 777 /tmp"
 ```
 
-  {% endcollapsible %}
-  {% collapsible Interact with the table using Presto %}
+</details>
+<details><summary>Interact with the table using Presto</summary>
+
 Open the Presto CLI, specifying `hive` as the catalog.
 ```console
 $ presto-cli --catalog hive
@@ -217,9 +225,8 @@ Read back all values in the table with a SELECT statement.
 ```sql
 SELECT * FROM test1;
 ```
+</details>
 
-  {% endcollapsible %}
-{% endaccordion %}
 
 ## Customization
 
@@ -227,8 +234,9 @@ Tuning of Alluxio properties can be done in a few different locations.
 Depending on which service needs tuning, EMR offers different ways of modifying the service
 settings/environment variables.
 
-{% accordion custom %}
-  {% collapsible Bootstrap Script Usage %}
+
+<details><summary>Bootstrap Script Usage</summary>
+
 The following describes all the possible flags that can be passed into the bootstrap script.
 In the above example, we used the `-p` and `-s` flags to specify additional Alluxio properties
 and the delimiting string between properties.
@@ -313,8 +321,9 @@ If a different Alluxio version is desired, see the -d option.
                     root UFS is HDFS.
 ```
 
-  {% endcollapsible %}
-  {% collapsible Alluxio service %}
+</details>
+<details><summary>Alluxio service </summary>
+
 Making configuration changes to the Alluxio service can be done in a few different ways via the
 bootstrap script.
 The `-p` flag allows users to pass in a set of delimited key-value properties to be set on all of
@@ -326,12 +335,13 @@ that are not overwritten.
 The bootstrap also allows users to install previous versions of Alluxio (>=2.0) by specifying
 a download URL (HTTP or S3 only).
 
-  {% endcollapsible %}
-  {% collapsible Alluxio client %}
+</details>
+<details><summary>Alluxio client</summary>
+
 Generic client-side properties can also be edited via the bootstrap script as mentioned above.
 This is mostly for the native client (CLI).
 Property changes for a specific service like Presto/Hive should be done in the respective section
 of the EMR JSON configuration file i.e. `core-site.xml` or `hive.catalog`.
 
-  {% endcollapsible %}
-{% endaccordion %}
+</details>
+

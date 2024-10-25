@@ -303,8 +303,7 @@ FUSE kernel issues extra metadata read operations (sometimes can be 3 - 7 times 
 when applications are doing metadata operations or even data operations.
 Even a 1-minute temporary metadata cache may double metadata read throughput or small file data loading throughput.
 
-{% navtabs metadataCache %}
-  {% navtab Kernel Metadata Cache Configuration %}
+<details><summary>Kernel Metadata Cache Configuration</summary>
 
 If your environment is as follows:
 - Launching Alluxio FUSE in bare metal machine
@@ -340,8 +339,8 @@ recommend setting the timeout to your dataset in-use time. Otherwise, you may ne
 Note that, even a short period (e.g. `timeout=60` or `timeout=600`) of kernel metadata cache may significantly improve the overall metadata read performance and/or data read performance.
 Test against your common workloads to find out the optimal value.
 
-  {% endnavtab %}
-  {% navtab Userspace Metadata Cache Configuration %}
+</details>
+<details><summary>Userspace Metadata Cache Configuration</summary>
 
 Userspace metadata cache can be enabled via setting Alluxio configuration in `${ALLUXIO_HOME}/conf/alluxio-site.properties`
 before mounting:
@@ -380,13 +379,12 @@ You will get metadata cache size in file size field, as in the output below:
 ---------- 1 root root 13 Jan  1  1970 /path/to/mountpoint/.alluxiocli.metadatacache.size
 ```
 
-  {% endnavtab %}
-{% endnavtabs %}
+</details>
 
 #### Data Cache
 
-{% navtabs dataCache %}
-  {% navtab Kernel Data Cache Configuration %}
+
+<details><summary>Kernel Data Cache Configuration</summary>
 
 FUSE has the following I/O modes controlling whether data will be cached and the cache invalidation policy:
 - `direct_io` (default): disables the kernel data cache
@@ -402,8 +400,8 @@ Kubernetes or other container management tool may kill one of the process in the
 which will cause the AlluxioFuse process to exit and the application running on top of the Alluxio FUSE mount point to fail.
 To avoid this circumstances, use `direct_io` mode or use a script to cleanup the node kernel cache periodically.
 
-  {% endnavtab %}
-  {% navtab Userspace Data Cache Configuration %}
+</details>
+<details><summary>Userspace Data Cache Configuration</summary>
 
 Userspace data cache can be enabled via setting Alluxio client configuration in `${ALLUXIO_HOME}/conf/alluxio-site.properties`
 before mounting:
@@ -414,8 +412,7 @@ alluxio.user.client.cache.size=10GB
 ```
 Data can be cached on ramdisk or disk based on the type of the cache directory.
 
-  {% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ### Security Configuration
 
@@ -466,8 +463,9 @@ Three user group policies can be chosen from:
 
 The detailed configuration and example usage are listed below:
 
-{% navtabs userGroupPolicy %}
-  {% navtab Launch User Group Policy %}
+
+<details><summary>Launch User Group Policy</summary>
+
 This is the default user group policy (set via `alluxio.fuse.auth.policy.class=alluxio.fuse.auth.LaunchUserGroupAuthPolicy`).
 
 Assuming user `alluxio-user` with group `alluxio-group` launches the FUSE process.
@@ -487,8 +485,10 @@ $ ls -al /mnt/people/file
 -rw-r--r--    1 alluxio-user alluxio-group 27040 Oct 11 23:26 LICENSE
 ```
 This policy has weak security support but with minimum performance overhead.
-  {% endnavtab %}
-  {% navtab System User Group Policy %}
+
+</details>
+<details><summary>System User Group Policy</summary>
+
 Enabled via setting `alluxio.fuse.auth.policy.class=alluxio.fuse.auth.SystemUserGroupAuthPolicy` in `${ALLUXIO_HOME}/conf/alluxio-site.properties`.
 
 Assuming user `alluxio-user` with group `alluxio-group` launches the FUSE process
@@ -518,8 +518,9 @@ $ ls -al /mnt/people/file
 -rw-r--r--    1 -1 -1 27040 Oct 11 23:26 LICENSE
 ```
 This matches POSIX standard but sacrifices performance.
-  {% endnavtab %}
-  {% navtab Custom User Group Policy %}
+</details>
+<details><summary>Custom User Group Policy</summary>
+
 Enabling by adding the following configuration in `${ALLUXIO_HOME}/conf/alluxio-site.properties`:
 ```config
 alluxio.fuse.auth.policy.class=alluxio.fuse.auth.CustomAuthPolicy
@@ -546,8 +547,7 @@ $ ls -al /mnt/people/file
 -rw-r--r--    1 custom-user custom-group 27040 Oct 11 23:26 LICENSE
 ```
 This policy has weak security support but with minimum performance overhead.
-  {% endnavtab %}
-{% endnavtabs %}
+</details>
 
 ### Advanced Configuration
 
@@ -589,8 +589,8 @@ $ ${ALLUXIO_HOME}/integration/fuse/bin/alluxio-fuse mount \
   -o [comma separated mount options] [mount_point] [alluxio_path]
 ```
 
-{% accordion mount %}
-  {% collapsible Tuning mount options %}
+
+<details><summary>Tuning mount options</summary>
 
 <table class="table table-striped">
     <tr>
@@ -658,11 +658,9 @@ $ docker run -d --rm \
     --env MAX_IDLE_THREADS=128 \
     alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} fuse
 ```
-  {% endcollapsible %}
-{% endaccordion %}
+</details>
+<details><summary>Example: <code>allow_other</code> and <code>allow_root</code></summary>
 
-{% accordion example %}
-  {% collapsible Example: `allow_other` and `allow_root` %}
 By default, Alluxio-FUSE mount point can only be accessed by the user
 mounting the Alluxio namespace to the local filesystem.
 
@@ -685,29 +683,69 @@ $ integration/fuse/bin/alluxio-fuse mount -o allow_other mount_point [alluxio_pa
 $ integration/fuse/bin/alluxio-fuse mount -o allow_root mount_point [alluxio_path]
 ```
 Note that only one of the `allow_other` or `allow_root` could be set.
-  {% endcollapsible %}
-{% endaccordion %}
+</details>
+
 
 #### Alluxio FUSE Mount Configuration
 
 These are the configuration parameters for Alluxio POSIX API.
 
-{% accordion fuseOptions %}
-{% collapsible Tuning Alluxio fuse options %}
+<details><summary>Tuning Alluxio fuse options</summary>
 
 <table class="table table-striped">
-<tr><th>Parameter</th><th>Default Value</th><th>Description</th></tr>
-{% for item in site.data.table.Alluxio-FUSE-parameter %}
-  <tr>
-    <td>{{ item.parameter }}</td>
-    <td>{{ item.defaultValue }}</td>
-    <td>{{ site.data.table.en.Alluxio-FUSE-parameter[item.parameter] }}</td>
-  </tr>
-{% endfor %}
-</table>
+<tbody><tr><th>Parameter</th><th>Default Value</th><th>Description</th></tr>
 
-{% endcollapsible %}
-{% endaccordion %}
+  <tr>
+    <td>alluxio.fuse.cached.paths.max</td>
+    <td>500</td>
+    <td>Defines the size of the internal Alluxio-FUSE cache that maintains the most frequently used translations between local file system paths and Alluxio file URIs.</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.debug.enabled</td>
+    <td>false</td>
+    <td>Enable FUSE debug output. This output will be redirected in a `fuse.out` log file inside `alluxio.logs.dir`.</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.fs.name</td>
+    <td>alluxio-fuse</td>
+    <td>Descriptive name used by FUSE to mount the file system.</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.jnifuse.enabled</td>
+    <td>true</td>
+    <td>Use JNI-Fuse library for better performance. If disabled, JNR-Fuse will be used.</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.shared.caching.reader.enabled</td>
+    <td>false</td>
+    <td>(Experimental) Use share grpc data reader for better performance on multi-process file reading through Alluxio JNI Fuse. Blocks data will be cached on the client side so more memory is required for the Fuse process.</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.logging.threshold</td>
+    <td>10s</td>
+    <td>Logging a FUSE API call when it takes more time than the threshold.</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.maxwrite.bytes</td>
+    <td>131072</td>
+    <td>The desired granularity of FUSE write upcalls in bytes. Note that 128K is currently an upper bound imposed by the linux kernel.</td>
+  </tr>
+
+  <tr>
+    <td>alluxio.fuse.user.group.translation.enabled</td>
+    <td>false</td>
+    <td>Whether to translate Alluxio users and groups into Unix users and groups when exposing Alluxio files through the FUSE API. When this property is set to false, the user and group for all FUSE files will match the user who started the alluxio-fuse process</td>
+  </tr>
+
+</tbody></table>
+</details>
+
 
 #### Alluxio FUSE Umount Options
 

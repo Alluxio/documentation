@@ -178,28 +178,53 @@ Below is a table of the expected behaviors of `ReadType`. Reads will always pref
 over the under storage.
 
 <table class="table table-striped">
-<tr><th>Read Type</th><th>Behavior</th>
+<tbody><tr><th>Read Type</th><th>Behavior</th>
 </tr>
-{% for readtype in site.data.table.ReadType %}
+
 <tr>
-  <td>{{readtype.readtype}}</td>
-  <td>{{site.data.table.en.ReadType[readtype.readtype]}}</td>
+  <td>CACHE_PROMOTE</td>
+  <td>Data is moved to the highest tier in the worker where the data was read. If the data was not in the Alluxio storage of the local worker, a replica will be added to the local Alluxio worker. If there is no local Alluxio worker, a replica will be added to a remote Alluxio worker if the data was fetched from the under storage system.</td>
 </tr>
-{% endfor %}
-</table>
+
+<tr>
+  <td>CACHE</td>
+  <td>If the data was not in the Alluxio storage of the local worker, a replica will be added to the local Alluxio worker. If there is no local Alluxio worker, a replica will be added to a remote Alluxio worker if the data was fetched from the under storage system.</td>
+</tr>
+
+<tr>
+  <td>NO_CACHE</td>
+  <td>Data is read without storing a replica in Alluxio. Note that a replica may already exist in Alluxio.</td>
+</tr>
+
+</tbody></table>
 
 Below is a table of the expected behaviors of `WriteType`.
 
 <table class="table table-striped">
-<tr><th>Write Type</th><th>Behavior</th>
+<tbody><tr><th>Write Type</th><th>Behavior</th>
 </tr>
-{% for writetype in site.data.table.WriteType %}
+
 <tr>
-  <td>{{writetype.writetype}}</td>
-  <td>{{site.data.table.en.WriteType[writetype.writetype]}}</td>
+  <td>CACHE_THROUGH</td>
+  <td>Data is written synchronously to a Alluxio worker and the under storage system.</td>
 </tr>
-{% endfor %}
-</table>
+
+<tr>
+  <td>MUST_CACHE</td>
+  <td>Data is written synchronously to a Alluxio worker. No data will be written to the under storage.</td>
+</tr>
+
+<tr>
+  <td>THROUGH</td>
+  <td>Data is written synchronously to the under storage. No data will be written to Alluxio.</td>
+</tr>
+
+<tr>
+  <td>ASYNC_THROUGH</td>
+  <td>Data is written synchronously to a Alluxio worker and asynchronously to the under storage system. This is the default write type.</td>
+</tr>
+
+</tbody></table>
 
 #### Location policy
 
