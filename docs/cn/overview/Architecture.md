@@ -121,11 +121,11 @@ Alluxio位于存储和计算框架之间，可以作为数据读取的缓存层�
 
 ### 绕过缓存
 
-用户可以通过将client中的配置项[`alluxio.user.file.readtype.default`](../reference/Properties-List.md#用户配置项-user-configuration)设置为`NO_CACHE`来关闭Alluxio中的缓存功能。
+用户可以通过将client中的配置项[`alluxio.user.file.readtype.default`](../reference/Properties-List.md#用户配置项)设置为`NO_CACHE`来关闭Alluxio中的缓存功能。
 
 ## 数据流：写操作
 
-用户可以通过选择不同的写入类型来配置不同的写入方式。用户可以通过Alluxio API或在client中配置[`alluxio.user.file.writetype.default`](../reference/Properties-List.md#用户配置项-user-configuration)
+用户可以通过选择不同的写入类型来配置不同的写入方式。用户可以通过Alluxio API或在client中配置[`alluxio.user.file.writetype.default`](../reference/Properties-List.md#用户配置项)
 来设置写入类型。本节将介绍不同写入类型的行为以及其对应用程序的性能影响。
 
 ### 仅写Alluxio缓存(`MUST_CACHE`) 
