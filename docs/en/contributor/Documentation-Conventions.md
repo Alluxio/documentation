@@ -1,10 +1,7 @@
----
-layout: global
-title: Documentation Conventions
+# Documentation Conventions
 nickname: Documentation Conventions
 group: Contributor Resources
 priority: 2
----
 
 * Table of Contents
 {:toc}

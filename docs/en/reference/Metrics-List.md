@@ -1,12 +1,4 @@
----
-layout: global
-title: List of Metrics
-group: Reference
-priority: 1
----
-
-* Table of Contents
-{:toc}
+# List of Metrics
 
 There are two types of metrics in Alluxio, cluster-wide aggregated metrics, and per-process detailed metrics.
 

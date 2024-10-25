@@ -1,16 +1,9 @@
----
-layout: global
-title: Deploy Alluxio on Kubernetes
-nickname: Deploy
-group: Kubernetes
-priority: 0
----
+# Deploy Alluxio on Kubernetes
+
 
 Alluxio can be run on Kubernetes. This guide demonstrates how to run Alluxio
 on Kubernetes using the specification included in the Alluxio Docker image or `helm`.
 
-* Table of Contents
-{:toc}
 
 ## Prerequisites
 
@@ -56,14 +49,14 @@ $ cd kubernetes/helm-chart/alluxio
   {% collapsible (Optional) Provision a Persistent Volume %}
 Depending on the configuration used to deploy Alluxio, you will likely
 need to provision [Persistent Volumes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
-- [Embedded Journal]({{ '/en/operation/Journal.html' | relativize_url }}#embedded-journal-configuration)
+- [Embedded Journal](../operation/Journal.md#configuring-embedded-journal)
 requires a Persistent Volume for each master Pod to be provisioned and is the preferred HA mechanism
 for Alluxio on Kubernetes. The volume, once claimed, is persisted across restarts of the master process.
-- When using the [UFS Journal]({{ '/en/operation/Journal.html' | relativize_url }}#ufs-journal-configuration)
+- When using the [UFS Journal](../operation/Journal.md#configuring-ufs-journal)
 an Alluxio master can also be configured to use a persistent volume for storing the journal.
 If Alluxio is configured to use a UFS journal and with an external journal location
 like HDFS, the rest of this section can be skipped.
-- When Alluxio workers have [short-circuit access]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }}#enable-short-circuit-access),
+- When Alluxio workers have [short-circuit access](../kubernetes/Running-Alluxio-On-Kubernetes.md#enable-short-circuit-access),
 you may need to use Volumes to mount the domain socket to the workers.
 
 There are multiple ways to create a PersistentVolume.
@@ -140,7 +133,7 @@ The remainder of this section describes various configuration options with examp
 
 {% accordion helmConfig %}
   {% collapsible Example: Amazon S3 as the under store %}
-To [mount S3]({{ '/en/ufs/S3.html' | relativize_url }}#root-mount-point) at the root of Alluxio
+To [mount S3](../ufs/S3.md#root-mount-point) at the root of Alluxio
 namespace specify all required properties as a key-value pair under `properties`.
 
 ```properties
@@ -152,7 +145,7 @@ properties:
   {% endcollapsible %}
 
   {% collapsible Example: Single Master and Journal in a Persistent Volume %}
-The following configures [UFS Journal]({{ '/en/operation/Journal.html' | relativize_url }}#ufs-journal-configuration)
+The following configures [UFS Journal](../operation/Journal.md#configuring-ufs-journal)
 with a persistent volume claim mounted locally to the master Pod at location `/journal`.
 
 ```properties
@@ -193,7 +186,7 @@ journal:
   {% endcollapsible %}
 
   {% collapsible Example: Single Master and Journal in an `emptyDir` Volume %}
-The following configures [UFS Journal]({{ '/en/operation/Journal.html' | relativize_url }}#ufs-journal-configuration)
+The following configures [UFS Journal](../operation/Journal.md#configuring-ufs-journal)
 with an `emptyDir` volume mounted locally to the master Pod at location `/journal`.
 
 ```properties
@@ -416,7 +409,7 @@ secrets:
 
   {% collapsible Examples: Alluxio Storage Management %}
 Alluxio manages local storage, including memory, on the worker Pods.
-[Multiple-Tier Storage]({{ '/en/core-services/Caching.html#multiple-tier-storage' | relativize_url }})
+[Multiple-Tier Storage](../core-services/Caching.md#multiple-tier-storage)
 can be configured using the following reference configurations.
 
 There 3 supported volume `type`: [hostPath](https://kubernetes.io/docs/concepts/storage/volumes/#hostpath), [emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)
@@ -550,7 +543,7 @@ You should make sure the journal is formatted using the same user that the Allux
 #### Configure Worker Volumes
 
 Additional configuration is required for the Alluxio Worker pod to be ready for use.
-See the section for [enabling worker short-circuit access]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }}#enable-short-circuit-access).
+See the section for [enabling worker short-circuit access](../kubernetes/Running-Alluxio-On-Kubernetes.md#enable-short-circuit-access).
 
 #### Uninstall
 
@@ -580,7 +573,7 @@ for common deployment scenarios in the sub-directories:
 *singleMaster-localJournal*, *singleMaster-hdfsJournal*, and
 *multiMaster-embeddedJournal*.
 > *singleMaster* means the templates generate 1 Alluxio master process, while *multiMaster* means 3.
-*embedded* and *ufs* are the 2 [journal modes]({{ '/en/operation/Journal.html' | relativize_url }})
+*embedded* and *ufs* are the 2 [journal modes](../operation/Journal.md)
 that Alluxio supports.
 
 - *singleMaster-localJournal* directory gives you the necessary Kubernetes ConfigMap, 1 Alluxio
@@ -739,7 +732,7 @@ You should make sure the journal is formatted using the same user that the Allux
 #### Configure Worker Volumes
 
 Additional configuration is required for the Alluxio Worker pod to be ready for use.
-See the section for [enabling worker short-circuit access]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }}#enable-short-circuit-access).
+See the section for [enabling worker short-circuit access](../kubernetes/Running-Alluxio-On-Kubernetes.md#enable-short-circuit-access).
 
 #### Upgrade
 
@@ -790,15 +783,15 @@ Make sure all the Pods have been terminated before you move on to the next step.
 
 **Step 3: Format journal and Alluxio storage if necessary**
 
-Check the [Alluxio upgrade guide page]({{ '/en/administration/Upgrade.html' | relativize_url }})
+Check the [Alluxio upgrade guide page](../administration/Upgrade.md)
 for whether the Alluxio master journal has to be formatted. If no format is needed,
 you are ready to skip the rest of this section and move on to restart all
 Alluxio master and worker Pods.
 
-You can follow [formatting journal with kubectl]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html#format-journal-1' | relativize_url }})
+You can follow [formatting journal with kubectl](../kubernetes/Running-Alluxio-On-Kubernetes.md#format-journal-1)
 to format the Alluxio journals.
 
-If you are running Alluxio workers with [tiered storage]({{ '/en/core-services/Caching.html#multiple-tier-storage' | relativize_url }}),
+If you are running Alluxio workers with [tiered storage](../core-services/Caching.md#multiple-tier-storage),
 and you have Persistent Volumes configured for Alluxio, the storage should be cleaned up too.
 You should delete and recreate the Persistent Volumes.
 
@@ -826,7 +819,7 @@ You should verify the Alluxio Pods are back up in Running status.
 $ kubectl get pods
 ```
 
-You can do more comprehensive verification following [Verify Alluxio]({{ '/en/deploy/Running-Alluxio-Locally.html?q=verify#verify-alluxio-is-running' | relativize_url }}).
+You can do more comprehensive verification following [Verify Alluxio](../deploy/Running-Alluxio-Locally.md#verify-alluxio-is-running).
   {% endcollapsible %}
 {% endaccordion %}
 
@@ -856,7 +849,7 @@ $ kubectl get pvc
 ```
 - If you have unbound PersistentVolumeClaims, please ensure you have provisioned
 matching PersistentVolumes. See "(Optional) Provision a Persistent Volume" in
-[Basic Setup]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }}#basic-setup).
+[Basic Setup](../kubernetes/Running-Alluxio-On-Kubernetes.md#basic-setup).
 
 Once ready, access the Alluxio CLI from the master Pod and run basic I/O tests.
 ```console
@@ -1073,9 +1066,9 @@ volumes:
 
 To verify short-circuit reads and writes monitor the metrics displayed under:
 1. the metrics tab of the web UI as `Domain Socket Alluxio Read` and `Domain Socket Alluxio Write`
-1. or, the [metrics json]({{ '/en/operation/Metrics-System.html' | relativize_url }}) as
+1. or, the [metrics json](../operation/Metrics-System.md) as
 `cluster.BytesReadDomain` and `cluster.BytesWrittenDomain`
-1. or, the [fsadmin metrics CLI]({{ '/en/operation/Admin-CLI.html' | relativize_url }}) as
+1. or, the [fsadmin metrics CLI](../operation/Admin-CLI.md) as
 `Short-circuit Read (Domain Socket)` and `Alluxio Write (Domain Socket)`
 
 ### Disable Short-Circuit Operations
@@ -1112,7 +1105,7 @@ and `volumeMounts` of each container if existing.
 ### Enable remote logging
 
 Alluxio supports a centralized log server that collects logs for all Alluxio processes. 
-You can find the specific section at [Remote logging]({{ '/en/administration/Remote-Logging.html' | relativize_url }}).
+You can find the specific section at [Remote logging](../administration/Remote-Logging.md).
 This can be enabled on K8s too, so that all Alluxio pods will send logs to this log server.
 
 {% navtabs logging %}
@@ -1318,7 +1311,7 @@ drwxr-sr-x    2 alluxio  bin           4096 Jan 12 03:14 job_worker
 ### POSIX API
 
 Once Alluxio is deployed on Kubernetes, there are multiple ways in which a client application can
-connect to it. For applications using the [POSIX API]({{ '/en/api/POSIX-API.html' | relativize_url }}),
+connect to it. For applications using the [POSIX API](../api/POSIX-API.md),
 application containers can simply mount the Alluxio FileSystem.
 
 #### FUSE daemon
@@ -1339,7 +1332,7 @@ To modify the default Fuse mount configuration, one can set
 - `mountPath`: The container path to be mounted. Default to `/mnt/alluxio-fuse`
 - `alluxioPath`: The alluxio path to be mounted to container `mountPath`. Default to `/`
 - `mountOptions`: The Fuse mount options. Default to `allow_other`.
-See [Fuse mount options]({{ '/en/api/POSIX-API.html' | relativize_url }}#configure-mount-point-options) for more details.
+See [Fuse mount options](../api/POSIX-API.md#fuse-mount-options) for more details.
 
 ```properties
 fuse:
@@ -1350,7 +1343,7 @@ fuse:
   mountOptions: allow_other
 ```
 
-Then follow the steps to install Alluxio with helm [here]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html#deploy-using-helm' | relativize_url }}).
+Then follow the steps to install Alluxio with helm [here](#deploy).
 
 If Alluxio has already been deployed with helm and now you want to enable FUSE, you use
 `helm upgrade` to add the FUSE daemons.
@@ -1388,7 +1381,7 @@ fuse:
     MAX_IDLE_THREADS: "64"
 ```
 
-[POSIX API docs]({{ '/en/api/POSIX-API.html' | relative_url }}) provides more details about how to configure Alluxio POSIX API.
+[POSIX API docs](../api/POSIX-API.md) provides more details about how to configure Alluxio POSIX API.
   {% endcollapsible %}
 {% endaccordion %}
 
@@ -1436,7 +1429,7 @@ containers:
         value: "64"
 ```
 
-[POSIX API docs]({{ '/en/api/POSIX-API.html' | relative_url }}) provides more details about how to configure Alluxio POSIX API.
+[POSIX API docs](../api/POSIX-API.md) provides more details about how to configure Alluxio POSIX API.
   {% endcollapsible %}
 {% endaccordion %}
 {% endnavtab %}
@@ -2147,7 +2140,7 @@ and [node taints + tolerations](https://kubernetes.io/docs/concepts/scheduling-e
   so there will be worker Pods assigned to all eligible nodes
 
 Next, verify the Alluxio workers' configured ramdisk sizes (if any).
-See [the list of Alluxio configuration properties]({{ '/en/reference/Properties-List.html' | relativize_url }})
+See [the list of Alluxio configuration properties](../reference/Properties-List.md)
 for additional details.
 - If you used the Helm chart, the Alluxio site properties are configured using `properties`. eg.,
 

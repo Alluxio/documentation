@@ -1,13 +1,4 @@
----
-layout: global
-title: MinIO
-nickname: MinIO
-group: Storage Integrations
-priority: 10
----
-
-* Table of Contents
-{:toc}
+# MinIO
 
 This guide describes how to configure Alluxio with [MinIO](https://min.io/) as the
 under storage system.
@@ -18,8 +9,8 @@ You can use this scheme to connect Alluxio with a MinIO server.
 
 The Alluxio binaries must be on your machine to proceed.
 You can either
-[compile Alluxio from source]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}),
-or [download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+[compile Alluxio from source](../contributor/Building-Alluxio-From-Source.md),
+or [download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 ## Setup MinIO
 
@@ -88,7 +79,7 @@ See below for a few common cases and their resolutions.
 
 If a message like this is returned, then you'll need to double check the name of the bucket in the
 `alluxio-site.properties` file and make sure that it exists in MinIO.
-The property for the bucket name is controlled by [`alluxio.master.mount.table.root.ufs`]({{ '/en/reference/Properties-List.html' | relativize_url}}#alluxio.master.mount.table.root.ufs)
+The property for the bucket name is controlled by [`alluxio.master.mount.table.root.ufs`](../reference/Properties-List.md#master-configuration)
 
 ```
 Exception in thread "main" alluxio.exception.DirectoryNotEmptyException: Failed to delete /default_tests_files (com.amazonaws.services.s3.model.AmazonS3Exception: The specified bucket does not exist (Service: Amazon S3; Status Code: 404; Error Code: NoSuchBucke
@@ -101,7 +92,7 @@ t; Request ID: 158681CA87E59BA0; S3 Extended Request ID: 2d47b54e-7dd4-4e32-bc6e
 ### DNS Resolution - Unable to execute HTTP request
 
 If an exception like this is encountered then it may be that the Alluxio property
-[`alluxio.underfs.s3.disable.dns.buckets`]({{ '/en/reference/Properties-List.html' | relativize_url}}#alluxio.underfs.s3.disable.dns.buckets)
+[`alluxio.underfs.s3.disable.dns.buckets`](../reference/Properties-List.md#common-configuration)
 is set to `false`.
 Setting this value to `true` for MinIO will allow Alluxio to resolve the proper bucket location.
 
@@ -117,7 +108,7 @@ Exception in thread "main" alluxio.exception.DirectoryNotEmptyException: Failed 
 If an exception occurs where the client returns an error with information about a refused connection
 then Alluxio most likely cannot contact the MinIO server.
 Make sure that the value of
-[`alluxio.underfs.s3.endpoint`]({{ '/en/reference/Properties-List.html' | relativize_url}}#alluxio.underfs.s3.endpoint)
+[`alluxio.underfs.s3.endpoint`](../reference/Properties-List.md#common-configuration)
 is correct and that the node running the Alluxio master can reach the MinIO endpoint over the
 network.
 
@@ -133,8 +124,8 @@ ion refused)) from the under file system
 
 If an exception including a message about forbidden access is encountered, it's possible that the
 Alluxio master has been configured with incorrect credentials.
-Check the [`s3a.accessKeyId`]({{ '/en/reference/Properties-List.html' | relativize_url}}#s3a.accessKeyId)
-and [`s3a.secretKey`]({{ '/en/reference/Properties-List.html' | relativize_url}}#s3a.secretKey).
+Check the [`s3a.accessKeyId`](../reference/Properties-List.md#common-configuration)
+and [`s3a.secretKey`](../reference/Properties-List.md#common-configuration).
 If this error is appearing, double check that both properties are set correctly.
 
 ```

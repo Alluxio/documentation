@@ -1,13 +1,5 @@
----
-layout: global
-title: Aliyun Object Storage Service
-nickname: Aliyun Object Storage Service
-group: Storage Integrations
-priority: 10
----
+# Aliyun Object Storage Service
 
-* Table of Contents
-{:toc}
 
 This guide describes how to configure [Aliyun OSS](https://intl.aliyun.com/product/oss) as Alluxio's under storage system. 
 Object Storage Service (OSS) is a massive, secure and highly reliable cloud storage service provided by Aliyun.
@@ -15,8 +7,8 @@ Object Storage Service (OSS) is a massive, secure and highly reliable cloud stor
 ## Prerequisites
 
 The Alluxio binaries must be on your machine. You can either
-[compile Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}), or
-[download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+[compile Alluxio](../contributor/Building-Alluxio-From-Source.md), or
+[download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 In preparation for using OSS with Alluxio, follow the [OSS quick start guide](https://www.alibabacloud.com/help/doc-detail/31883.htm)
 to sign up for OSS and create an OSS bucket.
@@ -88,7 +80,7 @@ $ ./bin/alluxio-stop.sh local
 
 An OSS location can be mounted at a nested directory in the Alluxio namespace to have unified
 access to multiple under storage systems. Alluxio's
-[Mount Command]({{ '/en/operation/User-CLI.html' | relativize_url }}#mount) can be used for this purpose.
+[Mount Command](../operation/User-CLI.md#mount) can be used for this purpose.
 For example, the following command mounts a directory inside an OSS bucket into Alluxio directory
 `/oss`:
 

@@ -1,20 +1,12 @@
----
-layout: global
-title: Basic Logging
-nickname: Basic Logging
-group: Administration
-priority: 2
----
+# Basic Logging
 
-* Table of Contents
-{:toc}
 
 ## Introduction
 
 This page describes the basic logging function provided by Alluxio server processes (e.g., masters, workers and etc)
 and application processes utilizing Alluxio clients (e.g., Spark or MapReduce jobs running on Alluxio).
 Note that there is an experimental feature that streams server-side and client-side logs to separate Alluxio logservers
-(see [remote logging]({{ '/en/administration/Remote-Logging.html' | relativize_url }}) for more details).
+(see [remote logging](../administration/Remote-Logging.md) for more details).
 
 Alluxio logging is implemented using [`log4j`](https://logging.apache.org/log4j/) and thus
 most of the configuration is done through modifying `log4j.properties`.
@@ -33,7 +25,7 @@ Fatal error messages (e.g., killed by the OS), will most likely go to these file
 
 The log location can be customized by setting environment variable `ALLUXIO_LOGS_DIR`.
 See the
-[configuration settings page]({{ '/en/operation/Configuration.html' | relativize_url }}#environment-variables)
+[configuration settings page](../operation/Configuration.md#environment-variables)
 for more information.
 
 By default, the `*.log` files rotate. For example this is the default log4j configuration for master.log:
@@ -56,11 +48,11 @@ Log files for the Alluxio client utilized by different applications are located 
 Please check out particular compute frameworks on where their logs may be found.
 
 Here are the documentation to configure individual application logs including
-[Apache Hadoop]({{ '/en/compute/Hadoop-MapReduce.html' | relativize_url }}#logging-configuration),
-[Apache Hive]({{ '/en/compute/Hive.html' | relativize_url }}#logging-configuration),
-[Apache Spark]({{ '/en/compute/Spark.html' | relativize_url }}#logging-configuration).
+[Apache Hadoop](../compute/Hadoop-MapReduce.md#logging-configuration),
+[Apache Hive](../compute/Hive.md#logging-configuration),
+[Apache Spark](../compute/Spark.md#logging-configuration).
 
-For the [Alluxio command line interface]({{ '/en/operation/User-CLI.html' | relativize_url }}),
+For the [Alluxio command line interface](../operation/User-CLI.md),
 the user log is located at `${ALLUXIO_HOME}/logs/user/user_${user_name}.log`.
 
 ## Configuring Log Levels
@@ -106,7 +98,7 @@ An alternative way to modify logging configurations is use the `logLevel` comman
 This allows someone to modify the configuration at runtime without needing to restart processes.
 This is not the recommended way as any modifications will not be persisted across restart,
 and causes a configuration mismatch between the running process and its `log4j.properties` file.
-See the [logLevel command documentation]({{ '/en/operation/User-CLI.html#loglevel' | relativize_url }})
+See the [logLevel command documentation](../operation/User-CLI.md#loglevel)
 for the command options.
 
 For example, the following command sets the logger level of the class `alluxio.underfs.hdfs.HdfsUnderFileSystem` to
@@ -330,7 +322,7 @@ One example of use cases is when Alluxio is running in a containerized environme
 where logs are written to the writable layer. This has performance penalties
 and the writable layer may grow indefinitely, causing disk pressure on the host.
 In that case you can either mount a volume to the log directory so logs are written to the volume,
-or rely on the [Remote Logging]({{ '/en/administration/Remote-Logging.html' | relativize_url }})
+or rely on the [Remote Logging](../administration/Remote-Logging.md)
 and disable local logs.
 
 To disable local log output, you can set the corresponding logger(s) as below:

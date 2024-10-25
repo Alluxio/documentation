@@ -1,13 +1,4 @@
----
-layout: global
-title: Security
-nickname: Security
-group: Security
-priority: 0
----
-
-* Table of Contents
-{:toc}
+# Security
 
 This document describes the following security related features in Alluxio.
 
@@ -31,7 +22,7 @@ Hadoop user. This can be useful if the Alluxio client is part of an existing Had
 1. [Auditing](#auditing): If enabled, the Alluxio filesystem
 writes an audit log for all user accesses.
 
-See [Security specific configuration]({{ '/en/reference/Properties-List.html' | relativize_url }}#security-configuration)
+See [Security specific configuration](../reference/Properties-List.md#security-configuration)
 for different security properties.
 
 ## Authentication
@@ -140,9 +131,9 @@ The owner, group, and permissions can be changed by two ways:
 
 1. User application invokes the `setAttribute(...)` method of `FileSystem API` or `Hadoop API`.
 2. CLI command in shell. See
-[chown]({{ '/en/operation/User-CLI.html' | relativize_url }}#chown),
-[chgrp]({{ '/en/operation/User-CLI.html' | relativize_url }}#chgrp),
-[chmod]({{ '/en/operation/User-CLI.html' | relativize_url }}#chmod).
+[chown](../operation/User-CLI.md#chown),
+[chgrp](../operation/User-CLI.md#chgrp),
+[chmod](../operation/User-CLI.md#chmod).
 
 The owner attribute can only be changed by a super user.
 The group and permission attributes can be changed by a super user or the owner of the path.
@@ -233,8 +224,8 @@ ACLs can be managed by two ways:
 1. User application invokes the `setFacl(...)` method of `FileSystem API` or `Hadoop API` to
 change the ACL and invokes the `getFacl(...)` to obtain the current ACL. 
 1. CLI command in shell. See
-[getfacl]({{ '/en/operation/User-CLI.html' | relativize_url }}#getfacl)
-[setfacl]({{ '/en/operation/User-CLI.html' | relativize_url }}#setfacl),
+[getfacl](../operation/User-CLI.md#getfacl)
+[setfacl](../operation/User-CLI.md#setfacl),
 
 The ACL of a file or directory can only be changed by super user or its owner.
 
@@ -371,7 +362,7 @@ This is similar to the format of
 
 To enable Alluxio audit logging, set the JVM property
 `alluxio.master.audit.logging.enabled` to `true` in `alluxio-env.sh`.
-See [Configuration settings]({{ '/en/operation/Configuration.html' | relativize_url }}).
+See [Configuration settings](../operation/Configuration.md).
 
 ## Encryption
 

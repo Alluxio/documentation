@@ -1,20 +1,14 @@
----
-layout: global
-title: REST API
-nickname: REST API
-group: Client APIs
-priority: 2
----
+# REST API
 
-While users should use [S3 API]({{ '/en/api/S3-API.html' | relativize_url }}) for data I/O operations, admins can 
+
+While users should use [S3 API](../api/S3-API.md) for data I/O operations, admins can 
 interact with Alluxio through REST API for actions not supported by S3 API. For example, mount and unmount operations.
 
-* Table of Contents
-{:toc}
+
 
 ## REST API
 
-For portability with other language, the [Alluxio Java API]({{ '/en/api/Java-API.html' | relativize_url }})) is also
+For portability with other language, the [Alluxio Java API](../api/Java-API.md)) is also
 accessible via an HTTP proxy in the form of a REST API. Alluxio's Python and Go clients rely on 
 this REST API to talk to Alluxio.
 
@@ -36,7 +30,7 @@ run the proxy server and an Alluxio worker on each compute node.
 ## Python
 
 Alluxio has a [Python Client](https://github.com/Alluxio/alluxio-py) for interacting with Alluxio through its
-[REST API](#rest-api). The Python client exposes an API similar to the [Alluxio Java API]({{ '/en/api/Java-API.html' | relativize_url }})).
+[REST API](#rest-api). The Python client exposes an API similar to the [Alluxio Java API](../api/Java-API.md)).
 See the [doc](http://alluxio-py.readthedocs.io) for detailed documentation about all available
 methods. See the [example](https://github.com/Alluxio/alluxio-py/blob/master/example.py) on how to perform basic
 file system operations in Alluxio.
@@ -144,7 +138,7 @@ info("done")
 ## Go
 
 Alluxio has a [Go Client](https://github.com/Alluxio/alluxio-go) for interacting with Alluxio through its
-[REST API](#rest-api). The Go client exposes an API similar to the [Alluxio Java API](#java-client).
+[REST API](#rest-api). The Go client exposes an API similar to the [Alluxio Java API](Java-API.md).
 See the [godoc](http://godoc.org/github.com/Alluxio/alluxio-go) for detailed documentation about all available
 methods. The godoc includes examples of how to download, upload, check existence for, and list status for files in
 Alluxio.

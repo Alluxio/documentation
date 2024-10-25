@@ -1,11 +1,4 @@
----
-layout: global
-title: Ozone
-nickname: Ozone
-group: Storage Integrations
-priority: 10
----
-
+# Ozone
 
 This guide describes how to configure [Ozone](https://ozone.apache.org/) as Alluxio's under storage system. 
 Ozone is a scalable, redundant, and distributed object store for Hadoop. Apart from scaling to billions of objects of varying sizes, 
@@ -14,9 +7,9 @@ Ozone can function effectively in containerized environments such as Kubernetes 
 ## Prerequisites
 
 To run an Alluxio cluster on a set of machines, you must deploy Alluxio binaries to each of these
-machines. You can either [download the precompiled binaries directly]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }})
+machines. You can either [download the precompiled binaries directly](../deploy/Running-Alluxio-Locally.md)
 with the correct Hadoop version (recommended), or 
-[compile the binaries from Alluxio source code]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}) (for advanced users).
+[compile the binaries from Alluxio source code](../contributor/Building-Alluxio-From-Source.md) (for advanced users).
 
 In preparation for using Ozone with Alluxio, follow the [Ozone On Premise Installation](https://ozone.apache.org/docs/1.2.1/start/onprem.html)
 to install a Ozone cluster, and follow the [Cli Commands](https://ozone.apache.org/docs/1.2.1/interface/cli.html) to create volume and bucket for Ozone cluster.
@@ -123,7 +116,7 @@ $ ./bin/alluxio-stop.sh local
 
 An Ozone location can be mounted at a nested directory in the Alluxio namespace to have unified
 access to multiple under storage systems. Alluxio's
-[Mount Command]({{ '/en/operation/User-CLI.html' | relativize_url }}#mount) can be used for this purpose.
+[Mount Command](../operation/User-CLI.md#mount) can be used for this purpose.
 For example, the following command mounts a directory inside an Ozone bucket into Alluxio directory
 `/ozone`:
 

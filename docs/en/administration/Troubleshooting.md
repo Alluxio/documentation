@@ -1,13 +1,5 @@
----
-layout: global
-title: Troubleshooting
-nickname: Troubleshooting
-group: Administration
-priority: 1
----
+# Troubleshooting
 
-* Table of Contents
-{:toc}
 
 This page is a collection of high-level guides and tips regarding how to diagnose issues encountered in
 Alluxio.
@@ -29,18 +21,18 @@ Workers are doing, especially when running into any issues. If you do not unders
 search for them in the [Github issues](https://github.com/Alluxio/alluxio/issues),
 in the case the problem has been discussed before. 
 You can also join our [Slack channel](https://slackin.alluxio.io/) and seek help there.
-You can find more details about the Alluxio server logs [here]({{ '/en/administration/Basic-Logging.html#server-logs' | relativize_url }}).
+You can find more details about the Alluxio server logs [here](../administration/Basic-Logging.md#server-logs).
 
 The client-side logs are also helpful when Alluxio service is running but the client cannot connect to the servers.
 Alluxio client emits logging messages through log4j, so the location of the logs is determined by the client side
 log4j configuration used by the application.
-You can find more details about the client-side logs [here]({{ '/en/administration/Basic-Logging.html#application-logs' | relativize_url }}).
+You can find more details about the client-side logs [here](../administration/Basic-Logging.md#application-logs).
 
 The user logs in `${ALLUXIO_HOME}/logs/user/` are the logs from running Alluxio shell.
 Each user will have separate log files.
 
 For more information about logging, please check out
-[this page]({{ '/en/administration/Basic-Logging.html' | relativize_url }}).
+[this page](../administration/Basic-Logging.md).
 
 ## Alluxio remote debug
 
@@ -125,7 +117,7 @@ From Alluxio 2.4, the `alluxio-site.properties` file will not be copied,
 as many users tend to put their plaintext credentials to the UFS in this file.
 Instead, the `collectAlluxioInfo` will run a `alluxio getConf` command
 which prints all the configuration properties, with the credential fields masked.
-The [getConf command]({{ '/en/operation/User-CLI.html#getconf' | relativize_url }}) will collect all the current node configuration.
+The [getConf command](../operation/User-CLI.md#getconf) will collect all the current node configuration.
 
 So in order to collect Alluxio configuration in the tarball,
 please make sure `collectAlluxioInfo` sub-command is run.
@@ -350,7 +342,7 @@ The monitoring indicators describe the system status in a heuristic way to have 
 
 A: Check `${ALLUXIO_HOME}/logs` to see if there are any master or worker logs. Look for any errors
 in these logs. Double check if you missed any configuration
-steps in [Running-Alluxio-Locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+steps in [Running-Alluxio-Locally](../deploy/Running-Alluxio-Locally.md).
 
 Typical issues:
 - `ALLUXIO_MASTER_MOUNT_TABLE_ROOT_UFS` is not configured correctly.
@@ -358,9 +350,9 @@ Typical issues:
 
 ### Q: I'm trying to deploy Alluxio in a cluster with Spark and HDFS. Are there any suggestions?
 
-A: Please follow [Running-Alluxio-on-a-Cluster]({{ '/en/deploy/Running-Alluxio-On-a-Cluster.html' | relativize_url }}),
-[Configuring-Alluxio-with-HDFS]({{ '/en/ufs/HDFS.html' | relativize_url }}),
-and [Configuring-Spark-with-Alluxio]({{ '/en/compute/Spark.html' | relativize_url }}).
+A: Please follow [Running-Alluxio-on-a-Cluster](../deploy/Running-Alluxio-On-a-Cluster.md),
+[Configuring-Alluxio-with-HDFS](../ufs/HDFS.md),
+and [Configuring-Spark-with-Alluxio](../compute/Spark.md).
 
 Tips:
 
@@ -370,7 +362,7 @@ Tips:
 ### Q: What Java version should I use when I deploy Alluxio?
 
 A: Alluxio requires Java 8 or 11 runtime to function properly.
-You can find more details about the system requirements [here]({{ '/en/deploy/Requirements.html' | relativize_url }}).
+You can find more details about the system requirements [here](../deploy/Requirements.md).
 
 ## Usage FAQ
 
@@ -406,14 +398,14 @@ properties on all nodes running this framework. Here are some examples:
 ```console
 $ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
 ```
-See [MapReduce on Alluxio]({{ '/en/compute/Hadoop-MapReduce.html' | relativize_url }}) for more details.
+See [MapReduce on Alluxio](../compute/Hadoop-MapReduce.md) for more details.
 
 - For Spark jobs, you can append the client jar to `$SPARK_CLASSPATH`:
 
 ```console
 $ export SPARK_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${SPARK_CLASSPATH}
 ```
-See [Spark on Alluxio]({{ '/en/compute/Spark.html' | relativize_url }}) for more details.
+See [Spark on Alluxio](../compute/Spark.md) for more details.
 
 Alternatively, add the following lines to `spark/conf/spark-defaults.conf`:
 
@@ -425,7 +417,7 @@ spark.executor.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
 - For Presto, put Alluxio client jar `{{site.ALLUXIO_CLIENT_JAR_PATH}}` into the directory
 `${PRESTO_HOME}/plugin/hive-hadoop2/`
 Since Presto has long running processes, ensure they are restarted after the jar has been added.
-See [Presto on Alluxio]({{ '/en/compute/Presto.html' | relativize_url }}) for more details.
+See [Presto on Alluxio](../compute/Presto.md) for more details.
 
 - For Hive, set `HIVE_AUX_JARS_PATH` in `conf/hive-env.sh`:
 
@@ -440,7 +432,7 @@ whether the path is valid by:
 ```console
 $ ls {{site.ALLUXIO_CLIENT_JAR_PATH}}
 ```
-See [Hive on Alluxio]({{ '/en/compute/Hive.html' | relativize_url }}) for more details.
+See [Hive on Alluxio](../compute/Hive.md) for more details.
 
 ### Q: I'm seeing error messages like "Frame size (67108864) larger than max length (16777216)". What is wrong?
 
@@ -449,10 +441,10 @@ A: This problem can be caused by different possible reasons.
 - Please double check if the port of Alluxio master address is correct. The default listening port for Alluxio master is port 19998,
 while a common mistake causing this error message is due to using a wrong port in master address (e.g., using port 19999 which is the default Web UI port for Alluxio master).
 - Please ensure that the security settings of Alluxio client and master are consistent.
-Alluxio provides different approaches to [authenticate]({{ '/en/security/Security.html' | relativize_url }}#authentication) users by configuring `alluxio.security.authentication.type`.
+Alluxio provides different approaches to [authenticate](../security/Security.md#authentication) users by configuring `alluxio.security.authentication.type`.
 This error happens if this property is configured with different values across servers and clients
 (e.g., one uses the default value `NOSASL` while the other is customized to `SIMPLE`).
-Please read [Configuration-Settings]({{ '/en/operation/Configuration.html' | relativize_url }}) for how to customize Alluxio clusters and applications.
+Please read [Configuration-Settings](../operation/Configuration.md) for how to customize Alluxio clusters and applications.
 
 ### Q: I'm copying or writing data to Alluxio while seeing error messages like "Failed to cache: Not enough space to store block on worker". Why?
 
@@ -460,19 +452,19 @@ A: This error indicates insufficient space left on Alluxio workers to complete y
 This is either because the worker fails to evict enough space or the block size is too large to fit in any of the worker's storage directories.
 
 - Check if you have any files unnecessarily pinned in memory and unpin them to release space.
-See [Command-Line-Interface]({{ '/en/operation/User-CLI.html#pin' | relativize_url }}) for more details.
+See [Command-Line-Interface](../operation/User-CLI.md#pin) for more details.
 - Increase the capacity of workers by updating the
-[worker tier storage configurations]({{ '/en/core-services/Caching.html#configuring-alluxio-storage' | relativize_url }}).
+[worker tier storage configurations](../core-services/Caching.md#configuring-alluxio-storage).
 
 ### Q: I'm writing a new file/directory to Alluxio and seeing journal errors in my application
 
 A: First you should check if you are running Alluxio with UFS journal or Embedded journal.
-See the difference [here]({{ '/en/operation/Journal.html#embedded-journal-vs-ufs-journal' | relativize_url }}).
+See the difference [here](../operation/Journal.md#embedded-journal-vs-ufs-journal).
 
 Also you should verify that the journal you are using is compatible with the current configuration.
 There are a few scenarios where the journal compatibility is not guaranteed and you need to either
-[restore from a backup]({{ '/en/operation/Journal.html#restoring-from-a-backup' | relativize_url }}) or
-[format the journal]({{ '/en/operation/Journal.html#formatting-the-journal' | relativize_url }}):
+[restore from a backup](../operation/Journal.md#restoring-from-a-backup) or
+[format the journal](../operation/Journal.md#formatting-the-journal):
 
 1. Alluxio 2.X is not compatible with 1.X journals.
 1. UFS journal and embedded journal files are not compatible.
@@ -495,7 +487,7 @@ To reveal new files from under file system, you can use the command
 configuration property in masters' `alluxio-site.properties`.
 The value for the configuration property is used to determine the minimum interval between two syncs.
 You can read more about metadata sync from under file systems
-[here]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }}#ufs-metadata-sync).
+[here](../core-services/Unified-Namespace.md#ufs-metadata-sync).
 
 ### Q: I see an error "Block ?????? is unavailable in both Alluxio and UFS" while reading some file. Where is my file?
 
@@ -524,7 +516,7 @@ execute, such as persisting a large file on a slow UFS. If you want to know what
 as `${ALLUXIO_HOME}/logs/user_${USER_NAME}.log` by default) or master log (stored as `${ALLUXIO_HOME}/logs/master.log` on the master
 node by default).
 
-If the logs are not sufficient to reveal the problem, you can [enable more verbose logging]({{ '/en/administration/Basic-Logging.html#enabling-advanced-logging' | relativize_url }}).
+If the logs are not sufficient to reveal the problem, you can [enable more verbose logging](../administration/Basic-Logging.md#enabling-advanced-logging).
 
 ### Q: I'm getting unknown gRPC errors like "io.grpc.StatusRuntimeException: UNKNOWN"
 
@@ -541,7 +533,7 @@ If you do not find the answer above, please post a question following [here](#po
 A: Alluxio accelerates your system performance by leveraging temporal or spatial locality using distributed in-memory storage
 (and tiered storage). If your workloads don't have any locality, you will not see noticeable performance boost.
 
-**For a comprehensive guide on tuning performance of Alluxio cluster, please check out [this page]({{ '/en/administration/Performance-Tuning.html' | relativize_url }}).**
+**For a comprehensive guide on tuning performance of Alluxio cluster, please check out [this page](../administration/Performance-Tuning.md).**
 
 ## Environment
 

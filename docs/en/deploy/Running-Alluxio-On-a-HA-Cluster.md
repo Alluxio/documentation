@@ -1,13 +1,5 @@
----
-layout: global
-title: Deploy Alluxio on a Cluster with HA
-nickname: Cluster with HA
-group: Install Alluxio
-priority: 3
----
+# Deploy Alluxio on a Cluster with HA
 
-* Table of Contents
-{:toc}
 
 
 ## Overview
@@ -34,7 +26,7 @@ state across service restarts and maintaining consensus among masters about the 
 2. [Zookeeper with a shared Journal](#zookeeper-and-shared-journal-storage):
   Uses an external Zookeeper service for leader elections in conjunction with a shared
   storage (e.g. HDFS) for the shared journal.
-  See [journal management documentation]({{ '/en/operation/Journal.html' | relativize_url }}) for
+  See [journal management documentation](../operation/Journal.md) for
   more information about choosing and configuring Alluxio journal system.
 
 ## Prerequisites
@@ -83,7 +75,7 @@ leader election based on the Raft protocol and has its own format for storing jo
 The built-in leader election cannot work with Zookeeper since the journal formats between these
 configurations may not match.
 Enabling embedded journal enables Alluxio's internal leader election.
-See [embedded journal configuration documentation]({{ '/en/operation/Journal.html' | relativize_url }}#embedded-journal-configuration)
+See [embedded journal configuration documentation](../operation/Journal.md#configuring-embedded-journal)
 for more details and alternative ways to set up HA cluster with internal leader election.
 
 ### Zookeeper and Shared Journal Storage
@@ -416,7 +408,7 @@ In order to add a master, the Alluxio cluster must operate in HA mode.
 If you are running the cluster as a single master cluster, you must configure it to be an HA cluster
 before having more than one master.
 
-See the [journal management documentation]({{ '/en/operation/Journal.html#adding-a-new-master' | relativize_url }}) for
+See the [journal management documentation](../operation/Journal.md#adding-a-new-master) for
 more information about adding and removing masters.
 
 ### Update Master-side Configuration
@@ -430,8 +422,8 @@ Alternatively, one benefit of running Alluxio in HA mode is to use rolling resta
 to minimize downtime when updating configurations:
 
 1. Update the master configuration on all the master nodes without restarting any master.
-2. Restart standby masters one by one (the cluster [cannot survive more than `floor(n/2)` simultaneous restarts]( {{ '/en/operation/Journal.html#embedded-journal-vs-ufs-journal' | relativize_url }})).
-3. Elect a standby master as the leading master (tutorial [here]({{ '/en/operation/Journal.html#electing-a-specific-master-as-leader' | relativize_url }})).
+2. Restart standby masters one by one (the cluster [cannot survive more than `floor(n/2)` simultaneous restarts]( ../operation/Journal.md#embedded-journal-vs-ufs-journal)).
+3. Elect a standby master as the leading master (tutorial [here](../operation/Journal.md#electing-a-specific-master-as-leader)).
 4. Restart the old leading master that is now a standby master.
 5. Verify the configuration update.
 

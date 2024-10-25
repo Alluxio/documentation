@@ -1,10 +1,4 @@
----
-layout: global
-title: Running Trino with Alluxio
-nickname: Trino
-group: Compute Integrations
-priority: 2
----
+# Running Trino with Alluxio
 
 [Trino](https://trino.io/)
 is an open source distributed SQL query engine for running interactive analytic queries
@@ -16,8 +10,6 @@ accessed data (e.g., tables commonly used) into Alluxio distributed storage.
 Co-locating Alluxio workers with Trino workers improves data locality and reduces the I/O access
 latency when other storage systems are remote or the network is slow or congested.
 
-* Table of Contents
-{:toc}
 
 ## Prerequisites
 
@@ -132,7 +124,7 @@ $ ./trino --server localhost:8080 --execute "use default; select * from u_user l
 ### Customize Alluxio User Properties
 
 To configure additional Alluxio properties, you can append the conf path (i.e.
-`${ALLUXIO_HOME}/conf`) containing [`alluxio-site.properties`]({{ '/en/operation/Configuration.html' | relativize_url }})
+`${ALLUXIO_HOME}/conf`) containing [`alluxio-site.properties`](../operation/Configuration.md)
 to Trino's JVM config at `etc/jvm.config` under Trino folder. The advantage of this approach is to
 have all the Alluxio properties set within the same file of `alluxio-site.properties`.
 
@@ -173,7 +165,7 @@ which is contained by `hive.config.resources`.
 ```
 
 For information about how to connect to Alluxio HA cluster using Zookeeper-based leader election,
-please refer to [HA mode client configuration parameters]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}#specify-alluxio-service-in-configuration-parameters).
+please refer to [HA mode client configuration parameters](../deploy/Running-Alluxio-On-a-HA-Cluster.md#specify-alluxio-service-in-configuration-parameters-or-java-options).
 
 #### Example: change default Alluxio write type
 

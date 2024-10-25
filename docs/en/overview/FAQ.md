@@ -1,19 +1,11 @@
----
-layout: global
-title: Frequently Asked Questions
-nickname: FAQ
-group: Overview
-priority: 5
----
+# Frequently Asked Questions
 
-* Table of Contents
-{:toc}
 
 ## What is Alluxio?
 
 [Alluxio](https://www.alluxio.io/), formerly Tachyon, is an open source, memory speed, virtual
 distributed storage. It enables any application to interact with any data from any storage system
-at memory speed. Read more about Alluxio [here]({{ '/en/Overview.html' | relativize_url }}).
+at memory speed. Read more about Alluxio [here](../Overview.md).
 
 ## What platforms and Java versions can Alluxio run on?
 
@@ -39,16 +31,16 @@ under storage instead of the Alluxio cache.
 ## Should I deploy Alluxio as a stand-alone system or through an orchestration framework?
 
 It is recommended to deploy Alluxio as a stand-alone system. Orchestration frameworks supported include:
-- [Kubernetes]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }})
+- [Kubernetes](../kubernetes/Running-Alluxio-On-Kubernetes.md)
 
 ## Which programming language does Alluxio support?
 
 Alluxio is primarily developed in Java and exposes Java-like File APIs for other applications to
 interact with. Alluxio supports other language bindings (experimental currently) including
-[Python]({{ '/en/api/REST-API.html' | relativize_url }}#python) and
-[Golang]({{ '/en/api/REST-API.html' | relativize_url }}#go).
+[Python](../api/REST-API.md#python) and
+[Golang](../api/REST-API.md#go).
 
-Alluxio can be run as a FUSE mount exposing a [POSIX API]({{ '/en/api/POSIX-API.html' | relativize_url }}).
+Alluxio can be run as a FUSE mount exposing a [POSIX API](../api/POSIX-API.md).
 This enables any program which normally accesses a local file system to access data from Alluxio without
 modification. This is a common way for applications written in non-Java languages or non-Hadoop APIs
 to access Alluxio data without needing to rewrite the application.
@@ -60,12 +52,12 @@ applications to work. Alluxio will transparently load data on demand from the un
 To help fit more data in Alluxio's storage space, configure Alluxio to leverage other storage
 resources such as SSD and HDD in addition to memory to extend Alluxio storage capacity.
 Read more about Alluxio storage setup
-[here]({{ '/en/core-services/Caching.html' | relativize_url }}).
+[here](../core-services/Caching.md).
 
 ## Does Alluxio support a high availability mode?
 
 Yes. See instructions about
-[Deploy Alluxio on a Cluster with HA]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}).
+[Deploy Alluxio on a Cluster with HA](../deploy/Running-Alluxio-On-a-HA-Cluster.md).
 
 ## Will Alluxio rebalance cached blocks to the newly added nodes in order to balance memory space utilization?
 
@@ -84,7 +76,7 @@ Read the Alluxio book to learn Alluxio comprehensively.
 
 <p align="center">
 <a href="https://book.douban.com/subject/34761887">
-<img style=" width: 25%;" src="{{ '/img/alluxio_book.png' | relativize_url }}" alt="Alluxio Book"/>
+<figure><img src="../.gitbook/assets/alluxio_book.png" alt=""><figcaption></figcaption></figure>
 </a>
 </p>
 
@@ -112,4 +104,4 @@ We look forward to seeing you there.
 ## How can I contribute to Alluxio?
 
 Thank you for your interest in contributing. Please read
-[our contributor guide]({{ '/en/contributor/Contributor-Getting-Started.html' | relativize_url }}).
+[our contributor guide](../contributor/Contributor-Getting-Started.md).

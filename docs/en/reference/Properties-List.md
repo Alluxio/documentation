@@ -1,12 +1,5 @@
----
-layout: global
-title: List of Configuration Properties
-group: Reference
-priority: 0
----
+# List of Configuration Properties
 
-* Table of Contents
-{:toc}
 
 All Alluxio configuration settings fall into one of the six categories:
 [Common](#common-configuration) (shared by Master and Worker),
@@ -97,7 +90,7 @@ When running Alluxio with resource managers like Mesos and YARN, Alluxio has add
 The security configuration specifies information regarding the security features, such as
 authentication and file permission. Settings for authentication take effect for master, worker, and
 user. Settings for file permission only take effect for master. See
-[Security]({{ '/en/security/Security.html' | relativize_url }})
+[Security](../security/Security.md)
 for more information about security features.
 
 <table class="table table-striped">

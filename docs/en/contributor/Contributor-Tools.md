@@ -1,13 +1,4 @@
----
-layout: global
-title: Contributor Tools
-nickname: Contributor Tools
-group: Contributor Resources
-priority: 3
----
-
-* Table of Contents
-{:toc}
+# Contributor Tools
 
 ## IDE
 
@@ -79,7 +70,7 @@ action from the `Navigate > Search Everywhere` dialog.
 8. Prepare the RamFS and format the Alluxio Worker with `bin/alluxio-mount.sh SudoMount && bin/alluxio formatWorker`
 9. In Intellij, start Alluxio worker process by selecting `Run > Run > AlluxioWorker`
 10. In Intellij, start Alluxio job worker process by selecting `Run > Run > AlluxioJobWorker`
-11. [Verify the Alluxio cluster is up]({{ '/en/deploy/Running-Alluxio-Locally.html#verify-alluxio-is-running' | relativize_url }}).
+11. [Verify the Alluxio cluster is up](../deploy/Running-Alluxio-Locally.md#verify-alluxio-is-running).
 
 ##### Start a High Availability (HA) Alluxio cluster
 1. Create journal directories for the masters 
@@ -149,7 +140,7 @@ action from the `Navigate > Search Everywhere` dialog.
 ##### Start an AlluxioFuse process
 
 1. Start a [single master Alluxio cluster](#start-a-single-master-alluxio-cluster) 
-   or a [High Availability cluster](#start-a-high-availability-ha-alluxio-cluster) in Intellij.
+   or a [High Availability cluster](#start-a-high-availability--ha--alluxio-cluster) in Intellij.
 2. In Intellij, start AlluxioFuse process by selecting `Run > Run > AlluxioFuse`. 
    This creates a FUSE mount point at `/tmp/alluxio-fuse`.
 3. Verify the FUSE filesystem is working by running these commands:
@@ -252,7 +243,7 @@ $ mvn -T 2C install -DskipTests
 ```
 
 After the install target executes, you can follow the instructions at 
-[Running Alluxio Locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }})
+[Running Alluxio Locally](../deploy/Running-Alluxio-Locally.md)
 to start a local cluster.
 
 ### Unit Tests
@@ -308,7 +299,7 @@ To have the logs output to STDOUT, append the following arguments to the `mvn` c
 
 The FUSE tests are ignored if the `libfuse` library is missing.
 To run those tests, please install the libraries referenced in
-[the Alluxio FUSE documentation]({{ '/en/api/POSIX-API.html' | relativize_url }}#requirements).
+[the Alluxio FUSE documentation](../api/POSIX-API.md#prerequisites).
 
 ## Modifying a gRPC definition
 
@@ -339,16 +330,16 @@ $ mvn clean install -Pgenerate -pl "org.alluxio:alluxio-core-transport"
 
 ## Usage of `./bin/alluxio`
  
-Please refer to [Alluxio commands]({{ '/en/operation/User-CLI.html' | relativize_url }})
+Please refer to [Alluxio commands](../operation/User-CLI.md)
 for all available commands.
 
 Some commands have different prerequisites.
 
 All commands except `bootstrapConf`, `killAll`, `copyDir` and `clearCache`
 will require that you have already built Alluxio 
-(see [Build Alluxio Master Branch]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}) 
+(see [Build Alluxio Master Branch](../contributor/Building-Alluxio-From-Source.md) 
 about how to build Alluxio manually).
 
 Some commands require the Alluxio cluster to be running, and others do not.
-Please check [all Alluxio commands]({{ '/en/operation/User-CLI.html' | relativize_url }})
+Please check [all Alluxio commands](../operation/User-CLI.md)
 where each command specifies if it requires the Alluxio cluster to be running.

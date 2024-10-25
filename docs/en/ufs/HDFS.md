@@ -1,13 +1,4 @@
----
-layout: global
-title: HDFS
-nickname: HDFS
-group: Storage Integrations
-priority: 1
----
-
-* Table of Contents
-{:toc}
+# HDFS
 
 This guide describes the instructions to configure
 [HDFS](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-hdfs/HdfsUserGuide.html)
@@ -19,7 +10,7 @@ To run an Alluxio cluster on a set of machines, you must deploy Alluxio server b
 these machines. You can either
 [download the precompiled binaries directly](https://www.alluxio.io/download)
 with the correct Hadoop version (recommended), or
-[compile the binaries from Alluxio source code]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }})
+[compile the binaries from Alluxio source code](../contributor/Building-Alluxio-From-Source.md)
 (for advanced users).
 
 Note that, when building Alluxio from source code, by default Alluxio server binaries are built to
@@ -42,7 +33,7 @@ $ mvn install -Pufs-hadoop-2 -Dhadoop.version=2.7.1 -DskipTests
 $ mvn install -Pufs-hadoop-3 -Dhadoop.version=3.1.0 -DskipTests
 ```
 Please visit the
-[Building Alluxio Master Branch]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}#hadoop-distribution-support)
+[Building Alluxio Master Branch](../contributor/Building-Alluxio-From-Source.md)
 page for more information about support for other distributions.
 
 If everything succeeds, you should see
@@ -55,7 +46,7 @@ For example,
 # Build Alluxio for the Apache Hadoop version Hadoop 3.1.0 with active sync enabled
 $ mvn install -PhdfsActiveSync -Pufs-hadoop-3 -Dhadoop.version=3.1.0 -DskipTests
 ```
-Please visit [Active Sync for HDFS]({{ '/en/core-services/Unified-Namespace.html#active-sync-for-hdfs' | relativize_url }})
+Please visit [Active Sync for HDFS](../core-services/Unified-Namespace.md#active-sync-for-hdfs)
 for more information on using active sync.
 
 ## Basic Setup
@@ -81,7 +72,7 @@ alluxio.master.mount.table.root.ufs=hdfs://<NAMENODE>:<PORT>
 ```
 
 Additionally, you may need to specify the following property to be your HDFS version.
-See [mounting HDFS with specific versions]({{ '/en/ufs/HDFS.html' | relativize_url }}#mount-hdfs-with-specific-versions).
+See [mounting HDFS with specific versions](../ufs/HDFS.md#mount-hdfs-with-specific-versions).
 ```
 alluxio.master.mount.table.root.option.alluxio.underfs.version=<HADOOP VERSION>
 ```
@@ -170,7 +161,7 @@ alluxio.master.mount.table.root.ufs=hdfs://nameservice/
 
 ### User/Permission Mapping
 
-Alluxio supports POSIX-like filesystem [user and permission checking]({{ '/en/security/Security.html' | relativize_url }}).
+Alluxio supports POSIX-like filesystem [user and permission checking](../security/Security.md).
 To ensure that the permission information of files/directories including user, group and mode in
 HDFS is consistent with Alluxio (e.g., a file created by user Foo in Alluxio is persisted to
 HDFS also with owner as user Foo), the user to start Alluxio master and worker processes
@@ -277,7 +268,7 @@ Alluxio supports the following versions of HDFS as a valid argument of mount opt
 
 Note: Apache Hadoop 1.0 and 1.2 are still supported, but not included in the default download.
 To build this module yourself, build the shaded hadoop client and then the UFS module. 
-Please refer to [Building from Source]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}) instructions 
+Please refer to [Building from Source](../contributor/Building-Alluxio-From-Source.md) instructions 
 to see how to build additional UFS libraries. 
 
 ### Use Hadoop Native Library

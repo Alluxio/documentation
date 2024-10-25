@@ -1,12 +1,4 @@
----
-layout: global
-title: Job Service
-group: Overview
-priority: 3
----
-
-* Table of Contents
-{:toc}
+# Job Service
 
 ## Architecture Overview
 
@@ -24,13 +16,13 @@ The Job Workers queues tasks from the Job Master and manages a configurable fixe
 ### Migrate
 
 Migrate Job is used as part of the `fs distributedCp` CLI command and is responsible
-for copying with a specified [WriteType]({{ '/en/overview/Architecture.html#data-flow-write' | relativize_url }}).
+for copying with a specified [WriteType](../overview/Architecture.md#data-flow--write).
 
 ### Persist
 
 Persist Job is used both indirectly as part of the `fs persist` CLI command and background 
 persisting when writing to Alluxio with ASYNC_THROUGH 
-[WriteType]({{ '/en/overview/Architecture.html#data-flow-write' | relativize_url }}).
+[WriteType](../overview/Architecture.md#data-flow--write).
 
 The job is responsible for persisting a file in Alluxio to a particular ufs path. 
 

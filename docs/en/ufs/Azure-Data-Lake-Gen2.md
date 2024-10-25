@@ -1,21 +1,12 @@
----
-layout: global
-title: Azure Storage Gen2
-nickname: Azure Data Lake Storage Gen2 
-group: Storage Integrations
-priority: 2
----
-
-* Table of Contents
-{:toc}
+# Azure Storage Gen2
 
 This guide describes how to configure Alluxio with [Azure Data Lake Storage Gen2](https://docs.microsoft.com/en-in/azure/storage/blobs/data-lake-storage-introduction) as the under storage system.
 
 ## Prerequisites
 
 The Alluxio binaries must be on your machine.
-You can either [compile the binaries from Alluxio source code]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}),
-or [download the precompiled binaries directly]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+You can either [compile the binaries from Alluxio source code](../contributor/Building-Alluxio-From-Source.md),
+or [download the precompiled binaries directly](../deploy/Running-Alluxio-Locally.md).
 
 In preparation for using Azure Data Lake storage with Alluxio, [create a new Data Lake storage in your Azure
 account](https://docs.microsoft.com/en-in/azure/storage/blobs/create-data-lake-storage-account) or use an existing Data Lake storage. 
@@ -53,7 +44,7 @@ alluxio.master.mount.table.root.option.fs.azure.account.key.<AZURE_ACCOUNT>.dfs.
 ### Nested Mount
 An Azure Data Lake store location can be mounted at a nested directory in the Alluxio namespace to have unified access
 to multiple under storage systems. Alluxio's
-[Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+[Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```console
 $ ./bin/alluxio fs mount \
@@ -94,7 +85,7 @@ alluxio.master.mount.table.root.option.fs.azure.account.oauth2.client.secret=<CL
 ### Nested Mount
 An Azure Data Lake store location can be mounted at a nested directory in the Alluxio namespace to have unified access
 to multiple under storage systems. Alluxio's
-[Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+[Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```console
 $ ./bin/alluxio fs mount \
@@ -136,7 +127,7 @@ alluxio.master.mount.table.root.option.fs.azure.account.oauth2.msi.tenant=<TENAN
 ### Nested Mount
 An Azure Data Lake store location can be mounted at a nested directory in the Alluxio namespace to have unified access
 to multiple under storage systems. Alluxio's
-[Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+[Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```console
 $ ./bin/alluxio fs mount \

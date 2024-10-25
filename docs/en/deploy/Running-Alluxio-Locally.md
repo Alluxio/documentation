@@ -1,15 +1,8 @@
----
-layout: global
-title: Deploy Alluxio Locally
-nickname: Local Machine
-group: Install Alluxio
-priority: 1
----
+# Deploy Alluxio Locally
+
 
 This guide goes over how to run and test Alluxio on your local machine.
 
-* Table of Contents
-{:toc}
 
 ## Requirements
 

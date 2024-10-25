@@ -1,12 +1,4 @@
----
-layout: global
-title: Quick Start Guide
-group: Overview
-priority: 4
----
-
-* Table of Contents
-{:toc}
+# Quick Start Guide
 
 This quick start guide goes over how to run Alluxio on a local machine.
 The guide will cover the following tasks:
@@ -101,7 +93,7 @@ $ ./bin/alluxio validateEnv local
 
 This reports potential problems that might prevent Alluxio from starting locally.
 
-Check out [this page]({{ '/en/operation/User-CLI.html' | relativize_url }}#validateenv) for detailed
+Check out [this page](../operation/User-CLI.md#validateenv) for detailed
 usage information regarding the `validateEnv` command.
 
 ## Starting Alluxio
@@ -128,7 +120,7 @@ to see the status of the Alluxio master and worker respectively.
 
 ## Using the Alluxio Shell
 
-The [Alluxio shell]({{ '/en/operation/User-CLI.html' | relativize_url }}) provides
+The [Alluxio shell](../operation/User-CLI.md) provides
 command line operations for interacting with Alluxio. To see a list of filesystem operations, run
 
 ```console
@@ -231,7 +223,7 @@ $ rm ~/LICENSE.bak
 
 Alluxio unifies access to storage systems with the unified namespace feature. Read the [Unified
 Namespace blog post](https://www.alluxio.io/resources/whitepapers/unified-namespace-allowing-applications-to-access-data-anywhere/)
-and the [unified namespace documentation]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }}) for more detailed
+and the [unified namespace documentation](../core-services/Unified-Namespace.md) for more detailed
 explanations of the feature.
 
 This feature allows users to mount different storage systems into the Alluxio namespace and
@@ -368,30 +360,30 @@ mounting existing storage systems, and configuring existing applications to inte
 ### Deploying Alluxio
 
 Alluxio can be deployed in many different environments, such as:
-* [Alluxio on Local Machine]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }})
-* [Alluxio Standalone on a Cluster]({{ '/en/deploy/Running-Alluxio-On-a-Cluster.html' | relativize_url }})
-* [Alluxio on Docker]({{ '/en/deploy/Running-Alluxio-On-Docker.html' | relativize_url }})
-* [Alluxio on Kubernetes]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }})
+* [Alluxio on Local Machine](../deploy/Running-Alluxio-Locally.md)
+* [Alluxio Standalone on a Cluster](../deploy/Running-Alluxio-On-a-Cluster.md)
+* [Alluxio on Docker](../deploy/Running-Alluxio-On-Docker.md)
+* [Alluxio on Kubernetes](../kubernetes/Running-Alluxio-On-Kubernetes.md)
 
 Check the `Install Alluxio` dropdown on the left sidebar for more available options.
 
 ### Under Storage Systems
 
 Various under storage systems can be accessed through Alluxio, such as:
-* [Azure Blob Store]({{ '/en/ufs/Azure-Blob-Store.html' | relativize_url }})
-* [AWS S3]({{ '/en/ufs/S3.html' | relativize_url }})
-* [GCS]({{ '/en/ufs/GCS.html' | relativize_url }})
-* [HDFS]({{ '/en/ufs/HDFS.html' | relativize_url }})
-* [NFS]({{ '/en/ufs/NFS.html' | relativize_url }})
+* [Azure Blob Store](../ufs/Azure-Blob-Store.md)
+* [AWS S3](../ufs/S3.md)
+* [GCS](../ufs/GCS.md)
+* [HDFS](../ufs/HDFS.md)
+* [NFS](../ufs/NFS.md)
 
 Check the `Storage Integrations` dropdown on the left sidebar for more available options.
 
 ### Frameworks and Applications
 
 Different frameworks and applications work with Alluxio, such as:
-* [Apache Spark]({{ '/en/compute/Spark.html' | relativize_url }})
-* [Apache Hive]({{ '/en/compute/Hive.html' | relativize_url }})
-* [Presto]({{ '/en/compute/Presto.html' | relativize_url }})
+* [Apache Spark](../compute/Spark.md)
+* [Apache Hive](../compute/Hive.md)
+* [Presto](../compute/Presto.md)
 
 Check the `Compute integrations` dropdown on the left sidebar for more available options.
 
@@ -410,7 +402,7 @@ alluxio-{{site.ALLUXIO_VERSION_STRING}}/bin/alluxio: Operation not permitted
 This can be caused by the newly added setting options to macOS. 
 To fix it, open `System Preferences` and open `Sharing`.
 
-![macOS System Preferences Sharing]({{ '/img/screenshot_sharing_setting.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_sharing_setting.png" alt=""><figcaption></figcaption></figure>
 
 On the left, check the box next to `Remote Login`. If there is `Allow full access to remote users` as shown in the 
 image, check the box next to it. Besides, click the `+` button and add yourself to the list of users that are allowed

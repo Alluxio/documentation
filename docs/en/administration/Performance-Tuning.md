@@ -1,13 +1,4 @@
----
-layout: global
-title: Performance Tuning
-nickname: Performance Tuning
-group: Administration
-priority: 4
----
-
-* Table of Contents
-{:toc}
+# Performance Tuning
 
 This document goes over various tips and configurations to tune Alluxio performance.
 
@@ -48,7 +39,7 @@ The following is a checklist to run through to address common problems when tuni
    Alluxio worker. This is efficient for applications which write data from many nodes concurrently.
    In a scenario where all data is written from a single node, its local worker will be filled,
    leaving the remaining workers empty.
-   See [this page][1] for discussion of the different location policies and how to configure them.
+   See [this page](../api/Java-API.md#location-policy) for discussion of the different location policies and how to configure them.
 
 1. Are there error messages containing "DeadlineExceededException" in the user logs?
 
@@ -77,10 +68,8 @@ ALLUXIO_JAVA_OPTS=" -XX:+PrintGCDetails -XX:+PrintTenuringDistribution -XX:+Prin
    Restart the Alluxio servers and check the output in `${ALLUXIO_HOME}/logs/master.out` or
    `${ALLUXIO_HOME}/logs/worker.out` for masters and workers respectively.
 
-Also check out the [metrics system][2] for better insight into how the Alluxio service is performing.
+Also check out the [metrics system](../operation/Metrics-System.md) for better insight into how the Alluxio service is performing.
 
-[1]: {{ '/en/api/Java-API.html' | relativize_url }}#location-policy
-[2]: {{ '/en/operation/Metrics-System.html' | relativize_url }}
 
 ## General Tuning
 
@@ -183,7 +172,7 @@ When using the embedded journal, before each update operation in Alluxio is comm
 entry corresponding to the operation must be written and flushed to disk in a write-ahead-log (WAL) at all masters.
 If the WAL is located on a disk that is frequently accessed by other processes, the performance of
 update operations in Alluxio may suffer. This may be the case if, for example, the WAL shares a disk with the
-[basic logging]({{ '/en/administration/Basic-Logging.html' | relativize_url }}) operations.
+[basic logging](../administration/Basic-Logging.md) operations.
 
 For optimal performance it may be useful to dedicate a disk specifically to the journal.
 The location of the journal folder can be set by the property key `alluxio.master.journal.folder`.

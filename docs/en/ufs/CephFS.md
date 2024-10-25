@@ -1,13 +1,4 @@
----
-layout: global
-title: CephFS
-nickname: CephFS
-group: Storage Integrations
-priority: 11
----
-
-* Table of Contents
-{:toc}
+# CephFS
 
 This guide describes how to configure Alluxio with CephFS as the under storage system. Alluxio supports
 two different implementations of under storage system for [CephFS](https://docs.ceph.com/en/latest/cephfs/):
@@ -18,8 +9,8 @@ two different implementations of under storage system for [CephFS](https://docs.
 
 ### Deploy Alluxio binary package
 The Alluxio binaries must be on your machine. You can either
-[compile Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}), or
-[download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+[compile Alluxio](../contributor/Building-Alluxio-From-Source.md), or
+[download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 ### Install Dependences
 According to [ceph packages install](https://docs.ceph.com/en/latest/install/get-packages/) to install below packages:
@@ -144,7 +135,7 @@ This should start an Alluxio master and Alluxio worker. You can see the master U
 {% navtab cephfs %}
 
 An CephFS location can be mounted at a nested directory in the Alluxio namespace to have unified access
-to multiple under storage systems. Alluxio's [Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+to multiple under storage systems. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 Issue the following command to use the ufs cephfs:
 
@@ -167,7 +158,7 @@ In cephfs, you can visit cephfs with ceph-fuse or mount by POSIX APIs. [Mounting
 ```
 ${ceph-fs-dir}/default_tests_files/Basic_CACHE_THROUGH
 ```
-In Alluxio, you can visit the nested directory in the Alluxio. Alluxio's [Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+In Alluxio, you can visit the nested directory in the Alluxio. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```
 /mnt/cephfs/default_tests_files/Basic_CACHE_THROUGH
@@ -177,7 +168,7 @@ In Alluxio, you can visit the nested directory in the Alluxio. Alluxio's [Comman
 {% navtab cephfs-hadoop %}
 
 An CephFS location can be mounted at a nested directory in the Alluxio namespace to have unified access
-to multiple under storage systems. Alluxio's [Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+to multiple under storage systems. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 Issue the following command to use the ufs cephfs:
 
@@ -200,7 +191,7 @@ In cephfs, you can visit cephfs with ceph-fuse or mount by POSIX APIs. [Mounting
 ```
 ${ceph-fs-dir}/default_tests_files/Basic_CACHE_THROUGH
 ```
-In Alluxio, you can visit the nested directory in the Alluxio. Alluxio's [Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+In Alluxio, you can visit the nested directory in the Alluxio. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```
 /mnt/cephfs-hadoop/default_tests_files/Basic_CACHE_THROUGH

@@ -1,13 +1,5 @@
----
-layout: global
-title: CephObjectStorage
-nickname: CephObjectStorage
-group: Storage Integrations
-priority: 10
----
+# CephObjectStorage
 
-* Table of Contents
-{:toc}
 
 This guide describes how to configure Alluxio with Ceph Object Storage as the under storage system. Alluxio supports
 two different clients APIs to connect to [Ceph Object Storage](http://ceph.com/ceph-storage/object-storage/)
@@ -18,8 +10,8 @@ using [Rados Gateway](http://docs.ceph.com/docs/master/radosgw/):
 ## Prerequisites
 
 The Alluxio binaries must be on your machine. You can either
-[compile Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}), or
-[download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+[compile Alluxio](../contributor/Building-Alluxio-From-Source.md), or
+[download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 ## Basic Setup
 
@@ -70,7 +62,7 @@ as `http://<rgw-hostname>:<rgw-port>/auth/1.0`.
 ### Nested Mount Point
 
 An Ceph location can be mounted at a nested directory in the Alluxio namespace to have unified access
-to multiple under storage systems. Alluxio's [Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+to multiple under storage systems. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 Issue the following command to use the S3 interface:
 ```console
@@ -131,5 +123,5 @@ $ ./bin/alluxio-stop.sh local
 
 If Alluxio security is enabled, Alluxio enforces the access control inherited from underlying Ceph
 Object Storage. Depending on the interace used, refer to
-[S3 Access Control]({{ '/en/ufs/S3.html' | relativize_url }}#s3-access-control) or
-[Swift Access Control]({{ '/en/ufs/Swift.html' | relativize_url }}#swift-access-control) for more information.
+[S3 Access Control](../ufs/S3.md#identity-and-access-control-of-s3-objects) or
+[Swift Access Control](../ufs/Swift.md#swift-access-control) for more information.

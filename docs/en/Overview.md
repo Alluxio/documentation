@@ -1,9 +1,6 @@
----
-layout: global
-title: Introduction
+# Introduction
 group: Overview
 priority: 1
----
 
 * Table of Contents
 {:toc}
@@ -68,13 +65,13 @@ Alluxio brings three key areas of innovation together to provide a unique set of
 1. **Global Namespace**: Alluxio serves as a single point of access to multiple independent storage
 systems regardless of physical location. This provides a unified view of all data sources and a
 standard interface for applications. See
-[Namespace Management]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }}) for more details.
+[Namespace Management](../core-services/Unified-Namespace.md) for more details.
 
 1. **Intelligent Multi-tiering Caching**: Alluxio clusters act as a read and write cache for data in
 connected storage systems. Configurable policies automatically optimize data placement for
 performance and reliability across both memory and disk (SSD/HDD). Caching is transparent to the
 user and uses buffering to maintain consistency with persistent storage. See
-[Alluxio Storage Management]({{ '/en/core-services/Caching.html' | relativize_url }}) for more details.
+[Alluxio Storage Management](../core-services/Caching.md) for more details.
 
 1. **Server-Side API Translation**: Alluxio supports industry common APIs, such as HDFS API, S3 API,
 FUSE API, REST API. It transparently converts from a standard client-side interface to any storage
@@ -83,12 +80,12 @@ eliminating the need for complex system configuration and management. File data 
 data and vice versa.
 
 To understand more details on Alluxio internals, please read
-[Alluxio architecture and data flow]({{ '/en/overview/Architecture.html' | relativize_url }}).
+[Alluxio architecture and data flow](../overview/Architecture.md).
 
 ## Getting Started
 
 To quickly get Alluxio up and running, take a look at our
-[Getting Started]({{ '/en/overview/Getting-Started.html' | relativize_url }}) page,
+[Getting Started](../overview/Getting-Started.md) page,
 which explains how to deploy Alluxio and run examples in a local environment.
 
 Also try our getting started tutorial for Presto & Alluxio via:
@@ -102,14 +99,14 @@ Also try our getting started tutorial for Presto & Alluxio via:
 
 Released versions of Alluxio are available from the [Project Downloads Page](https://alluxio.io/download).
 Each release comes with prebuilt binaries compatible with various Hadoop versions.
-[Building From Master Branch Documentation]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }})
+[Building From Master Branch Documentation](../contributor/Building-Alluxio-From-Source.md)
 explains how to build the project from source code. Questions can be directed to our
 [User Mailing List](https://groups.google.com/forum/?fromgroups#!forum/alluxio-users)
 or our [Community Slack Channel](https://alluxio.io/slack).
 
 [Downloads](https://www.alluxio.io/download/)
-| [User Guide]({{ '/en/overview/Getting-Started.html' | relativize_url }})
-| [Developer Guide]({{ '/en/contributor/Contributor-Getting-Started.html' | relativize_url }})
+| [User Guide](../overview/Getting-Started.md)
+| [Developer Guide](../contributor/Contributor-Getting-Started.md)
 | [Meetup Group](https://www.meetup.com/Alluxio/)
 | [Issue Tracking](https://github.com/Alluxio/alluxio/issues)
 | [Community Slack Channel](https://slackin.alluxio.io)

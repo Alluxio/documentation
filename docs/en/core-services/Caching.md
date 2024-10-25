@@ -1,20 +1,11 @@
----
-layout: global
-title: Caching
-nickname: Caching
-group: Core Services
-priority: 1
----
-
-* Table of Contents
-{:toc}
+# Caching
 
 ## Alluxio Storage Overview
 
 The purpose of this documentation is to introduce users to the concepts behind Alluxio storage and
 the operations that can be performed within Alluxio storage space. For metadata related operations
 such as syncing and namespaces, refer to the
-[page on namespace management]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }})
+[page on namespace management](../core-services/Unified-Namespace.md)
 
 Alluxio helps unify users' data across a variety of platforms while also helping to increase
 overall I/O throughput. Alluxio accomplishes this by splitting storage
@@ -38,7 +29,7 @@ into two distinct categories.
     visible to Alluxio clients. The data is copied into Alluxio storage when a client attempts to
     read a file that is only available from a UFS.
 
-![Alluxio storage diagram]({{ '/img/stack.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/stack.png" alt=""><figcaption></figcaption></figure>
 
 Alluxio storage improves performance by storing data in memory co-located with compute nodes.
 Data in Alluxio storage can be replicated to make "hot" data more readily available for
@@ -67,7 +58,7 @@ system's total memory. This ramdisk will be used as the only storage medium allo
 Alluxio worker.
 
 Alluxio storage is configured through Alluxio's configuration in `alluxio-site.properties`. See
-[configuration settings]({{ '/en/operation/Configuration.html' | relativize_url }}) for detailed
+[configuration settings](../operation/Configuration.md) for detailed
 information.
 
 A common modification to the default is to set the ramdisk size explicitly.
@@ -167,7 +158,7 @@ So you will read the cache block with disk speed if the block is currently on a 
 #### Configuring Tiered Storage
 
 Tiered storage can be enabled in Alluxio using
-[configuration parameters]({{ '/en/operation/Configuration.html' | relativize_url }}).
+[configuration parameters](../operation/Configuration.md).
 To specify additional tiers for Alluxio, use the following configuration parameters:
 
 ```properties
@@ -267,7 +258,7 @@ storage.
 
 Annotation policies define an ordering for blocks across tiers and is consulted during:
 - Eviction
-- [Dynamic Block Placement](#block-aligning-dynamic-block-placement)
+- [Dynamic Block Placement](#block-aligning--dynamic-block-placement-)
 
 The eviction, that happens during writes, will attempt to remove blocks based on the order enforced by the block annotation policy.
 The last block in annotated order is the first candidate for eviction regardless of which tier it's on.
@@ -284,7 +275,7 @@ configurable weight.
     `alluxio.worker.block.annotator.lrfu.attenuation.factor`.
 
 The annotator utilized by workers is determined by the Alluxio property
-[`alluxio.worker.block.annotator.class`]({{ '/en/reference/Properties-List.html#alluxio.worker.block.annotator.class' | relativize_url }}).
+[`alluxio.worker.block.annotator.class`](../reference/Properties-List.md#worker-configuration).
 The property should specify the fully qualified class name within the configuration.
 Currently, the available options are:
 
@@ -323,10 +314,10 @@ blocks around tiers based on block annotation policies.
 Below configuration is honored by each individual tier management task:
 - `alluxio.worker.management.task.thread.count`: How many threads to use for management tasks. 
   (Default: the maximum value of `4` and `CPU core count`.
-  Check the up-to-date [reference]({{ '/en/reference/Properties-List.html#alluxio.worker.management.task.thread.count' | relativize_url }}).)
+  Check the up-to-date [reference](../reference/Properties-List.md#worker-configuration).)
 - `alluxio.worker.management.block.transfer.concurrency.limit`: How many block transfers can execute concurrently. 
   (Default: the maximum value of  `2` and `CPU core count / 2`. 
-  Check the up-to-date [reference]({{ '/en/reference/Properties-List.html#alluxio.worker.management.block.transfer.concurrency.limit' | relativize_url }}).)
+  Check the up-to-date [reference](../reference/Properties-List.md#worker-configuration).)
 
 #### Block Aligning (Dynamic Block Placement)
 
@@ -390,7 +381,7 @@ This is an experimental feature added in Alluxio 2.8.2/2.9.0.
 
 Alluxio supports finer-grained page-level (typically, 1 MB) caching storage on Alluxio workers, 
 as an alternative option to the existing block-based (defaults to 64 MB) tiered caching storage. 
-This paging storage supports general workloads including reading and writing, with customizable cache eviction policies similar to [block annotation policies]({{ '/en/core-services/Caching.html' | relativize_url }}#block-annotation-policies) in tiered block store.
+This paging storage supports general workloads including reading and writing, with customizable cache eviction policies similar to [block annotation policies](#block-annotation-policies) in tiered block store.
 
 To switch to the paging storage:
 ```properties
@@ -452,7 +443,7 @@ $ ./bin/alluxio fs free ${PATH_TO_UNUSED_DATA}
 
 This will remove the data at the given path from Alluxio storage. The data is still accessible if
 it is persisted to a UFS. For more information refer to the
-[command line interface documentation]({{ '/en/operation/User-CLI.html#free' | relativize_url }})
+[command line interface documentation](../operation/User-CLI.md#free)
 
 Note that a user typically should not need to manually free data from Alluxio as the
 configured [annotation policy](#block-annotation-policies) will take care of removing unused or old data.
@@ -460,18 +451,17 @@ configured [annotation policy](#block-annotation-policies) will take care of rem
 ### Loading Data into Alluxio Storage
 
 If the data is already in a UFS, use
-[`alluxio fs load`]({{ '/en/operation/User-CLI.html#load' | relativize_url }})
+[`alluxio fs load`](../operation/User-CLI.md#load)
 
 ```console
 $ ./bin/alluxio fs load ${PATH_TO_FILE}
 ```
 
-To speed up the loading process for files or directories, use the [distributedLoad command]({{ '/en/operation/User-CLI.html#distributedLoad' | relativize_url }})
+To speed up the loading process for files or directories, use the [distributedLoad command](../operation/User-CLI.md)
 instead of load command.
 
 To load data from the local file system, use the command
-[`alluxio fs copyFromLocal`]({{ '/en/operation/User-CLI.html#copyfromlocal' | relativize_url
-}}).
+[`alluxio fs copyFromLocal`](../operation/User-CLI.md#copyfromlocal).
 This will only load the file into Alluxio storage, but may not persist the data to a UFS.
 Setting the write type to `MUST_CACHE` write type will _not_ persist data to a UFS,
 whereas `CACHE` and `CACHE_THROUGH` will. Manually loading data is not recommended as Alluxio
@@ -479,8 +469,7 @@ will automatically load data into the Alluxio cache when a file is used for the 
 
 ### Persisting Data in Alluxio
 
-The command [`alluxio fs persist`]({{ '/en/operation/User-CLI.html#persist' | relativize_url
-}})
+The command [`alluxio fs persist`](../operation/User-CLI.md#persist)
 allows a user to push data from the Alluxio cache to a UFS.
 
 ```console
@@ -515,7 +504,7 @@ To set the interval to 10 minutes, add the following to `alluxio-site.properties
 alluxio.master.ttl.checker.interval=10m
 ```
 
-Refer to the [configuration page]({{ '/en/operation/Configuration.html' | relativize_url }})
+Refer to the [configuration page](../operation/Configuration.md)
 for more details on setting Alluxio configurations.
 
 #### APIs
@@ -542,7 +531,7 @@ action        the action to take when the duration has elapsed. `FREE` will caus
 #### Command Line Usage
 
 See the detailed
-[command line documentation]({{ '/en/operation/User-CLI.html#setttl' | relativize_url }})
+[command line documentation](../operation/User-CLI.md#setttl)
 to see how to use the `setTtl` command within the Alluxio shell to modify TTL attribute.
 
 #### Passive TTL on files in Alluxio
@@ -690,4 +679,4 @@ $ ./bin/alluxio fs getCapacityBytes
 The Alluxio master web interface gives the user a visual overview of the cluster and how much
 storage space is used. It can be found at `http:/{MASTER_IP}:${alluxio.master.web.port}/`.
 More detailed information about the Alluxio web interface can be
-[found in our documentation]({{ '/en/operation/Web-Interface.html' | relativize_url }}).
+[found in our documentation](../operation/Web-Interface.md).

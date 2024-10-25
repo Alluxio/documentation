@@ -1,10 +1,4 @@
----
-layout: global
-title: Scalability Tuning
-nickname: Scalability Tuning
-group: Administration
-priority: 5
----
+# Scalability Tuning
 
 Alluxio is a scalable distributed file system designed to handle many workers within a single
 cluster.
@@ -16,18 +10,16 @@ influence the system's hardware requirements. The sections
 [Alluxio Client Configuration](#alluxio-client-configuration) provide details on hardware and
 configuration tuning for large scale deployments.
 
-* Table of Contents
-{:toc}
 
 ## Metrics To Monitor
 This section discusses what metrics to monitor to understand the current cluster scale.
 On how to best integrate the metrics monitoring to your architecture, please see
-[Metrics System]({{ '/en/operation/Metrics-System.html' | relativize_url }}) for more information.
+[Metrics System](../operation/Metrics-System.md) for more information.
 
 Other than the most important metrics mentioned below, Alluxio provides observability on
 various other aspects like the cluster usage and throughput of each individual operation.
 A full list can be found at 
-[All Metric Keys]({{ '/en/reference/Metrics-List.html' | relativize_url }}).
+[All Metric Keys](../reference/Metrics-List.md).
 
 ### Number of Files in Alluxio
 
@@ -38,7 +30,7 @@ The number of files in Alluxio impacts the following:
 * Size of heap required by the master - Each file and its directory structure takes approximately 4KB. 
 If RocksDB is used, most file metadata is stored off-heap, 
 and the size of the heap impacts how many files’ metadata can be cached on the heap. See the
-[RocksDB section]({{ '/en/operation/Metastore.html#rocksdb-metastore' | relativize_url }}) for more
+[RocksDB section](../operation/Metastore.md#rocksdb-metastore) for more
 information.
 * Size of disk required for journal storage - At peak, there may be two snapshot of the journal during checkpointing. 
 Thus, we need to reserve approximately 4KB (2x2KB) on the disk for each file. 
@@ -156,7 +148,7 @@ If using `HEAP` metastore, all the inodes will be stored in the master heap. The
 size must be large enough to fit ALL inodes.
 
 If using the `ROCKS` off-heap metastore, the master heap size must be large enough to fit the inode
-cache. See the [RocksDB section]({{ '/en/operation/Metastore.html#rocksdb-metastore' | relativize_url }})
+cache. See the [RocksDB section](../operation/Metastore.md#rocksdb-metastore)
 for more information.
 
 Note that the master heap memory is not only allocated to metadata storage but also RPC logic and
@@ -236,11 +228,11 @@ When using embedded journal, the disk space is proportional to the namespace siz
 of write operations within a snapshot period. We recommend at least 8 GB of disk space plus 8 GB for
 each 1 million files in the namespace. The read and write speed of the disk should be at least
 512 MB/s. We recommend a dedicated SSD for the embedded journal.
-See the [Journal Size Management]({{ '/en/operation/Journal.html#managing-the-journal-size' | relativize_url }})
+See the [Journal Size Management](../operation/Journal.md#managing-the-journal-size)
 section for more information.
 
 When using RocksDB as the storage backend for the file system metadata, the disk space required is 
-proportional to the namespace size. See the [RocksDB section]({{ '/en/operation/Metastore.html#rocksdb-metastore' | relativize_url }})
+proportional to the namespace size. See the [RocksDB section](../operation/Metastore.md#rocksdb-metastore)
 for more information. We recommend 4 GB of disk space for each 1 million files in the name space.
 
 ### Operating System Limits
@@ -330,7 +322,7 @@ nodes (across workers), we recommend having 1 Gbit/s bandwidth (across workers) 
 gives a ratio of at least 10:1. The UFS link throughput can be greatly decreased based on the
 expected cache hit ratio.
 
-You may use the [UfsIOBench]({{ '/en/administration/StressBench.html#ufs-io-bench' | relativize_url }})
+You may use the [UfsIOBench](../administration/StressBench.md#ufs-io-bench)
 tool to measure the worker-UFS network bandwidth.
 
 ### Disk
@@ -352,7 +344,7 @@ working set is unknown, we recommend starting with 33% of the total dataset.
 
 Note that if you have more than one replica for each block, you should adjust the cache
 size estimation accordingly. 
-See [Managing Data Replication in Alluxio]({{ '/en/core-services/Caching.html#managing-data-replication-in-alluxio' | relativize_url }})
+See [Managing Data Replication in Alluxio](../core-services/Caching.md#managing-data-replication-in-alluxio)
 for more details.
 
 ### Heartbeat Intervals and Timeouts
@@ -574,7 +566,7 @@ above to make your best estimation. If your workers are currently empty, you may
 estimate based on the worker storage and the average file/block size.
 
 This feature is enabled by default. Typically you only need to tweak the 2 properties above.
-But you may find all relevant properties in the [Properties List]({{ '/en/reference/Properties-List.html' | relativize_url }})
+But you may find all relevant properties in the [Properties List](../reference/Properties-List.md)
 starting with `alluxio.master.worker.register.lease` and `alluxio.worker.register.lease`.
 
 When the register lease feature is turned on, you will see a delay when
@@ -604,7 +596,7 @@ only 1 request will be sent and the performance should be identical.
 Thus we recommend to keep this enabled despite your worker storage size.
 
 This feature is enabled by default. Typically you only need to tune the 3 properties above.
-But you may find all relevant properties in the [Properties List]({{ '/en/reference/Properties-List.html' | relativize_url }})
+But you may find all relevant properties in the [Properties List](../reference/Properties-List.md)
 starting with `alluxio.master.worker.register.stream` and `alluxio.worker.register.stream`.
 
 ### Master-Worker Heartbeat

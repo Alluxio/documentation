@@ -1,12 +1,4 @@
----
-layout: global
-title: Use Cases
-group: Overview
-priority: 6
----
-
-* Table of Contents
-{:toc}
+# Use Cases
 
 Many leading companies around the world run Alluxio in production to extract value
 from their data. Some of them are listed in our

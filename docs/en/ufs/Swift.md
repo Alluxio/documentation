@@ -1,13 +1,5 @@
----
-layout: global
-title: Swift
-nickname: Swift
-group: Storage Integrations
-priority: 10
----
+# Swift
 
-* Table of Contents
-{:toc}
 
 This guide describes how to configure Alluxio with an under storage system supporting the
 [Swift API](http://docs.openstack.org/developer/swift/).
@@ -15,8 +7,8 @@ This guide describes how to configure Alluxio with an under storage system suppo
 ## Prerequisites
 
 The Alluxio binaries must be on your machine. You can either
-[compile Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}), or
-[download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+[compile Alluxio](../contributor/Building-Alluxio-From-Source.md), or
+[download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 ## Basic Setup
 
@@ -60,7 +52,7 @@ value of `<swift-use-public>`  to `false`.
 ### Nested Mount Point
 
 An Swift location can be mounted at a nested directory in the Alluxio namespace to have unified access
-to multiple under storage systems. Alluxio's [Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+to multiple under storage systems. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```console
 $ ./bin/alluxio fs mount \

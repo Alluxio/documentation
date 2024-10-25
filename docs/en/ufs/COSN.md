@@ -1,13 +1,5 @@
----
-layout: global
-title: COSN
-nickname: COSN
-group: Storage Integrations
-priority: 5
----
+# COSN
 
-* Table of Contents
-{:toc}
 
 This guide describes how to configure Alluxio with Tencent [COS](https://cloud.tencent.com/product/cos) (Cloud Object Storage) as the under storage system.
 Tencent Cloud Object Storage (COS) is a distributed storage service offered by Tencent Cloud for unstructured data and accessible via HTTP/HTTPS protocols.
@@ -16,7 +8,7 @@ It can store massive amounts of data and features imperceptible bandwidth and ca
 ## Basic Setup
 
 Alluxio runs on multiple machines in cluster mode so its binary package needs to be deployed on the machines.
-You can either [compile Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}) or [download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+You can either [compile Alluxio](../contributor/Building-Alluxio-From-Source.md) or [download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 In preparation for using COS with Alluxio, create a new bucket or use an existing bucket.
 You should also note the directory you want to use in that bucket, either by creating a new directory in the bucket or using an existing one.
@@ -24,7 +16,7 @@ For the purposes of this guide, the COS Bucket name is called `COSN_ALLUXIO_BUCK
 
 ## Basic Setup
 
-Alluxio unifies access to different storage systems through the [unified namespace]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }}) feature.
+Alluxio unifies access to different storage systems through the [unified namespace](../core-services/Unified-Namespace.md) feature.
 COSN UFS is used to access Tencent Cloud object storage and a COS location can be either mounted at the root of the Alluxio namespace or as a nested directory.
 
 ### Root Mount Point
@@ -75,7 +67,7 @@ After these changes, Alluxio should be configured to work with COSN as its under
 ### Nested Mount
 
 A COS location can be mounted at a nested directory in the Alluxio namespace to have unified access to multiple under storage systems.
-The [mount command]({{ '/en/operation/User-CLI.html' | relativize_url }}#mount) can be used for this purpose.
+The [mount command](../operation/User-CLI.md#mount) can be used for this purpose.
 
 ```console
 $ ./bin/alluxio fs mount --option fs.cosn.userinfo.secretId=<COSN_SECRET_ID> \

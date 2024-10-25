@@ -1,13 +1,4 @@
----
-layout: global
-title: FUSE-based POSIX API
-nickname: POSIX API
-group: Client APIs
-priority: 3
----
-
-* Table of Contents
-{:toc}
+# FUSE-based POSIX API
 
 The Alluxio POSIX API is a feature that allows mounting an Alluxio File System as a standard file system
 on most flavors of Unix.
@@ -26,7 +17,7 @@ Data orchestration and caching features from Alluxio speed up I/O access to freq
 Right now Alluxio POSIX API mainly targets the ML/AI workloads (especially read heavy workloads).
 
 <p align="center">
-<img src="{{ '/img/posix-stack.png' | relativize_url }}" alt="Alluxio stack with its POSIX API"/>
+<figure><img src="../.gitbook/assets/posix-stack.png" alt=""><figcaption></figcaption></figure>
 </p>
 
 The Alluxio POSIX API is based on the [Filesystem in Userspace](http://fuse.sourceforge.net/)
@@ -37,7 +28,7 @@ data model, the mounted file system does not have full POSIX semantics and conta
 limitations.
 Please read the [functionalities and limitations](#functionalities-and-limitations) for details.
 
-For additional limitation on file path names on Alluxio please check : [Alluxio limitations]({{ '/en/administration/Troubleshooting.html' | relativize_url }}#file-path-limitations)
+For additional limitation on file path names on Alluxio please check : [Alluxio limitations](../administration/Troubleshooting.md#file-path-limitations)
 
 ## Quick Start Example
 
@@ -46,8 +37,8 @@ This example shows how to mount the whole Alluxio cluster to a local directory a
 ### Prerequisites
 
 The followings are the basic requirements running ALLUXIO POSIX API.
-Installing Alluxio POSIX API using [Docker]({{ '/en/deploy/Running-Alluxio-On-Docker.html' | relativize_url}}#enable-posix-api-access)
-and [Kubernetes]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url}}#posix-api)
+Installing Alluxio POSIX API using [Docker](../deploy/Running-Alluxio-On-Docker.md#enable-posix-api-access)
+and [Kubernetes](../kubernetes/Running-Alluxio-On-Kubernetes.md#posix-api)
 can further simplify the setup.
 
 - Have a running Alluxio cluster
@@ -167,7 +158,7 @@ $ ${ALLUXIO_HOME}/integration/fuse/bin/alluxio-fuse unmount /mnt/people
 Unmount fuse at /mnt/people (PID:97626).
 ```
 
-See [umount options](#alluxio-fuse-unmount-options) for more advanced umount settings.
+See [umount options](#alluxio-fuse-umount-options) for more advanced umount settings.
 
 ## Functionalities and Limitations
 
@@ -279,7 +270,7 @@ Alluxio FUSE can provide two kinds of metadata/data cache, the kernel cache and 
 The following illustration shows the layers of cache — FUSE kernel cache, FUSE userspace cache, Alluxio system cache.
 
 <p align="center">
-<img src="{{ '/img/posix-cache.png' | relativize_url }}" alt="Alluxio stack with its POSIX API"/>
+<figure><img src="../.gitbook/assets/posix-cache.png" alt=""><figcaption></figcaption></figure>
 </p>
 
 Since FUSE kernel cache and userspace cache both provide caching capability, although they can be enabled at the same time,
@@ -308,7 +299,7 @@ When this happens the content read by `Node A` is stale.
 #### Metadata Cache
 
 Metadata cache may significantly improve the read training performance especially when loading a large amount of small files repeatedly.
-FUSE kernel issues extra metadata read operations (sometimes can be 3 - 7 times more) compared to [Alluxio Java API]({{ '/en/api/Java-API.html' | relativize_url }}))
+FUSE kernel issues extra metadata read operations (sometimes can be 3 - 7 times more) compared to [Alluxio Java API](../api/Java-API.md))
 when applications are doing metadata operations or even data operations.
 Even a 1-minute temporary metadata cache may double metadata read throughput or small file data loading throughput.
 
@@ -747,7 +738,7 @@ $ ${ALLUXIO_HOME}/integration/fuse/bin/alluxio-fuse unmount -f mount_point
 
 This section talks about how to troubleshoot issues related to Alluxio POSIX API.
 Note that the errors or problems of Alluxio POSIX API may come from the underlying Alluxio system.
-For general guideline in troubleshooting, please refer to [troubleshooting documentation]({{ '/en/administration/Troubleshooting.html' | relativize_url }})
+For general guideline in troubleshooting, please refer to [troubleshooting documentation](../administration/Troubleshooting.md)
 
 
 ### Out of Direct Memory
@@ -761,10 +752,10 @@ ALLUXIO_FUSE_JAVA_OPTS+=" -XX:MaxDirectMemorySize=8G"
 ### Fuse Metrics
 
 Depending on the Fuse deployment type, Fuse metrics can be exposed as worker metrics (Fuse on worker process) or client metrics (Standalone FUSE process).
-Check out the [metrics introduction doc]({{ '/en/operation/Metrics-System.html' | relativize_url }}) for how to get Fuse metrics.
+Check out the [metrics introduction doc](../operation/Metrics-System.md) for how to get Fuse metrics.
 
 Fuse metrics include Fuse specific metrics and general client metrics.
-Check out the [Fuse metrics list]({{ '/en/reference/Metrics-List.html' | relativize_url }}#fuse-metrics) about more details of
+Check out the [Fuse metrics list](../reference/Metrics-List.md#fuse-metrics) about more details of
 what metrics are recorded and how to use those metrics.
 
 ### Check FUSE Operations in Debug Log
@@ -782,12 +773,12 @@ and lastly a `Fuse.release` to close file to commit a file written to Alluxio fi
 One can set `alluxio.fuse.debug.enabled=true` in `${ALLUXIO_HOME}/conf/alluxio-site.properties` before mounting the Alluxio FUSE
 to enable debug logging.
 
-For more information about logging, please check out [this page]({{ '/en/administration/Basic-Logging.html' | relativize_url }}).
+For more information about logging, please check out [this page](../administration/Basic-Logging.md).
 
 ### Advanced Performance Investigation
 
 The following diagram shows the stack when using Alluxio POSIX API:
-![Fuse components]({{ '/img/fuse.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/fuse.png" alt=""><figcaption></figcaption></figure>
 
 Essentially, Alluxio POSIX API is implemented as a FUSE integration which is simply a long-running Alluxio client.
 In the following stack, the performance overhead can be introduced in one or more components among
@@ -816,21 +807,21 @@ Higher concurrency may lead to worse performance.
 
 The concurrency on Alluxio POSIX API is the joint effort of
 - The concurrency of application operations interacting with Fuse kernel code and libfuse
-- The concurrency of libfuse worker threads interacting with Alluxio POSIX API limited by `MAX_IDLE_THREADS` [libfuse configuration](#configure-mount-point-options).
+- The concurrency of libfuse worker threads interacting with Alluxio POSIX API limited by `MAX_IDLE_THREADS` libfuse configuration.
 
 Enlarge the `MAX_IDLE_THRAEDS` to make sure it's not the performance bottleneck. One can use `jstack` or `visualvm` to see how many libfuse threads exist
 and whether the libfuse threads keep being created/destroyed.
 
 #### Alluxio Level
 
-[Alluxio general performance tuning]({{ '/en/administration/Performance-Tuning.html' | relativize_url }}) provides
+[Alluxio general performance tuning](../administration/Performance-Tuning.md) provides
 more information about how to investigate and tune the performance of Alluxio Java client and servers.
 
 ##### Clock time tracing
 
 Tracing is a good method to understand which operation consumes most of the clock time.
 
-From the `Fuse.<FUSE_OPERATION_NAME>` metrics documented in the [Fuse metrics doc]({{ '/en/reference/Metrics-List.html' | relativize_url }}#fuse-metrics),
+From the `Fuse.<FUSE_OPERATION_NAME>` metrics documented in the [Fuse metrics doc](../reference/Metrics-List.md#fuse-metrics),
 we can know how long each operation consumes and which operation(s) dominate the time spent in Alluxio.
 For example, if the application is metadata heavy, `Fuse.getattr` or `Fuse.readdir` may have much longer total duration compared to other operations.
 If the application is data heavy, `Fuse.read` or `Fuse.write` may consume most of the clock time.

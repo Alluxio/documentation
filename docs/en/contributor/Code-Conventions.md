@@ -1,26 +1,17 @@
----
-layout: global
-title: Code Conventions
-nickname: Code Conventions
-group: Contributor Resources
-priority: 2
----
-
-* Table of Contents
-{:toc}
+# Code Conventions
 
 First off, we thank you for your interest in the Alluxio open source project!
 We greatly appreciate any contribution; whether it be new features or bug fixes.
 
 > If you are a first time contributor to the Alluxio open source project, we strongly encourage
 > you to follow the step-by-step instructions within the
-> [Contribution Guide]({{ '/en/contributor/Contributor-Getting-Started.html' | relativize_url }}) and
+> [Contribution Guide](../contributor/Contributor-Getting-Started.md) and
 > finish new contributor tasks before making more advanced changes to the Alluxio codebase.
 
 ## Submitting Code
 
 Submitting changes to Alluxio is done via pull requests. Please read our
-[pull request guidelines]({{ '/en/contributor/Contributor-Getting-Started.html' | relativize_url }}#sending-a-pull-request)
+[pull request guidelines](../contributor/Contributor-Getting-Started.md#sending-a-pull-request)
 for details on how to submit a pull request to the Alluxio repository. Below are some tips for
 the pull requests.
 
@@ -33,7 +24,7 @@ Open an issue detailing the proposed change or the bug description.
 issue in the last line of the description field of the pull request,
 such as `Fixes #1234`.
 - Please read our
-[pull request guidelines]({{ '/en/contributor/Contributor-Getting-Started.html' | relativize_url }}#sending-a-pull-request)
+[pull request guidelines](../contributor/Contributor-Getting-Started.md#sending-a-pull-request)
 for details.
 
 ## Coding Style
@@ -51,18 +42,18 @@ for details.
 must be compatible with Bash 3.x
 - If you use IntelliJ IDEA:
   - You can use the [IntelliJ checkstyle plugin](https://plugins.jetbrains.com/plugin/1065-checkstyle-idea) and 
-    configure it [as such]({{ '/resources/intellij_checkstyle_plugin.png' | relativize_url }}) under 
+    configure it [as such](../.gitbook/assets/intellij_checkstyle_plugin.png) under 
     Preferences->Tools->Checkstyle.
   - To automatically format the **import**, configure in
     Preferences->Code Style->Java->Imports->Import Layout according to
-    [this order]({{ '/resources/intellij_imports.png' | relativize_url }}).
+    [this order](../.gitbook/assets/intellij_imports.png).
   - In that same settings pane, you can set your style scheme to the one you imported in the Checkstyle plugin 
-    settings [as such]({{ '/resources/style_scheme.png' | relativize_url }}).
+    settings [as such](../.gitbook/assets/style_scheme.png).
 - If you use Eclipse:
     - You can download our
-    [Eclipse formatter]({{ '/resources/alluxio-code-formatter-eclipse.xml' | relativize_url }})
+    [Eclipse formatter](../.gitbook/assets/alluxio-code-formatter-eclipse.xml)
     - To organize your imports correctly, configure "Organize Imports" to look like
-    [this]({{ '/resources/eclipse_imports.png' | relativize_url }})
+    [this](../.gitbook/assets/eclipse_imports.png)
 - To automatically reorder methods alphabetically, try the
 [Rearranger Plugin](http://plugins.jetbrains.com/plugin/173), open Preferences, search for
 rearranger, remove the unnecessary comments, then right click, choose "Rearrange", codes
@@ -187,8 +178,8 @@ Note that, each class must use its own logger based on the class name,
 like `LoggerFactory.getLogger(MyClass.class)` in above example,
 so its output can easily be searched for.
 The location of the output of SLF4J loggers can be found for
-[server logs]({{ '/en/administration/Basic-Logging.html' | relativize_url }}#server-logs)
-and [application logs]({{ '/en/administration/Basic-Logging.html' | relativize_url }}#application-logs).
+[server logs](../administration/Basic-Logging.md#server-logs)
+and [application logs](../administration/Basic-Logging.md#application-logs).
 
 ### Best Practice
 
@@ -230,7 +221,7 @@ messages.
 ### Which logging level to use
 
 There are several levels of logging, see detailed explanation of
-[different Levels]({{ '/en/administration/Basic-Logging.html' | relativize_url }}#configuring-log-levels)
+[different Levels](../administration/Basic-Logging.md#configuring-log-levels)
 Here are the guidelines for deciding which level to use.
 
 #### Error Log Level

@@ -1,13 +1,5 @@
----
-layout: global
-title: Metastore Management
-nickname: Metastore Management
-group: Operations
-priority: 6
----
+# Metastore Management
 
-* Table of Contents
-{:toc}
 
 Alluxio stores most of its metadata on the master node. The metadata includes the
 filesystem tree, file permissions, and block locations. Alluxio provides two ways
@@ -261,5 +253,5 @@ Then restart the masters with the `-i ${BACKUP_PATH}` argument, replacing
 $ ./bin/alluxio-start.sh -i ${BACKUP_PATH} masters
 ```
 
-See [here]({{ '/en/operation/Journal.html' | relativize_url }}#backing-up-the-journal)
+See [here](../operation/Journal.md#backing-up-the-journal)
 for more information regarding journal backup.

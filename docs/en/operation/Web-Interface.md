@@ -1,13 +1,4 @@
----
-layout: global
-title: Web User Interface
-nickname: Web UI
-group: Operations
-priority: 4
----
-
-* Table of Contents
-{:toc}
+# Web User Interface
 
 Alluxio has a user-friendly web interface allowing users to monitor and manage the cluster.
 The master and workers all serve their own web UI.
@@ -29,7 +20,7 @@ The Alluxio master web interface contains several different pages, described bel
 
 The Alluxio master home page looks something like below:
 
-![Alluxio Master Home Page]({{ '/img/screenshot_overview.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_overview.png" alt=""><figcaption></figcaption></figure>
 
 The home page gives an overview of the system status. It includes the following sections:
 
@@ -46,7 +37,7 @@ which gives a breakdown of the amount of space used per tier across the cluster.
 To check the current configuration information, click "Configuration" in the
 navigation bar on the top of the screen.
 
-![configurations]({{ '/img/screenshot_systemConfiguration.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_systemConfiguration.png" alt=""><figcaption></figcaption></figure>
 
 The configuration page has two sections:
 
@@ -61,19 +52,19 @@ Only whitelisted files will be stored in Alluxio.
 To browse the Alluxio file system through the UI. select the "Browse" tab
 in the navigation bar:
 
-![browse]({{ '/img/screenshot_browseFileSystem.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_browseFileSystem.png" alt=""><figcaption></figcaption></figure>
 
 Files in the current folder are listed, with the file name, file size, size for each block, the
 percentage of in-Alluxio data, creation time, and the modification time.  
 To view the content of a file, click the link for that file.
 
-![viewFile]({{ '/img/screenshot_viewFile.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_viewFile.png" alt=""><figcaption></figcaption></figure>
 
 ### Browse In-Alluxio Files Page
 
 To browse all in-Alluxio files, click on the "In-Alluxio Files" tab in the navigation bar.
 
-![inMemFiles]({{ '/img/screenshot_inMemoryFiles.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_inMemoryFiles.png" alt=""><figcaption></figcaption></figure>
 
 Files currently in Alluxio are listed, with the file name, file size, size for each block,
 whether the file is pinned or not, the file creation time, and the file modification time.
@@ -82,7 +73,7 @@ whether the file is pinned or not, the file creation time, and the file modifica
 
 The master UI shows all known Alluxio workers in the system in the "Workers" tab.
 
-![workers]({{ '/img/screenshot_workers.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_workers.png" alt=""><figcaption></figcaption></figure>
 
 The workers page gives an overview of all Alluxio worker nodes divided into two sections:
 
@@ -97,7 +88,7 @@ Possible causes include system restart or network failures.
 
 To access master metrics section, click on the "Metrics" tab in the navigation bar.
 
-![masterMetrics]({{ '/img/screenshot_masterMetrics.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_masterMetrics.png" alt=""><figcaption></figcaption></figure>
 
 This section shows all master metrics. It includes the following sections:
 
@@ -120,7 +111,7 @@ can be viewed by visiting [localhost:30000](http://localhost:30000).
 The home page for the Alluxio worker web interface is similar to the home page for the Alluxio master,
 but shows information specific to the particular worker.
 
-![workerHome]({{ '/img/screenshot_workerOverview.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_workerOverview.png" alt=""><figcaption></figcaption></figure>
 
 ### BlockInfo Page
 
@@ -128,13 +119,13 @@ In the "BlockInfo" page, information on the files stored by the worker is shown,
 such as the file size and which tier the file is stored on.
 Clicking on a file shows the blocks of that file.
 
-![workerBlockInfo]({{ '/img/screenshot_workerBlockInfo.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_workerBlockInfo.png" alt=""><figcaption></figcaption></figure>
 
 ### Worker Metrics 
 
 To Access worker metrics section, click on the "Metrics" tab in the navigation bar.
 
-![workerMetrics]({{ '/img/screenshot_workerMetrics.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_workerMetrics.png" alt=""><figcaption></figcaption></figure>
 
 This section shows all worker metrics. It includes the following sections:
 

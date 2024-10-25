@@ -1,13 +1,4 @@
----
-layout: global
-title: User Command Line Interface
-nickname: User CLI
-group: Operations
-priority: 1
----
-
-* Table of Contents
-{:toc}
+# User Command Line Interface
 
 Alluxio's command line interface provides users with basic file system operations. You can invoke
 the following command line utility to get all the subcommands:
@@ -25,7 +16,7 @@ Usage: alluxio [COMMAND]
 ## General operations
 
 This section lists usages and examples of general Alluxio operations with the exception of file
-system commands which are covered in the [Admin CLI doc]({{ '/en/operation/Admin-CLI.html' | relativize_url }}).
+system commands which are covered in the [Admin CLI doc](../operation/Admin-CLI.md).
 
 ### format
 
@@ -124,7 +115,7 @@ See [File System Operations](#file-system-operations).
 
 The `fsadmin` command is meant for administrators of the Alluxio cluster.
 It provides added tools for diagnostics and troubleshooting.
-For more information see the [Admin CLI main page]({{ '/en/operation/Admin-CLI.html' | relativize_url }}).
+For more information see the [Admin CLI main page](../operation/Admin-CLI.md).
 
 > Note: This command requires the Alluxio cluster to be running.
 
@@ -235,7 +226,7 @@ The default target value is the primary master, primary job master, all workers 
 * `--level <arg>` If provided, the command changes to the given logger level,
 otherwise it returns the current logger level.
 
-See [here]({{ '/en/administration/Basic-Logging.html#modifying-server-logging-at-runtime' | relativize_url }})
+See [here](../administration/Basic-Logging.md#modifying-server-logging-at-runtime)
 for more examples.
 
 > Note: This command requires the Alluxio cluster to be running.
@@ -557,7 +548,7 @@ server-side hadoop configuration directory when running validating tasks.
 ### collectInfo
 
 The `collectInfo` command collects information to troubleshoot an Alluxio cluster.
-For more information see the [collectInfo command page]({{ '/en/administration/Troubleshooting.html#alluxio-collectinfo-command' | relativize_url }}).
+For more information see the [collectInfo command page](../administration/Troubleshooting.md#alluxio-collectinfo-command).
 
 > Note: This command does not require the Alluxio cluster to be running.
 > But if the cluster is not running, this command will fail to gather some information from it.
@@ -1210,7 +1201,7 @@ $ ./bin/alluxio fs mkdir /users/Bob
 The `mount` command links an under storage path to an Alluxio path,
 where files and folders created in Alluxio space under the path will be backed
 by a corresponding file or folder in the under storage path.
-For more details, see [Unified Namespace]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }}).
+For more details, see [Unified Namespace](../core-services/Unified-Namespace.md).
 
 Options:
 
@@ -1526,7 +1517,7 @@ $ ./bin/alluxio fs touch /data/yesterday/_DONE_
 The `unmount` command disassociates an Alluxio path with an under storage directory.
 Alluxio metadata for the mount point is removed along with any data blocks,
 but the under storage system will retain all metadata and data.
-See [Unified Namespace]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }}) for more details.
+See [Unified Namespace](../core-services/Unified-Namespace.md) for more details.
 
 For example, `unmount` can be used to remove an under storage system when the users no longer need
 data from that system.
@@ -1536,7 +1527,7 @@ $ ./bin/alluxio fs unmount /s3/data
 ```
 
 If there are files under the mount point, the `unmount` operation will implicitly delete those files from Alluxio.
-See the [rm command]({{ '/en/operation/User-CLI.html#rm' | relativize_url }}) for how to estimate the memory consumption.
+See the [rm command](../operation/User-CLI.md#rm) for how to estimate the memory consumption.
 It is recommended to remove those files in Alluxio first, before the `unmount`.
 
 ### unpin

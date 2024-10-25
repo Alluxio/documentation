@@ -1,13 +1,5 @@
----
-layout: global
-title: Google Cloud Storage
-nickname: Google Cloud Storage
-group: Storage Integrations
-priority: 2
----
+# Google Cloud Storage
 
-* Table of Contents
-{:toc}
 
 This guide describes how to configure Alluxio with [Google Cloud Storage (GCS)](https://cloud.google.com/storage/)
 as the under storage system.
@@ -15,8 +7,8 @@ as the under storage system.
 ## Prerequisites
 
 The Alluxio binaries must be on your machine. You can either
-[compile Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}), or
-[download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+[compile Alluxio](../contributor/Building-Alluxio-From-Source.md), or
+[download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 In preparation for using GCS with Alluxio, create a bucket (or use an existing bucket). You
 should also note the directory you want to use in that bucket, either by creating a new directory in
@@ -104,7 +96,7 @@ you can [Run Alluxio Locally with GCS](#running-alluxio-locally-with-gcs).
 ### Nested Mount Point
 
 An GCS location can be mounted at a nested directory in the Alluxio namespace to have unified access
-to multiple under storage systems. Alluxio's [Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+to multiple under storage systems. Alluxio's [Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 First, within `conf/alluxio-site.properties`, specify the master host:
 ```properties
@@ -168,7 +160,7 @@ $ ./bin/alluxio-stop.sh local
 
 Directories are represented in GCS as zero-byte objects named with a specified suffix. The
 directory suffix can be updated with the configuration parameter
-[alluxio.underfs.gcs.directory.suffix]({{ '/en/reference/Properties-List.html' | relativize_url }}#alluxio.underfs.gcs.directory.suffix).
+[alluxio.underfs.gcs.directory.suffix](../reference/Properties-List.md#common-configuration).
 
 ## GCS Access Control
 

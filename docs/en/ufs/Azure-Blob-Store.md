@@ -1,13 +1,4 @@
----
-layout: global
-title: Azure Blob Store
-nickname: Azure Blob Store
-group: Storage Integrations
-priority: 2
----
-
-* Table of Contents
-{:toc}
+# Azure Blob Store
 
 This guide describes how to configure Alluxio with [Azure Blob
 Store](https://azure.microsoft.com/en-in/services/storage/blobs/) as the under storage system.
@@ -15,8 +6,8 @@ Store](https://azure.microsoft.com/en-in/services/storage/blobs/) as the under s
 ## Prerequisites
 
 The Alluxio binaries must be on your machine.
-You can either [compile the binaries from Alluxio source code]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}),
-or [download the precompiled binaries directly]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+You can either [compile the binaries from Alluxio source code](../contributor/Building-Alluxio-From-Source.md),
+or [download the precompiled binaries directly](../deploy/Running-Alluxio-Locally.md).
 
 In preparation for using Azure Blob Store with Alluxio, create a new container in your Azure
 storage account or use an existing container. You should also note that the directory you want to
@@ -56,7 +47,7 @@ alluxio.master.mount.table.root.option.fs.azure.account.key.<AZURE_ACCOUNT>.blob
 ### Nested Mount
 An Azure blob store location can be mounted at a nested directory in the Alluxio namespace to have unified access
 to multiple under storage systems. Alluxio's
-[Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+[Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```console
 $ ./bin/alluxio fs mount \

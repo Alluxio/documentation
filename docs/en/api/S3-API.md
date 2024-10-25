@@ -1,13 +1,4 @@
----
-layout: global
-title: S3 API
-nickname: S3 API
-group: Client APIs
-priority: 1
----
-
-* Table of Contents
-{:toc}
+# S3 API
 
 Alluxio supports a [RESTful API](https://docs.alluxio.io/os/restdoc/{{site.ALLUXIO_MAJOR_VERSION}}/proxy/index.html)
 that is compatible with the basic operations of the Amazon [S3 API](http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html).
@@ -29,7 +20,7 @@ Only top-level Alluxio directories are treated as buckets by the S3 API.
   - **Note that this is purely a convenience feature and hence is not returned by API Actions such as ListBuckets.**
 
 Alluxio uses `/` as a reserved separator. Therefore, any S3 paths with objects or folders named `/`
-(eg: `s3://example-bucket//`) will cause undefined behavior. For additional limitations on object key names please check this page: [Alluxio limitations]({{ '/en/administration/Troubleshooting.html' | relativize_url }}#file-path-limitations)
+(eg: `s3://example-bucket//`) will cause undefined behavior. For additional limitations on object key names please check this page: [Alluxio limitations](../administration/Troubleshooting.md#file-path-limitations)
 
 ### No Bucket Virtual Hosting
 
@@ -61,7 +52,7 @@ The maximum size for user-defined metadata in PUT-requests is 2KB by default in 
 
 ### Performance Implications
 
-The S3 API leverages the [Alluxio REST proxy]({{ '/en/api/Java-API.html#rest-api' | relativize_url }})
+The S3 API leverages the [Alluxio REST proxy](../api/Java-API.md#rest-api)
 , introducing an additional network hop for Alluxio clients. For optimal performance,
 it is recommended to run the proxy server and an Alluxio worker on each compute node.
 It is also recommended to put all the proxy servers behind a load balancer.
@@ -80,7 +71,7 @@ It is also recommended to put all the proxy servers behind a load balancer.
     SignedHeaders=...,
     Signature=...</td>
     <td>There is currently no support for access & secret keys in the Alluxio S3 API.
-    The only supported authentication scheme is the <a href="{{ '/en/security/Security.html#simple' | relativize_url }}">SIMPLE</a>
+    The only supported authentication scheme is the <a href="../security/Security.md">SIMPLE</a>
     authentication type. By default, the user that is used to perform any operations is the user that was used to
     launch the Alluxio proxy process.
     <br/><br/>
@@ -147,7 +138,7 @@ The following table describes the support status for current [S3 API Actions](ht
 ## Property Keys
 
 The following table contains the configurable
-[Alluxio property keys]({{ '/en/reference/Properties-List.html' | relativize_url }})
+[Alluxio property keys](../reference/Properties-List.md)
 which pertain to the Alluxio S3 API.
 
 <table class="table table-striped">
@@ -176,7 +167,7 @@ to specify the location of the Alluxio S3 REST API with the server's base URI in
 
 As a pre-requisite for operations which involve the `Authorization` header you may need to
 [configure AWS credentials](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-quickstart.html).
-- See the [Authorization header]({{ '/en/api/S3-API.html#global-request-headers' | relativize_url }})
+- See the [Authorization header](../api/S3-API.md#global-request-headers)
   for details on how Alluxio uses this header
 
 ```console
@@ -193,7 +184,7 @@ Note that the base URI for the Alluxio S3 API's REST server is `/api/v1/s3/`
 (i.e: your requests should be directed to `"http://{alluxio.proxy.web.hostname}:{alluxio.proxy.web.port}/api/v1/s3/"`).
 
 At the moment, access key and secret key validation does not exist for the Alluxio S3 API.
-Therefore the [Authorization header]({{ '/en/api/S3-API.html#global-request-headers' | relativize_url }})
+Therefore the [Authorization header](../api/S3-API.md#global-request-headers)
 is used purely to specify the intended user to perform a request. The header follows the
 [AWS Signature Version 4](https://docs.aws.amazon.com/AmazonS3/latest/API/sigv4-auth-using-authorization-header.html)
 format.

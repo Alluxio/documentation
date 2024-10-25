@@ -1,15 +1,6 @@
----
-layout: global
-title: Building Alluxio From Source
-nickname: Building Alluxio From Source
-group: Contributor Resources
-priority: 0
----
+# Building Alluxio From Source
 
 This guide describes how to clone the Alluxio repository, compile the source code, and run tests in your environment.
-
-* Table of Contents
-{:toc}
 
 ## Required Software
 
@@ -149,7 +140,7 @@ $ mvn clean install -pl underfs/hdfs/ \
 ```
 
 To enable active sync be sure to build using the `hdfsActiveSync` property.
-Please visit [Active Sync for HDFS]({{ '/en/core-services/Unified-Namespace.html#active-sync-for-hdfs' | relativize_url }})
+Please visit [Active Sync for HDFS](../core-services/Unified-Namespace.md#active-sync-for-hdfs)
 for more information on using active sync.
 
 If you find a jar named `alluxio-underfs-hdfs-<UFS_HADOOP_VERSION>-{{site.ALLUXIO_VERSION_STRING}}.jar` under `${ALLUXIO_HOME}/lib`, it indicates successful compilation.

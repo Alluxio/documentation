@@ -1,16 +1,7 @@
----
-layout: global
-title: Unified Namespace
-nickname: Unified Namespace
-group: Core Services
-priority: 3
----
+# Unified Namespace
 
 This page summarizes how to manage different under storage systems in the Alluxio file system
 namespace.
-
-* Table of Contents
-{:toc}
 
 ## Introduction
 Alluxio enables effective data management across different storage systems through its use of
@@ -24,7 +15,7 @@ Rather than communicating to each individual storage system, applications can de
 responsibility by connecting through Alluxio, which will handle the different underlying storage
 systems.
 
-![unified]({{ '/img/screenshot_unified.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_unified.png" alt=""><figcaption></figcaption></figure>
 
 The storage path specified by the URI of the master configuration property
 `alluxio.master.mount.table.root.ufs` is mounted to the root of the Alluxio namespace, `/`.
@@ -64,7 +55,7 @@ the two namespaces.
 Transparent naming maintains an identity between the Alluxio namespace and the underlying storage
 system namespace.
 
-![transparent]({{ '/img/screenshot_transparent.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_transparent.png" alt=""><figcaption></figcaption></figure>
 
 When a user creates objects in the Alluxio namespace, they can choose whether these objects should
 be persisted in the underlying storage system.
@@ -147,7 +138,7 @@ Note that mount points can be nested as well. For example, if a UFS is mounted a
 
 Alluxio supports mounting HDFS with specified versions.
 As a result, users can mount HDFS with different versions into a single Alluxio namespace. Please
-refer to [HDFS Under Store]({{ '/en/ufs/HDFS.html#mount-hdfs-with-specific-versions' | relativize_url }}) for more details.
+refer to [HDFS Under Store](../ufs/HDFS.md#mount-hdfs-with-specific-versions) for more details.
 
 ## Relationship Between Alluxio and UFS Namespace
 
@@ -195,7 +186,7 @@ The graph below illustrates the impact of setting the metadata sync interval on 
 client operations.
 
 <p align="center">
-<img style="text-align: center" src="{{ '/img/unified-namespace-metadata-sync-performance.png' | relativize_url }}" alt="Metadata sync interval"/>
+<figure><img src="../.gitbook/assets/unified-namespace-metadata-sync-performance.png" alt=""><figcaption></figcaption></figure>
 </p>
 
 The overall cost of syncing with sync interval enabled (blue line) is amortized across the number of
@@ -243,7 +234,7 @@ Note: master nodes need to be restarted to pick up configuration changes.
 
 For clusters where the frequency of out-of-band changes varies based on the subtree in the
 namespace,
-[path configurations]({{ '/en/operation/Configuration.html#path-defaults' | relativize_url }})
+[path configurations](../operation/Configuration.md#path-defaults)
 should be used to set the metadata sync interval at a finer
 granularity. For example, for paths which change often, a sync interval of `5 minutes` can
 be set, and for paths which do not change, a sync interval of `-1` can be set.
@@ -310,10 +301,10 @@ Because active sync feature depends on HDFS events being pushed to the Alluxio m
 is only available when the UFS HDFS versions are later than 2.6.1.
 You may need to change the value for `alluxio.underfs.version` in your configuration file.
 Please refer to
-[HDFS Under Store]({{ '/en/ufs/HDFS.html#supported-hdfs-versions' | relativize_url }}) for a list of
+[HDFS Under Store](../ufs/HDFS.md#supported-hdfs-versions) for a list of
 supported Hdfs versions.
 If building Alluxio from source, please refer to
-[HDFS prerequisites]({{ '/en/ufs/HDFS.html#prerequisites' | relativize_url}}) for instructions
+[HDFS prerequisites](../ufs/HDFS.md#prerequisites) for instructions
 on how to build Alluxio with active sync enabled.
 
 To enable active sync on a directory, issue the following Alluxio command.

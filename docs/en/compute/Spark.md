@@ -1,16 +1,8 @@
----
-layout: global
-title: Running Spark on Alluxio
-nickname: Apache Spark
-group: Compute Integrations
-priority: 0
----
+# Running Spark on Alluxio
 
 This guide describes how to configure [Apache Spark](http://spark-project.org/)
 to access Alluxio.
 
-* Table of Contents
-{:toc}
 
 ## Overview
 
@@ -37,13 +29,13 @@ is included in `${ALLUXIO_HOME}/conf/alluxio-site.properties`.
 Note that Alluxio supports many other under storage systems in addition to HDFS.
 To access data from any number of those systems is orthogonal to the focus of
 this guide but covered by
-[Unified and Transparent Namespace]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }}).
+[Unified and Transparent Namespace](../core-services/Unified-Namespace.md).
 * Make sure that the Alluxio client jar is available.
 This Alluxio client jar file can be found at `{{site.ALLUXIO_CLIENT_JAR_PATH}}`
 in the tarball distribution downloaded from Alluxio
 [download page](https://www.alluxio.io/download).
 Alternatively, advanced users can compile this client jar from the source code
-by following the [instructions]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}).
+by following the [instructions](../contributor/Building-Alluxio-From-Source.md).
 
 ## Basic Setup
 
@@ -148,7 +140,7 @@ Alternatively, add the property to the Hadoop configuration file
 Users can also configure Spark to connect to an Alluxio HA cluster using
 Zookeeper-based leader election.
 Refer to
-[HA mode client configuration parameters]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}#specify-alluxio-service-in-configuration-parameters).
+[HA mode client configuration parameters](../deploy/Running-Alluxio-On-a-HA-Cluster.md#specify-alluxio-service-in-configuration-parameters-or-java-options).
 
 ### Customize Alluxio User Properties for Individual Spark Jobs
 
@@ -165,7 +157,7 @@ $ spark-submit \
 ```
 
 To customize Alluxio client-side properties for a Spark job, see
-[how to configure Spark Jobs]({{ '/en/operation/Configuration.html' | relativize_url }}#spark).
+[how to configure Spark Jobs](../operation/Configuration.md#spark).
 
 Note that in client mode you need to set `--driver-java-options "-Dalluxio.user.file.writetype.default=CACHE_THROUGH"`
 instead of `--conf spark.driver.extraJavaOptions=-Dalluxio.user.file.writetype.default=CACHE_THROUGH`
@@ -201,7 +193,7 @@ double.saveAsTextFile("alluxio://master_hostname_1:19998;master_hostname_2:19998
 refer a URI of Alluxio in HA mode in Spark.
 Otherwise, the URI will be considered invalid by Spark.
 Please refer to the instructions in
-[HA authority]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}#ha-authority).
+[HA authority](../deploy/Running-Alluxio-On-a-HA-Cluster.md#specify-alluxio-service-with-url-authority).
 
 ### Cache RDDs into Alluxio
 
@@ -291,9 +283,9 @@ SPARK_LOCAL_HOSTNAME=simple30
 Either way, the Spark Worker addresses become hostnames and Locality Level
 becomes `NODE_LOCAL` as shown in Spark WebUI below.
 
-![hostname]({{ '/img/screenshot_datalocality_sparkwebui.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_datalocality_sparkwebui.png" alt=""><figcaption></figcaption></figure>
 
-![locality]({{ '/img/screenshot_datalocality_tasklocality.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_datalocality_tasklocality.png" alt=""><figcaption></figcaption></figure>
 
 ### Data Locality of Spark Jobs on YARN
 

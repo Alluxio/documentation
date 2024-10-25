@@ -1,10 +1,4 @@
----
-layout: global
-title: Java API
-nickname: Java API
-group: Client APIs
-priority: 0
----
+# Java API
 
 Applications primarily interact with Alluxio through its File System API. Java users
 can either use the [Alluxio Java Client](#java-client), or the
@@ -12,16 +6,16 @@ can either use the [Alluxio Java Client](#java-client), or the
 wraps the Alluxio Java Client to implement the Hadoop API.
 
 Another common option is through Alluxio 
-[S3 API]({{ '/en/api/S3-API.html' | relativize_url }}). 
+[S3 API](../api/S3-API.md). 
 Users can interact with Alluxio using the same S3 clients used for AWS S3 operations. 
 This makes it easy to change existing S3 workloads to use Alluxio.
 
-Alluxio also provides a [POSIX API]({{ '/en/api/POSIX-API.html' | relativize_url }}) after mounting
+Alluxio also provides a [POSIX API](../api/POSIX-API.md) after mounting
 Alluxio as a local FUSE volume. Right now Alluxio POSIX API mainly targets the ML/AI workloads (especially read heavy workloads).
 
 By setting up an Alluxio Proxy, users can also interact with Alluxio through 
-[REST API]({{ '/en/api/REST-API.html' | relativize_url }}) for operations 
-[S3 API]({{ '/en/api/S3-API.html' | relativize_url }}) doesn't support. 
+[REST API](../api/REST-API.md) for operations 
+[S3 API](../api/S3-API.md) doesn't support. 
 This is mainly for admin actions not supported by S3 API. For example, mount and unmount operations.
 The REST API is currently used for the Go and Python language bindings.
 
@@ -92,7 +86,7 @@ idiomatic way to create files is to use
 [`FileSystem#createFile(AlluxioURI)`](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/file/FileSystem.html#createFile-alluxio.AlluxioURI-),
 which returns a stream object that can be used to write the file. For example:
 
-> Note: there are some file path name limitation when creating files through Alluxio. Please check [Alluxio limitations]({{ '/en/administration/Troubleshooting.html' | relativize_url }}#file-path-limitations)
+> Note: there are some file path name limitation when creating files through Alluxio. Please check [Alluxio limitations](../administration/Troubleshooting.md#file-path-limitations)
 
 ```java
 FileSystem fs = FileSystem.Factory.get();
@@ -217,7 +211,7 @@ Using Alluxio's Java API, users can set the policy in `CreateFilePOptions` for w
 `OpenFilePOptions` for reading files into Alluxio.
 
 Users can override the default policy class in the
-[configuration file]({{ '/en/operation/Configuration.html' | relativize_url }}).
+[configuration file](../operation/Configuration.md).
 Two configuration properties are available:
 
 1. `alluxio.user.ufs.block.read.location.policy`
@@ -332,7 +326,7 @@ this policy preference exists only for local workers, not remote workers; remote
 blocks to the highest tier.
 
 By default, data is written to the top tier. Users can modify the default setting through the
-`alluxio.user.file.write.tier.default` [property]({{ '/en/reference/Properties-List.html' | relativize_url }}#alluxio.user.file.write.tier.default)
+`alluxio.user.file.write.tier.default` [property](../reference/Properties-List.md#user-configuration)
 or override it through an option to the 
 [`FileSystem#createFile(AlluxioURI, CreateFilePOptions)`](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/file/FileSystem.html#createFile-alluxio.AlluxioURI-alluxio.grpc.CreateFilePOptions-)
 API call.

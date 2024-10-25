@@ -1,21 +1,13 @@
----
-layout: global
-title: Azure Data Lake Storage
-nickname: Azure Data Lake Storage
-group: Storage Integrations
-priority: 2
----
+# Azure Data Lake Storage
 
-* Table of Contents
-{:toc}
 
 This guide describes how to configure Alluxio with [Azure Data Lake Storage Gen1](https://docs.microsoft.com/en-in/azure/data-lake-store/data-lake-store-overview) as the under storage system.
 
 ## Prerequisites
 
 The Alluxio binaries must be on your machine.
-You can either [compile the binaries from Alluxio source code]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}),
-or [download the precompiled binaries directly]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+You can either [compile the binaries from Alluxio source code](../contributor/Building-Alluxio-From-Source.md),
+or [download the precompiled binaries directly](../deploy/Running-Alluxio-Locally.md).
 
 In preparation for using Azure Data Lake storage with Alluxio, create a new Data Lake storage in your Azure
 account or use an existing Data Lake storage. You should also note the directory you want to
@@ -60,7 +52,7 @@ alluxio.master.mount.table.root.option.fs.adl.account.<AZURE_ACCOUNT>.oauth2.ref
 ### Nested Mount
 An Azure Data Lake store location can be mounted at a nested directory in the Alluxio namespace to have unified access
 to multiple under storage systems. Alluxio's
-[Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }}) can be used for this purpose.
+[Command Line Interface](../operation/User-CLI.md) can be used for this purpose.
 
 ```console
 $ ./bin/alluxio fs mount \

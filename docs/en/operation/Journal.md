@@ -1,19 +1,10 @@
----
-layout: global
-title: Journal Management
-nickname: Journal Management
-group: Operations
-priority: 5
----
-
-* Table of Contents
-{:toc}
+# Journal Management
 
 Alluxio keeps the history of all metadata related changes, such as creating files or renaming directories,
 in edit logs referred to as "journal".
 Upon startup, the Alluxio master will replay all the steps recorded in the journal to recover its last saved state.
 Also when the leading master falls back to a different master for
-[high availability (HA)]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}) mode,
+[high availability (HA)](../deploy/Running-Alluxio-On-a-HA-Cluster.md) mode,
 the new leading master also replays the journal to recover the last state of the leading master.
 The purpose of this documentation is to help Alluxio administrators understand and manage the Alluxio journal.
 
@@ -171,7 +162,7 @@ backup directory can be configured by setting `alluxio.master.backup.directory`
 alluxio.master.backup.directory=/alluxio/backups
 ```
 
-See the [backup command documentation]({{ '/en/operation/Admin-CLI.html' | relativize_url }}#backup)
+See the [backup command documentation](../operation/Admin-CLI.md#backup)
 for additional backup options.
 
 ### Automatically backing up the journal
@@ -418,7 +409,7 @@ read the Alluxio journal and write it to a directory in a human-readable format.
 $ ./bin/alluxio readJournal
 ```
 
-See [here]({{ '/en/operation/User-CLI.html' | relativize_url }}#readjournal) for more detailed usage.
+See [here](../operation/User-CLI.md#readjournal) for more detailed usage.
 
 
 ### Exiting upon Demotion

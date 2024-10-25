@@ -1,12 +1,4 @@
----
-layout: global
-title: Architecture
-group: Overview
-priority: 2
----
-
-* Table of Contents
-{:toc}
+# Architecture
 
 ## Architecture Overview
 
@@ -33,7 +25,7 @@ When mounting multiple under storage systems simultaneously, Alluxio serves as a
 layer for any number of varied data sources.
 
 <p align="center">
-<img style="text-align: center" src="{{ '/img/architecture-overview-simple-docs.png' | relativize_url }}" alt="Architecture overview"/>
+<figure><img src="../.gitbook/assets/architecture-overview-simple-docs.png" alt=""><figcaption></figcaption></figure>
 </p>
 
 Alluxio can be divided into three components: masters, workers, and clients.
@@ -62,7 +54,7 @@ provides lower latency for RPCs and data transfer.
 ## Masters
 
 <p align="center">
-<img style="width: 85%; text-align:center;" src="{{ '/img/architecture-master-docs.png' | relativize_url }}" alt="Alluxio masters"/>
+<figure><img src="../.gitbook/assets/architecture-master-docs.png" alt=""><figcaption></figcaption></figure>
 </p>
 
 Alluxio contains two separate types of master processes. One is the **Alluxio Master**.
@@ -122,7 +114,7 @@ The job workers are discussed more in the following section.
 ## Workers
 
 <p align="center">
-<img style=" width: 75%;" src="{{ '/img/architecture-worker-docs.png' | relativize_url }}" alt="Alluxio workers"/>
+<figure><img src="../.gitbook/assets/architecture-worker-docs.png" alt=""><figcaption></figcaption></figure>
 </p>
 
 ### Alluxio Workers
@@ -142,7 +134,7 @@ immediately available to other clients.
 Because RAM usually offers limited capacity, blocks in a worker can be evicted
 when space is full. Workers employ eviction policies to decide which data to
 keep in the Alluxio space. For more on this topic, check out the
-documentation for [Tiered Storage]({{ '/en/core-services/Caching.html' | relativize_url }}#multiple-tier-storage).
+documentation for [Tiered Storage](../core-services/Caching.md#multiple-tier-storage).
 
 ### Alluxio Job Workers
 
@@ -194,15 +186,15 @@ short-circuit is not feasible, Alluxio provides domain socket based short-circui
 in which the worker transfers data to the client through a
 predesignated domain socket path. For more information on this topic, please
 check out the instructions on
-[running Alluxio on Docker]({{ '/en/deploy/Running-Alluxio-On-Docker.html' | relativize_url }}).
+[running Alluxio on Docker](../deploy/Running-Alluxio-On-Docker.md).
 
 Also, note that Alluxio can manage other storage media (e.g. SSD, HDD) in
 addition to memory, so local data access speed may vary depending on the local
 storage media. To learn more about this topic, please refer to the
-[tiered storage document]({{ '/en/core-services/Caching.html' | relativize_url }}#multiple-tier-storage).
+[tiered storage document](../core-services/Caching.md#multiple-tier-storage).
 
 <p align="center">
-<img src="{{ '/img/dataflow-local-cache-hit.gif' | relativize_url }}" alt="Data Flow of Read from a Local Worker"/>
+<figure><img src="../.gitbook/assets/dataflow-local-cache-hit.gif" alt=""><figcaption></figcaption></figure>
 </p>
 
 ### Remote Cache Hit
@@ -217,7 +209,7 @@ speed between Alluxio workers is typically faster than the speed between Alluxio
 workers and the under storage.
 
 <p align="center">
-<img src="{{ '/img/dataflow-remote-cache-hit.gif' | relativize_url }}" alt="Data Flow of Read from a Remote Worker"/>
+<figure><img src="../.gitbook/assets/dataflow-remote-cache-hit.gif" alt=""><figcaption></figcaption></figure>
 </p>
 
 ### Cache Miss
@@ -239,13 +231,13 @@ system is a bottleneck. You can tune the impact of asynchronous caching by setti
 The default value is `8`.
 
 <p align="center">
-<img src="{{ '/img/dataflow-cache-miss.gif' | relativize_url }}" alt="Cache Miss data flow"/>
+<figure><img src="../.gitbook/assets/dataflow-cache-miss.gif" alt=""><figcaption></figcaption></figure>
 </p>
 
 ### Cache Skip
 
 It is possible to turn off caching in Alluxio by setting the property
-[`alluxio.user.file.readtype.default`]({{ '/en/reference/Properties-List.html' | relativize_url }}#alluxio.user.file.readtype.default)
+[`alluxio.user.file.readtype.default`](../reference/Properties-List.md#user-configuration)
 in the client to `NO_CACHE`.
 
 ## Data flow: Write
@@ -253,7 +245,7 @@ in the client to `NO_CACHE`.
 Users can configure how data should be written by choosing from different write
 types. The write type can be set either through the Alluxio API or by
 configuring the property
-[`alluxio.user.file.writetype.default`]({{ '/en/reference/Properties-List.html' | relativize_url }}#alluxio.user.file.writetype.default)
+[`alluxio.user.file.writetype.default`](../reference/Properties-List.md#user-configuration)
 in the client. This section describes the behaviors of different write types as
 well as the performance implications to the applications.
 
@@ -268,7 +260,7 @@ data can be lost if the machine crashes or data needs to be freed up for newer w
 The `MUST_CACHE` setting is useful for writing temporary data when data loss can be tolerated.
 
 <p align="center">
-<img src="{{ '/img/dataflow-must-cache.gif' | relativize_url }}" alt="MUST_CACHE data flow"/>
+<figure><img src="../.gitbook/assets/dataflow-must-cache.gif" alt=""><figcaption></figcaption></figure>
 </p>
 
 ### Write through to UFS (`CACHE_THROUGH`)
@@ -283,7 +275,7 @@ recommended when data persistence is required. A local copy is also written so
 any future reads of the data can be served from local memory directly.
 
 <p align="center">
-<img src="{{ '/img/dataflow-cache-through.gif' | relativize_url }}" alt="CACHE_THROUGH data flow"/>
+<figure><img src="../.gitbook/assets/dataflow-cache-through.gif" alt=""><figcaption></figcaption></figure>
 </p>
 
 ### Write back to UFS (`ASYNC_THROUGH`)
@@ -295,7 +287,7 @@ close to `MUST_CACHE`, while still being able to persist the data. Since Alluxio
 `ASYNC_THROUGH` is the default write type.
 
 <p align="center">
-<img src="{{ '/img/dataflow-async-through.gif' | relativize_url }}" alt="ASYNC_THROUGH data flow"/>
+<figure><img src="../.gitbook/assets/dataflow-async-through.gif" alt=""><figcaption></figcaption></figure>
 </p>
 
 To provide fault tolerance, one important property working with `ASYNC_THROUGH` is

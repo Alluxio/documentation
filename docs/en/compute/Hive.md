@@ -1,16 +1,8 @@
----
-layout: global
-title: Running Apache Hive with Alluxio
-nickname: Apache Hive
-group: Compute Integrations
-priority: 2
----
+# Running Apache Hive with Alluxio
 
 This guide describes how to run [Apache Hive](http://hive.apache.org/) with Alluxio, so
 that you can easily store Hive tables in Alluxio's tiered storage.
 
-* Table of Contents
-{:toc}
 
 ## Prerequisites
 
@@ -18,14 +10,14 @@ that you can easily store Hive tables in Alluxio's tiered storage.
 * [Download and setup Hive](https://cwiki.apache.org/confluence/display/Hive/GettingStarted). If you are using Hive2.1+, 
   make sure to [run the schematool](https://cwiki.apache.org/confluence/display/Hive/GettingStarted#GettingStarted-RunningHiveServer2andBeeline.1)
   before starting Hive. `$HIVE_HOME/bin/schematool -dbType derby -initSchema`
-* Alluxio has been [set up and is running]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+* Alluxio has been [set up and is running](../deploy/Running-Alluxio-Locally.md).
 * Make sure that the Alluxio client jar is available.
   This Alluxio client jar file can be found at `{{site.ALLUXIO_CLIENT_JAR_PATH}}` in the tarball
   downloaded from Alluxio [download page](https://www.alluxio.io/download).
   Alternatively, advanced users can compile this client jar from the source code
-  by following the [instructions]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}).
+  by following the [instructions](../contributor/Building-Alluxio-From-Source.md).
 * To run Hive on Hadoop MapReduce, please also follow the instructions in
-  [running MapReduce on Alluxio]({{ '/en/compute/Hadoop-MapReduce.html' | relativize_url }})
+  [running MapReduce on Alluxio](../compute/Hadoop-MapReduce.md)
   to make sure Hadoop MapReduce can work with Alluxio.
   In the following sections of this documentation, Hive is running on Hadoop MapReduce.
 
@@ -68,7 +60,7 @@ $ ./bin/alluxio fs copyFromLocal /path/to/ml-100k/u.user alluxio://master_hostna
 View Alluxio WebUI at `http://master_hostname:19999` and you can see the directory and file Hive
 creates:
 
-![HiveTableInAlluxio]({{ '/img/screenshot_hive_table_in_alluxio.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_hive_table_in_alluxio.png" alt=""><figcaption></figcaption></figure>
 
 ### Create a New Internal Table
 
@@ -118,7 +110,7 @@ hive> select * from u_user;
 
 And you can see the query results from console:
 
-![HiveQueryResult]({{ '/img/screenshot_hive_query_result.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_hive_query_result.png" alt=""><figcaption></figcaption></figure>
 
 ## Example: Serve Existing Tables Stored in HDFS from Alluxio
 
@@ -127,7 +119,7 @@ Alluxio can also serve them for Hive if HDFS is mounted as the under storage of 
 In this example, we assume an HDFS cluster is mounted as the under storage of
 Alluxio root directory (i.e., property `alluxio.master.mount.table.root.ufs=hdfs://namenode:port/`
 is set in `conf/alluxio-site.properties`). Please refer to
-[unified namespace]({{ '/en/core-services/Unified-Namespace.html' | relativize_url }})
+[unified namespace](../core-services/Unified-Namespace.md)
 for more details about Alluxio `mount` operation.
 
 ### Move an Internal Table from HDFS to Alluxio
@@ -257,7 +249,7 @@ Alternatively one can add the properties to the Hive `conf/hive-site.xml`:
 ```
 
 For information about how to connect to Alluxio HA cluster using Zookeeper-based leader election,
-please refer to [HA mode client configuration parameters]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}#specify-alluxio-service-in-configuration-parameters).
+please refer to [HA mode client configuration parameters](../deploy/Running-Alluxio-On-a-HA-Cluster.md#specify-alluxio-service-in-configuration-parameters-or-java-options).
 
 If the master RPC addresses are specified in one of the configuration files listed above,
 you can omit the authority part in Alluxio URIs:
@@ -267,7 +259,7 @@ hive> alter table u_user set location "alluxio:///ml-100k";
 ```
 
 Since Alluxio 2.0, one can directly use Alluxio HA-style authorities in Hive queries without any configuration setup.
-See [HA authority]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}#ha-authority) for more details.
+See [HA authority](../deploy/Running-Alluxio-On-a-HA-Cluster.md#specify-alluxio-service-with-url-authority) for more details.
 
 ### Experimental: Use Alluxio as the Default File System
 
@@ -326,7 +318,7 @@ OVERWRITE INTO TABLE u_user;
 View Alluxio WebUI at `http://master_hostname:19999` and you can see the directory and file Hive
 creates:
 
-![HiveTableInAlluxio]({{ '/img/screenshot_hive_table_in_alluxio.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_hive_table_in_alluxio.png" alt=""><figcaption></figcaption></figure>
 
 Using a single query:
 
@@ -336,7 +328,7 @@ hive> select * from u_user;
 
 And you can see the query results from console:
 
-![HiveQueryResult]({{ '/img/screenshot_hive_query_result.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_hive_query_result.png" alt=""><figcaption></figcaption></figure>
 
 ## Troubleshooting
 

@@ -1,14 +1,7 @@
----
-layout: global
-title: Running Alluxio on Alibaba Cloud Container Service for Kubernetes (ACK)
-nickname: Alibaba Cloud ACK
-group: Cloud Native
----
+# Running Alluxio on Alibaba Cloud Container Service for Kubernetes (ACK)
 
 This guide describes how to install and configure Alluxio on [Alibaba Cloud Container Service for Kubernetes (ACK)](https://www.alibabacloud.com/product/kubernetes).
 
-* Table of Contents
-{:toc}
 
 ## Prerequisites
 * ACK version  >= 1.12.6
@@ -122,7 +115,7 @@ After the Alluxio client jar package is ready, start building the image:
 $ docker build -t \
   spark-alluxio:2.4.6 -f $SPARK_HOME/kubernetes/dockerfiles/spark/Dockerfile $SPARK_HOME
 ```
-You can find more details about running Alluxio with Spark on Kubernetes [here]({{ '/en/kubernetes/Spark-On-Kubernetes.html' | relativize_url }}).
+You can find more details about running Alluxio with Spark on Kubernetes [here](../kubernetes/Spark-On-Kubernetes.md).
 
 After the image is built, there are two ways to distribute the image:
 

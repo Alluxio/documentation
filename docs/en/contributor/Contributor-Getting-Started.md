@@ -1,17 +1,9 @@
----
-layout: global
-title: Contribution Guide
-nickname: Contribution Guide
-group: Contributor Resources
-priority: 1
----
+# Contribution Guide
 
 We warmly welcome you to the Alluxio community. We are excited for your contributions and
 engagement with our project! This guide aims to give you step by step instructions on how
 to get started becoming a contributor to the Alluxio open source project.
 
-* Table of Contents
-{:toc}
 
 ## Prerequisites
 
@@ -19,7 +11,7 @@ The main requirement is a computer with MacOS or Linux-based operating system in
 does not have Windows support at this time.
 
 If you haven't already, we recommend first cloning and compiling the Alluxio source code with our
-[Building Alluxio from Source Tutorial]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}).
+[Building Alluxio from Source Tutorial](../contributor/Building-Alluxio-From-Source.md).
 
 ### Software Requirements
 
@@ -103,7 +95,7 @@ $ mvn -T 2C clean install -DskipTests -Dmaven.javadoc.skip -Dfindbugs.skip \
 This should take less than 1 minute.
 
 Here are more
-[details for building Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}).
+[details for building Alluxio](../contributor/Building-Alluxio-From-Source.md).
 
 ## Taking a New Contributor Task
 
@@ -177,7 +169,7 @@ Once the appropriate files are staged, create a local commit of these modificati
 $ git commit -m "<concise but descriptive commit message>"
 ```
 
-Please read the [Alluxio coding conventions]({{ '/en/contributor/Code-Conventions.html' | relativize_url }})
+Please read the [Alluxio coding conventions](../contributor/Code-Conventions.md)
 for more details and tips on how to update the Alluxio source code.
 
 For more details for creating commits, please visit [instructions on how to create
@@ -289,7 +281,7 @@ contribute to the Alluxio repository.
 
 1. Create a Github issue in [Alluxio repository](https://github.com/Alluxio/alluxio/issues) regarding your feature.
 1. Attach a feature design document following the 
-[template]({{ '/resources/templates/Design-Document-Template.md' | relativize_url }})
+[template](../.gitbook/assets/Design-Document-Template.md)
 in your Github issue. The design document should follow the template and provide information regarding each section.
 We recommend using a public Google doc for more efficient collaboration and discussions.
 If a Google doc is not an option for you, you can choose to attach either a Markdown file or a PDF file for 
@@ -316,12 +308,12 @@ In the pull request, you should also add documentation on your feature to
 
 There are a few things that new contributors can do to familiarize themselves with Alluxio:
 
-1.  [Run Alluxio Locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }})
-1.  [Run Alluxio on a Cluster]({{ '/en/deploy/Running-Alluxio-On-a-Cluster.html' | relativize_url }})
-1.  Read [Configuration Settings]({{ '/en/operation/Configuration.html' | relativize_url }}) and
-[Command Line Interface]({{ '/en/operation/User-CLI.html' | relativize_url }})
+1.  [Run Alluxio Locally](../deploy/Running-Alluxio-Locally.md)
+1.  [Run Alluxio on a Cluster](../deploy/Running-Alluxio-On-a-Cluster.md)
+1.  Read [Configuration Settings](../operation/Configuration.md) and
+[Command Line Interface](../operation/User-CLI.md)
 1.  Read a [Code Example](https://github.com/Alluxio/alluxio/blob/master/examples/src/main/java/alluxio/examples/MultiMount.java)
-1.  [Build Alluxio From Source]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }})
+1.  [Build Alluxio From Source](../contributor/Building-Alluxio-From-Source.md)
 1.  Fork the repository, add unit tests or javadoc for one or two files, and submit a pull request.
 You are also welcome to address issues in our [Github Issues](https://github.com/Alluxio/alluxio/issues).
 Here is a list of unassigned

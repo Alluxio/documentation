@@ -1,16 +1,8 @@
----
-layout: global
-title: Running Alluxio on Google Cloud Dataproc
-nickname: Google Dataproc
-group: Cloud Native
-priority: 4
----
+# Running Alluxio on Google Cloud Dataproc
 
 This guide describes how to configure Alluxio to run on
 [Google Cloud Dataproc](https://cloud.google.com/dataproc).
 
-* Table of Contents
-{:toc}
 
 ## Overview
 
@@ -76,7 +68,7 @@ The Alluxio deployment on Google Dataproc can customized for more complex scenar
 additional metadata labels to the `gcloud clusters create` command.
 {% accordion download %}
   {% collapsible Enable Active Sync on HDFS Paths %}
-[Active Sync]({{ '/en/core-services/Unified-Namespace.html#metadata-active-sync-for-hdfs' | relativize_url}})
+[Active Sync](../core-services/Unified-Namespace.md#active-sync-for-hdfs)
 can be enabled on paths in Alluxio for a root HDFS mount point using the metadata key
 `alluxio_sync_list`.
 Specify a list of paths in Alluxio delimited using `;`.
@@ -159,7 +151,7 @@ scala> sc.textFile("alluxio:///default_tests_files/BASIC_NO_CACHE_MUST_CACHE").c
 ```
 
 For further information, visit our Spark on Alluxio
-[documentation]({{ '/en/compute/Spark.html#examples-use-alluxio-as-input-and-output' | relativize_url }}).
+[documentation](../compute/Spark.md#examples--use-alluxio-as-input-and-output).
 
 {% endnavtab %}
 {% navtab Hive %}
@@ -199,7 +191,7 @@ hive> select * from u_user limit 10;
 ```
 
 For further information, visit our Hive on Alluxio 
-[documentation]({{ '/en/compute/Hive.html' | relativize_url }}).
+[documentation](../compute/Hive.md).
 
 {% endnavtab %}
 {% navtab Presto %}
@@ -219,7 +211,7 @@ presto --execute "select * from u_user limit 10;" --catalog hive --schema defaul
 ```
 
 For further information, visit our Presto on Alluxio 
-[documentation]({{ '/en/compute/Presto.html' | relativize_url }}).
+[documentation](../compute/Presto.md).
 
 {% endnavtab %}
 {% endnavtabs %}

@@ -1,13 +1,4 @@
----
-layout: global
-title: Remote Logging
-nickname: Remote Logging
-group: Administration
-priority: 3
----
-
-* Table of Contents
-{:toc}
+# Remote Logging
 
 
 ## Overview
@@ -16,7 +7,7 @@ Alluxio supports sending logs to a remote log server over the network. This feat
 to system administrators who have to perform the task of log collection. With remote logging, the
 log files, e.g. master.log, worker.log, etc. on all Alluxio servers will be readily available on
 a designated and configurable directory on the log server.
-Alternatively, users can use [basic logging]({{ '/en/administration/Basic-Logging.html' | relativize_url }})
+Alternatively, users can use [basic logging](../administration/Basic-Logging.md)
 functions provided by Alluxio rather than using remote logging.
 
 ## Deploying the Log Server
@@ -28,7 +19,7 @@ You need to specify the directory that the log server will write logs to by sett
 `${ALLUXIO_HOME}/conf/alluxio-env.sh`. By default the log server will write the logs to `${ALLUXIO_HOME}/logs`.
 
 You can specify `ALLUXIO_LOGSERVER_PORT` to change the port the log server will be listening to.
-You can find the default port in [table of configuration properties]({{ '/en/reference/Properties-List.html' | relativize_url }}#alluxio.logserver.port)
+You can find the default port in [table of configuration properties](../reference/Properties-List.md#common-configuration)
 
 ### Start the Log Server
 
@@ -162,5 +153,5 @@ log4j.rootLogger=DEBUG, CLIENT_REMOTE_LOGGER
 
 Enabling remote logging in K8s is different from that in a physical cluster.
 
-See [Enable Remote Logging in K8s]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html#enable-remote-logging' | relativize_url }})
+See [Enable Remote Logging in K8s](../kubernetes/Running-Alluxio-On-Kubernetes.md#enable-remote-logging)
 for detailed instructions.

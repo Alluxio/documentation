@@ -1,19 +1,11 @@
----
-layout: global
-title: Metrics System On Kubernetes
-nickname: Metrics
-group: Kubernetes
-priority: 2
----
+# Metrics System On Kubernetes
 
-For general information about the metrics of Alluxio, refer to [Metrics-System]({{ '/en/operation/Metrics-System.html' | relativize_url }}).
+For general information about the metrics of Alluxio, refer to [Metrics-System](../operation/Metrics-System.md).
 
-To deploy Alluxio on Kubernetes, refer to [Deploy Alluxio on Kubernetes]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }}).
+To deploy Alluxio on Kubernetes, refer to [Deploy Alluxio on Kubernetes](../kubernetes/Running-Alluxio-On-Kubernetes.md).
 
 This documentation focus on how to configure and get metrics of different metrics sinks from Alluxio deployed on Kubernetes.
 
-* Table of Contents
-{:toc}
 
 ### HTTP JSON Sink
 
@@ -51,7 +43,7 @@ Besides the raw metrics shown via metrics servlet or custom metrics configuratio
 users can track key cluster performance metrics in a more human-readable way in the web interface of
 Alluxio leading master.
 
-![Master Metrics]({{ '/img/screenshot_generalMetrics.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_generalMetrics.png" alt=""><figcaption></figcaption></figure>
 
 To access the web UI of the leading master, you need to forward a port on a physical machine to the master web port.
 For example, if your leading master is running in pod `alluxio-master-0` and you want to serve the Alluxio master web UI at 
@@ -62,7 +54,7 @@ $ kubectl port-forward <CONTROL_PLANE_HOSTNAME> pods/alluxio-master-0 8080:19999
 
 The metrics can be then accessed at `http://<leading_master_node_hostname>:<forwared_port>/metrics`
 
-Refer to [Access the Web UI]({{ '/en/kubernetes/Running-Alluxio-On-Kubernetes.html' | relativize_url }}#access-the-web-ui) for more detailed instructions.
+Refer to [Access the Web UI](../kubernetes/Running-Alluxio-On-Kubernetes.md#access-the-web-ui) for more detailed instructions.
 
 
 ### Prometheus Sink

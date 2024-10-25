@@ -1,13 +1,4 @@
----
-layout: global
-title: Admin Command Line Interface
-nickname: Admin CLI
-group: Operations
-priority: 2
----
-
-* Table of Contents
-{:toc}
+# Admin Command Line Interface
 
 Alluxio's admin command line interface provides admins with operations to manage the Alluxio filesystem.
 You can invoke the following command line utility to get all the subcommands:
@@ -154,7 +145,7 @@ $ ./bin/alluxio fsadmin metrics clear --parallelism 10
 
 ### pathConf
 
-The `pathConf` command manages [path defaults]({{ '/en/operation/Configuration.html' | relativize_url }}#path-defaults).
+The `pathConf` command manages [path defaults](../operation/Configuration.md#path-defaults).
 
 #### list
 

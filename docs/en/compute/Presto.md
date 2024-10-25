@@ -1,10 +1,4 @@
----
-layout: global
-title: Running Presto with Alluxio
-nickname: Presto
-group: Compute Integrations
-priority: 2
----
+# Running Presto with Alluxio
 
 [Presto](https://prestodb.io/)
 is an open source distributed SQL query engine for running interactive analytic queries
@@ -16,8 +10,6 @@ accessed data (e.g., tables commonly used) into Alluxio distributed storage.
 Co-locating Alluxio workers with Presto workers improves data locality and reduces the I/O access
 latency when other storage systems are remote or the network is slow or congested.
 
-* Table of Contents
-{:toc}
 
 ## Prerequisites
 
@@ -103,7 +95,7 @@ LOCATION 'alluxio://master_hostname:port/ml-100k';
 View the Alluxio WebUI at `http://master_hostname:19999` and you can see the directory and files
 that Hive creates:
 
-![HiveTableInAlluxio]({{ '/img/screenshot_presto_table_in_alluxio.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_presto_table_in_alluxio.png" alt=""><figcaption></figcaption></figure>
 
 ### Start Presto server
 
@@ -131,18 +123,18 @@ $ ./presto --server localhost:8080 --execute "use default; select * from u_user 
 
 And you can see the query results from console:
 
-![PrestoQueryResult]({{ '/img/screenshot_presto_query_result.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_presto_query_result.png" alt=""><figcaption></figcaption></figure>
 
 You can also find some of the Alluxio client log messages in the Presto Server log:
 
-![PrestoQueryLog]({{ '/img/screenshot_presto_query_log.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_presto_query_log.png" alt=""><figcaption></figcaption></figure>
 
 ## Advanced Setup
 
 ### Customize Alluxio User Properties
 
 To configure additional Alluxio properties, you can append the conf path (i.e.
-`${ALLUXIO_HOME}/conf`) containing [`alluxio-site.properties`]({{ '/en/operation/Configuration.html' | relativize_url }})
+`${ALLUXIO_HOME}/conf`) containing [`alluxio-site.properties`](../operation/Configuration.md)
 to Presto's JVM config at `etc/jvm.config` under Presto folder. The advantage of this approach is to
 have all the Alluxio properties set within the same file of `alluxio-site.properties`.
 
@@ -183,7 +175,7 @@ which is contained by `hive.config.resources`.
 ```
 
 For information about how to connect to Alluxio HA cluster using Zookeeper-based leader election,
-please refer to [HA mode client configuration parameters]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}#specify-alluxio-service-in-configuration-parameters).
+please refer to [HA mode client configuration parameters](../deploy/Running-Alluxio-On-a-HA-Cluster.md#specify-alluxio-service-in-configuration-parameters-or-java-options).
 
 #### Example: change default Alluxio write type
 

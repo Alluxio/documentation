@@ -1,13 +1,4 @@
----
-layout: global
-title: Upgrading
-nickname: Upgrading
-group: Administration
-priority: 7
----
-
-* Table of Contents
-{:toc}
+# Upgrading
 
 ## Basic upgrading procedure
 
@@ -19,7 +10,7 @@ Alluxio can read the previous journal files and recover the Alluxio metadata aut
 There are two cases where master journals are not backward compatible and additional steps are required to upgrade the Alluxio cluster:
 
 - Upgrading from Alluxio 1.x to Alluxio 2.x
-- Upgrading from Alluxio 2.3.x and below to Alluxio 2.4.0 and above when using [embedded journal]({{ '/en/operation/Journal.html' | relativize_url}}).
+- Upgrading from Alluxio 2.3.x and below to Alluxio 2.4.0 and above when using [embedded journal](../operation/Journal.md).
 
 This document goes over how to upgrade Alluxio to a non-backward compatible version.
 Even when upgrading to a backward-compatible version, it is still recommended to follow the steps below to create a backup before upgrading.
@@ -50,7 +41,7 @@ $ ./bin/alluxio format
 ```
 - **WARNING:** This will re-format the ramdisks on the Alluxio workers (i.e: wipe their contents).
 If you wish to preserve the worker ramdisks please see
-[Alluxio worker ramdisk cache persistence]({{ '/en/administration/Upgrade.html' | relativize_url}}#alluxio-worker-ramdisk-cache-persistence).
+[Alluxio worker ramdisk cache persistence](../administration/Upgrade.md#alluxio-worker-ramdisk-cache-persistence).
 
 Then start the cluster with the `-i ${BACKUP_PATH}` argument, replacing
 `${BACKUP_PATH}` with your specific backup path.
@@ -70,7 +61,7 @@ so pre-2.0.0 clients do not work with post-2.0.0 servers, and vice-versa.
 Upgrade all applications to use the alluxio-2.x client.
 
 Please refer to the following steps：
-1. Back up the metadata of the files in Alluxio. Please refer to the [documentation]({{ '/en/operation/Admin-CLI.html' | relativize_url }}#backup) on `backup` command.
+1. Back up the metadata of the files in Alluxio. Please refer to the [documentation](../operation/Admin-CLI.md#backup) on `backup` command.
 2. Stop the Alluxio cluster
 ```console
 $ ./bin/alluxio-stop.sh all
@@ -80,7 +71,7 @@ $ ./bin/alluxio-stop.sh all
 $ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
 ```
    It should look like:
-   ![locality]({{ '/img/screenshot_cdh_compute_hadoop_classpath.png' | relativize_url }})
+   <figure><img src="../.gitbook/assets/screenshot_cdh_compute_hadoop_classpath.png" alt=""><figcaption></figcaption></figure>
 4. Start the Alluxio cluster
 ```console
 $ ./bin/alluxio-start.sh all

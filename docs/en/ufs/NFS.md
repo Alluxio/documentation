@@ -1,13 +1,4 @@
----
-layout: global
-title: NFS
-nickname: NFS
-group: Storage Integrations
-priority: 10
----
-
-* Table of Contents
-{:toc}
+# NFS
 
 This guide describes the instructions to configure [NFS](http://nfs.sourceforge.net) as Alluxio's under
 storage system.
@@ -30,8 +21,8 @@ details.
 ## Initial Setup
 
 The Alluxio binaries must be on your machine. You can either
-[compile Alluxio]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relativize_url }}), or
-[download the binaries locally]({{ '/en/deploy/Running-Alluxio-Locally.html' | relativize_url }}).
+[compile Alluxio](../contributor/Building-Alluxio-From-Source.md), or
+[download the binaries locally](../deploy/Running-Alluxio-Locally.md).
 
 ## Creating NFS mount point
 

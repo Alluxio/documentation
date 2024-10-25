@@ -1,15 +1,7 @@
----
-layout: global
-title: Running Alluxio On Tencent Cloud EMR
-nickname: Tencent EMR
-group: Cloud Native
-priority: 3
----
+# Running Alluxio On Tencent Cloud EMR
 
 This guide describes how to configure Alluxio to run on [Tencent Cloud EMR](https://cloud.tencent.com/product/emr).
 
-* Table of Contents
-{:toc}
 
 ## Overview
 The out-of-the-box Alluxio service provided on Tencent Cloud EMR can help customers quickly achieve distributed memory-level cache acceleration while simplifying data management. At the same time, the Alluxio service can quickly configure multi-level caches and manage metadata by operating the EMR console or API interface using the configuration delivery function, as well as the ability to obtain one-stop monitoring and alarms.

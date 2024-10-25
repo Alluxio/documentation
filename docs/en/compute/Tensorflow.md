@@ -1,20 +1,12 @@
----
-layout: global
-title: Running Tensorflow on Alluxio-FUSE
-nickname: Tensorflow
-group: Compute Integrations
-priority: 6
----
+# Running Tensorflow on Alluxio-FUSE
 
 This guide describes how to run [Tensorflow](https://www.tensorflow.org/) on top of Alluxio POSIX API.
 
-* Table of Contents
-{:toc}
 
 ## Overview
 
 Tensorflow enables developers to quickly and easily get started with deep learning. 
-The [deep learning]({{ '/en/solutions/Deep-Learning.html' | relativize_url }}) section illustrates the data challenges of deep learning 
+The [deep learning](../solutions/Deep-Learning.md) section illustrates the data challenges of deep learning 
 and how Alluxio helps to solve those challenges. 
 This tutorial aims to provide some hands-on examples and tips for running Tensorflow
 on top of Alluxio POSIX API.
@@ -30,7 +22,7 @@ on top of Alluxio POSIX API.
 ## Setting up Alluxio POSIX API
 
 In this section, we will follow the instructions in the
-[POSIX API section]({{ '/en/api/POSIX-API.html' | relativize_url }}) to set up Alluxio POSIX API
+[POSIX API section](../api/POSIX-API.md) to set up Alluxio POSIX API
 and allow Tensorflow applications to access the data through Alluxio POSIX API.
 
 Run the following command to install FUSE on Linux:
@@ -65,7 +57,7 @@ $ ./integration/fuse/bin/alluxio-fuse mount /mnt/fuse /training-data
 
 The above CLI spawns a background user-space java process (`AlluxioFuse`) that mounts the Alluxio path specified at `/training-data` 
 to the local file system on the specified mount point `/mnt/fuse`.
-Please refer to [POSIX API documentation]({{ '/en/api/POSIX-API.html' | relativize_url }}) 
+Please refer to [POSIX API documentation](../api/POSIX-API.md) 
 for details about how to mount Alluxio-FUSE and set up fuse related options. 
 
 Check the status of the FUSE process with:

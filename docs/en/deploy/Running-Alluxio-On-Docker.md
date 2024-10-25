@@ -1,10 +1,5 @@
----
-layout: global
-title: Deploy Alluxio on Docker
-nickname: Docker
-group: Install Alluxio
-priority: 4
----
+# Deploy Alluxio on Docker
+
 
 Docker can be used to simplify the deployment and management of Alluxio servers.
 Using the [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}/) Docker
@@ -14,8 +9,6 @@ This document provides a tutorial for running Dockerized Alluxio on a single nod
 with local disk as the under storage.
 We'll also discuss more advanced topics and how to troubleshoot.
 
-* Table of Contents
-{:toc}
 
 ## Prerequisites
 
@@ -103,7 +96,7 @@ both of the following services:
 + Worker RPC on port 29999
 
 Within the Alluxio cluster, please also make sure the master and worker containers can reach
-each other on the ports defined in [General requirements]({{ '/en/deploy/Requirements.html#general-requirements' | relativize_url }}).
+each other on the ports defined in [General requirements](../deploy/Requirements.md#general-requirements).
 
 We are going to launch Alluxio master and worker containers on the same Docker host machine.
 In order to make sure this works for either local or remote clients, we have to set up the
@@ -331,10 +324,10 @@ $ docker exec ${container_id} cat /opt/alluxio/conf/alluxio-env.sh
 ### Run in High-Availability Mode
 
 A lone Alluxio master is a single point of failure. To guard against this, a production
-cluster should run multiple Alluxio masters in [High Availability mode]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}).
+cluster should run multiple Alluxio masters in [High Availability mode](../deploy/Running-Alluxio-On-a-HA-Cluster.md).
 
 There are two ways to enable HA mode in Alluxio, either with internal leader election and embedded journal, or external Zookeeper and a shared journal storage.
-Please read [running Alluxio with HA]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html#overview' | relativize_url }}) for more details.
+Please read [running Alluxio with HA](../deploy/Running-Alluxio-On-a-HA-Cluster.md#overview) for more details.
 It is recommended to use the second option for production use case.
 
 {% navtabs HA %}
@@ -363,7 +356,7 @@ $ docker run -d \
   alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} worker
 ```
 
-You can find more on Embedded Journal configuration [here]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html#raft-based-embedded-journal' | relativize_url }}).
+You can find more on Embedded Journal configuration [here](../deploy/Running-Alluxio-On-a-HA-Cluster.md#raft-based-embedded-journal).
 
 {% endnavtab %}
 {% navtab Zookeeper and Shared Journal Storage %}
@@ -396,7 +389,7 @@ $ docker run -d \
   alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} worker
 ```
 
-You can find more on ZooKeeper and shared journal configuration [here]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html#zookeeper-and-shared-journal-storage' | relativize_url }}).
+You can find more on ZooKeeper and shared journal configuration [here](../deploy/Running-Alluxio-On-a-HA-Cluster.md#zookeeper-and-shared-journal-storage).
 
 {% endnavtab %}
 {% endnavtabs %}
@@ -407,11 +400,11 @@ When relaunching Alluxio master docker containers, use the `--no-format` flag to
 the journal. The journal should only be formatted the first time the image is run.
 Formatting the journal deletes all Alluxio metadata, and starts the cluster in
 a fresh state.
-You can find more details about the Alluxio journal [here]({{ '/en/operation/Journal.html' | relativize_url }}).
+You can find more details about the Alluxio journal [here](../operation/Journal.md).
 
 The same applies to Alluxio worker docker containers, use the `--no-format` flag to avoid re-formatting
 the worker storage. Formatting the worker storage deletes all the cached blocks.
-You can find more details about the worker storage [here]({{ '/en/core-services/Caching.html#configuring-alluxio-storage' | relativize_url }}).
+You can find more details about the worker storage [here](../core-services/Caching.md#configuring-alluxio-storage).
 
 ### Enable POSIX API access
 
@@ -488,7 +481,7 @@ Notes
 - `--device /dev/fuse` shares host device `/dev/fuse` with the container.
 - Property `alluxio.worker.fuse.enabled=true` enables FUSE support on this worker.
   The default fuse mount point is `/mnt/alluxio-fuse` in the worker container which will be created at runtime if not exist.
-  See [Fuse on worker process]({{ '/en/api/POSIX-API.html' | relativize_url }}#fuse-on-worker-process)
+  See [Fuse on worker process](../api/POSIX-API.md#libfuse-worker-threads)
   for more details about how to modify the mount configuration.
 
 Once this container is launched successfully, one can access Alluxio via host path `/tmp/mnt/alluxio-fuse`.
@@ -499,8 +492,8 @@ and mount point of Alluxio service is `/mnt/alluxio-fuse`, mapped to host path
 {% endnavtab %}
 {% endnavtabs %}
 
-See [Fuse configuration]({{ '/en/api/POSIX-API.html' | relativize_url }}#configure-alluxio-fuse-options)
-and [Fuse mount options]({{ '/en/api/POSIX-API.html' | relativize_url }}#configure-mount-point-options)
+See [Fuse configuration](../api/POSIX-API.md#alluxio-fuse-mount-configuration)
+and [Fuse mount options](../api/POSIX-API.md#fuse-mount-options)
 for more details about how to modify the Fuse mount configuration.
 
 ### Set up Alluxio Proxy
@@ -597,7 +590,7 @@ your issue, you can get help on the
 or [github issues](https://github.com/Alluxio/alluxio/issues).
 
 Logging can also have a performance impact if sufficiently verbose.
-You can [disable or redirect logging]({{ '/en/administration/Basic-Logging.html' | relativize_url }}#disable-certain-log-files)
+You can [disable or redirect logging](../administration/Basic-Logging.md#disable-certain-log-files)
 to mitigate this problem.
 
 ## FAQ

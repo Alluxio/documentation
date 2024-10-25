@@ -1,13 +1,5 @@
----
-layout: global
-title: Deploy an Alluxio Cluster with a Single Master
-nickname: Cluster
-group: Install Alluxio
-priority: 2
----
+# Deploy an Alluxio Cluster with a Single Master
 
-* Table of Contents
-{:toc}
 
 ## Overview
 
@@ -17,7 +9,7 @@ Deploying with only a single master also allows it to become the single point of
 an Alluxio cluster.
 If the master machine or process becomes unavailable, the entire cluster would become unavailable.
 To deploy Alluxio in production, we highly recommend running Alluxio masters in
-[High Availability]({{ '/en/deploy/Running-Alluxio-On-a-HA-Cluster.html' | relativize_url }}) mode.
+[High Availability](../deploy/Running-Alluxio-On-a-HA-Cluster.md) mode.
 
 ## Prerequisites
 
@@ -62,11 +54,11 @@ alluxio.master.mount.table.root.ufs=<STORAGE_URI>
   mount to the Alluxio root.
   This shared storage system must be accessible by the master node and all worker nodes.
   
-  For example, when [HDFS]({{ '/en/ufs/HDFS.html#basic-setup' | relativize_url }})
+  For example, when [HDFS](../ufs/HDFS.md#basic-setup)
   is used as the under storage system, the value of this property can be set to
   `alluxio.master.mount.table.root.ufs=hdfs://1.2.3.4:9000/alluxio/root/`
   
-  When [Amazon S3]({{ '/en/ufs/S3.html#basic-setup' | relativize_url }})
+  When [Amazon S3](../ufs/S3.md#basic-setup)
   is used as the under storage system, the value can be set to
   `alluxio.master.mount.table.root.ufs=s3://bucket/dir/`
 

@@ -1,29 +1,20 @@
----
-layout: global
-title: Running Presto on Iceberg Tables with Alluxio
-nickname: Presto on Iceberg (Experimental)
-group: Compute Integrations
-priority: 2
----
+# Running Presto on Iceberg Tables with Alluxio
 
 Presto has introduced support for [Iceberg tables](https://iceberg.apache.org/) in version 0.256.
 
 This document describes how to use Presto to query Iceberg tables through Alluxio.
 This document is currently experimental, and the information provided here is subject to change.
 
-* Table of Contents
-{:toc}
-
 In order to use Presto to query an Iceberg table, make sure you have a working setup of Presto, 
 Hive Metastore and Alluxio, and Presto can access data through Alluxio's filesystem interface.
 If not, please refer to the 
-[guide]({{ '/en/compute/Presto.html' | relativize_url }}) on general Presto installation 
+[guide](../compute/Presto.md) on general Presto installation 
 and configuration. Most of that guide apply for Iceberg workflows as well, and this document 
 covers the specific instructions for working with Iceberg tables.
 
 ## Prerequisites
 
-* All [prerequisites]({{ '/en/compute/Presto.html' | relativize_url }}#prerequisites) 
+* All [prerequisites](../compute/Presto.md#prerequisites) 
   from the general Presto setup;
 * Presto server, version 0.257 or later.
 
@@ -39,7 +30,7 @@ $ ${PRESTO_HOME}/bin/launcher restart
 ```
 
 Also note that the same client jar file needs to be on Hive's classpath. 
-If not, please refer to the [section]({{ '/en/compute/Hive.html' | relativize_url }}#basic-setup)
+If not, please refer to the [section](../compute/Hive.md#basic-setup)
 on setting up Hive to work with Alluxio.
 
 ### Configure Presto to use the Iceberg connector
@@ -69,7 +60,7 @@ Launch the Presto CLI client with the following command:
 ```
 
 For more information on the client, please refer to this section on
-[querying tables using Presto]({{ '/en/compute/Presto.html' | relativize_url }}#query-tables-using-presto).
+[querying tables using Presto](../compute/Presto.md#query-tables-using-presto).
 Note that the catalog is set to `iceberg` since we will be dealing with Iceberg tables.
 
 Run the following statements from the client:

@@ -1,13 +1,5 @@
----
-layout: global
-title: Metrics System
-nickname: Metrics
-group: Operations
-priority: 7
----
+# Metrics System
 
-* Table of Contents
-{:toc}
 
 Metrics provide insight into what is going on in the cluster. 
 They are an invaluable resource for monitoring and debugging. 
@@ -53,7 +45,7 @@ Each instance can report to zero or more sinks.
 The metrics system is configured via a configuration file that Alluxio expects to be present at `${ALLUXIO_HOME}/conf/metrics.properties`.
 A custom file location can be specified via the `alluxio.metrics.conf.file` configuration property.
 Refer to `${ALLUXIO_HOME}/conf/metrics.properties.template` for all possible sink specific configurations.
-To configure the metrics system on Kubernetes, refer to [Metrics On Kubernetes]({{ '/en/kubernetes/Metrics-On-Kubernetes.html' | relativize_url }}#metrics-sink-configuration)
+To configure the metrics system on Kubernetes, refer to [Metrics On Kubernetes](../kubernetes/Metrics-On-Kubernetes.md#metrics-sink-configuration)
 
 The Alluxio leading master emits both its instance metrics and a summary of the cluster-wide aggregated metrics.
 
@@ -62,7 +54,7 @@ The Alluxio leading master emits both its instance metrics and a summary of the 
 #### Prerequisites
 
 * Alluxio leading master and workers: no prerequisites, enabled by default
-* [Alluxio standalone Fuse process]({{ '/en/api/POSIX-API.html' | relativize_url }}#choose-deployment-mode):
+* [Alluxio standalone Fuse process](../api/POSIX-API.md):
 setting `alluxio.fuse.web.enabled` to `true` in `${ALLUXIO_HOME}/conf/alluxio-site.properties` before launching the standalone Fuse process.
 
 #### Usage
@@ -105,7 +97,7 @@ sink.prometheus.class=alluxio.metrics.sink.PrometheusMetricsServlet
 If Alluxio is deployed in a cluster, this file needs to be distributed to all the nodes.
 Restart the Alluxio servers to activate new configuration changes.
 
-To enable Prometheus Sink Setup in the [Alluxio standalone Fuse process]({{ '/en/api/POSIX-API.html' | relativize_url }}#choose-deployment-mode),
+To enable Prometheus Sink Setup in the [Alluxio standalone Fuse process](../api/POSIX-API.md),
 setting `alluxio.fuse.web.enabled` to `true` in `${ALLUXIO_HOME}/conf/alluxio-site.properties` before launching the standalone Fuse process.
 
 #### Usage
@@ -203,7 +195,7 @@ Besides the raw metrics shown via metrics servlet or custom metrics configuratio
 users can track key cluster performance metrics in a more human-readable way in the web interface of
 Alluxio leading master (`http://<leading_master_host>:19999/metrics`).
 
-![Master Metrics]({{ '/img/screenshot_generalMetrics.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_generalMetrics.png" alt=""><figcaption></figcaption></figure>
 
 The web page includes the following information:
 * Timeseries for Alluxio space and root UFS space percentage usage information
@@ -225,12 +217,12 @@ The nickname and original metric name corresponding are shown:
 | Under Filesystem Read | | `Cluster.BytesReadUfsAll `| 
 | Under Filesystem Write | | `Cluster.BytesWrittenUfsAll` |
 
-Detailed descriptions of those metrics are in [cluster metrics]({{ '/en/reference/Metrics-List.html' | relativize_url }}#cluster-metrics).
+Detailed descriptions of those metrics are in [cluster metrics](../reference/Metrics-List.md#cluster-metrics).
 
 `Mounted Under FileSystem Read` shows the `Cluster.BytesReadPerUfs.UFS:<UFS_ADDRESS>` of each Alluxio UFS.
 `Mounted Under FileSystem Write` shows the `Cluster.BytesWrittenPerUfs.UFS:<UFS_ADDRESS>` of each Alluxio UFS.
 
-`Logical Operations` and `RPC Invocations` present parts of the [master metrics]({{ '/en/reference/Metrics-List.html' | relativize_url }}#master-metrics).
+`Logical Operations` and `RPC Invocations` present parts of the [master metrics](../reference/Metrics-List.md#master-metrics).
 
 `Saved Under FileSystem Operations` shows the operations fulfilled by Alluxio's namespace directly
 without accessing UFSes. Performance improvement can be significant if the target UFS is remote or slow in response.
@@ -257,7 +249,7 @@ Grafana supports visualizing data from Prometheus. The following steps can help 
 
 If your Grafana dashboard appears like the screenshot below, you have built your monitoring successfully. Of course, you can modify the JSON file or just operate on the dashboard to design your monitoring.
 
-![Grafana Web UI]({{ '/img/screenshot_grafana_webui.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/screenshot_grafana_webui.png" alt=""><figcaption></figcaption></figure>
 
 ### Datadog Web UI with Prometheus
 
@@ -299,5 +291,5 @@ Metrics will now be accessible at http://localhost:8080/metrics.
 
 ## References
 
-Detailed Alluxio metrics are listed in the [metrics list doc]({{ '/en/reference/Metrics-List.html' | relativize_url }}).
-Metrics stored in leading master is exposed via [`fsadmin report metrics`]({{ '/en/operation/Admin-CLI.html' | relativize_url }}#report).
+Detailed Alluxio metrics are listed in the [metrics list doc](../reference/Metrics-List.md).
+Metrics stored in leading master is exposed via [`fsadmin report metrics`](../operation/Admin-CLI.md#report).

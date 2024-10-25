@@ -1,15 +1,7 @@
----
-layout: global
-title: Running Alluxio on EMR
-nickname: AWS EMR
-group: Cloud Native
-priority: 3
----
+# Running Alluxio on EMR
 
 This guide describes how to configure Alluxio to run on [AWS EMR](https://aws.amazon.com/emr/).
 
-* Table of Contents
-{:toc}
 
 ## Overview
 
@@ -71,7 +63,7 @@ A good instance type to start off with is `r4.4xlarge`.
     For example, you can use the URL: `https://downloads.alluxio.io/downloads/files/{{site.ALLUXIO_VERSION_STRING}}/alluxio-{{site.ALLUXIO_VERSION_STRING}}-bin.tar.gz`
     - You can also specify additional Alluxio properties as a delimited list of key-value pairs in the format `key=value`.
     For example, `alluxio.user.file.writetype.default=CACHE_THROUGH` instructs Alluxio to write files synchronously to the underlying storage system.
-    See more about [write type options]({{ '/en/overview/Architecture.html#data-flow-write' | relativize_url }}).
+    See more about [write type options](../overview/Architecture.md#data-flow--write).
 - `configurations`: The path to the configuration json file, also hosted in a publicly readable S3 bucket: `https://s3.amazonaws.com/alluxio-public/emr/{{site.ALLUXIO_VERSION_STRING}}/alluxio-emr.json`
   Alternatively, download the linked JSON file and provide the local path to the file, ex. `file:///path/to/alluxio-emr.json`.
 - `ec2-attributes`: EC2 settings to provide, most notably the name of the key pair used to connect to the cluster.
@@ -106,11 +98,11 @@ Log into the [EMR console](https://console.aws.amazon.com/elasticmapreduce/home)
 Once the cluster is in the `Waiting` stage, click on the cluster details to get the `Master public DNS` if available
 or click on the `Hardware` tab to see the master and worker details.
 
-![emr_console_waiting]({{ '/img/emr_console_waiting.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/emr_console_waiting.png" alt=""><figcaption></figcaption></figure>
 
 Clicking on the master instance group will show you the public DNS.
 
-![emr_console_public_dns]({{ '/img/emr_console_public_dns.png' | relativize_url }})
+<figure><img src="../.gitbook/assets/emr_console_public_dns.png" alt=""><figcaption></figcaption></figure>
 
 SSH into the master instance using the key pair provided in the previous command.
 Use `hadoop` as the username.
