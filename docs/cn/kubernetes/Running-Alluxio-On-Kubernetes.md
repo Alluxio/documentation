@@ -109,7 +109,7 @@ $ helm inspect values alluxio-charts/alluxio
 
 本节的剩余部分通过例子描述各种配置选项。
 
-<details><summary>Example: Amazon S3 as the under store</summary>
+##### Example: Amazon S3 as the under store
 
 To [mount S3](../ufs/S3.md#根挂载)
 在Alluxio根名称空间以key-value pair方式指定所有必须属性。
@@ -121,8 +121,7 @@ properties:
   alluxio.master.mount.table.root.option.s3a.secretKey: "<secretKey>"
 ```
 
-</details>
-<details><summary>Example: Single Master and Journal in a Persistent Volume</summary>
+##### Example: Single Master and Journal in a Persistent Volume 
 
  The following configures [UFS Journal](../operation/Journal.md#日志) 将一个持久卷本地挂载在master Pod的位置 `/journal`。
 
@@ -144,8 +143,7 @@ journal:
     - ReadWriteOnce
 ```
 
-</details>
-<details><summary>Example: 下方举例说明如何将一个持久卷挂载在本地master pod</summary>
+##### Example: 下方举例说明如何将一个持久卷挂载在本地master pod
 
 '/journal'位置来配置 [UFS Journal](../operation/Journal.md#日志)
  将一个`emptyDir` 卷本地挂载在master Pod的位置`/journal` 
@@ -172,8 +170,7 @@ journal:
  它不是持久性存储。
 当Pod重新启动或被重新调度时，Alluxio日志将丢失。请仅在实验用例中使用。检查[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)了解更详细信息。
 
-</details>
-<details><summary>Example: HDFS as Journal</summary>
+##### Example: HDFS as Journal
 
 首先为HDFS客户端所需的任何配置创建secrets。它们将挂载在`/secrets`下。
 
@@ -197,9 +194,8 @@ secrets:
   worker:
     alluxio-hdfs-config: hdfsConfig
 ```
-
-</details>
-<details><summary>Example: Multi-master with Embedded Journal in Persistent Volumes</summary>
+ 
+##### Example: Multi-master with Embedded Journal in Persistent Volumes
 
  ```properties
 master:
@@ -218,8 +214,7 @@ journal:
     - ReadWriteOnce
 ```
 
-</details>
-<details><summary>Example: Multi-master with Embedded Journal in emptyDir Volumes</summary>
+##### Example: Multi-master with Embedded Journal in emptyDir Volumes
 
 ```properties
 master:
@@ -240,8 +235,7 @@ journal:
 
 >注意:`emptyDir`卷的寿命与Pod寿命相同。 它不是持久性存储。当Pod重新启动或被重新调度时，Alluxio日志将丢失。请仅在实验用例中使用。检查[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)了解更详细信息。
 
-</details>
-<details><summary>Example: HDFS as the under store</summary>
+##### Example: HDFS as the under store
 
 首先为HDFS客户端所需的任何配置创建secrets。它们将挂载在`/secrets`下。
 
@@ -260,8 +254,7 @@ secrets:
     alluxio-hdfs-config: hdfsConfig
 ```
 
-</details>
-<details><summary>Example: Off-heap Metastore Management in Persistent Volumes</summary>
+##### Example: Off-heap Metastore Management in Persistent Volumes
 
 以下配置为每个Alluxio master Pod创建一个`PersistentVolumeClaim`，并将Pod
 配置为使用该卷作为一个on-disk基于RocksDB的metastore。
@@ -281,8 +274,7 @@ metastore:
    - ReadWriteOnce
 ```
 
-</details>
-<details><summary>Example: Off-heap Metastore Management in `emptyDir` Volumes</summary>
+##### Example: Off-heap Metastore Management in `emptyDir` Volumes
 
 以下配置为每个Alluxio master Pod创建一个`emptyDir`卷，并将Pod配置为使用该卷作为一个on-disk基于RocksDB的metastore。
 
@@ -303,8 +295,7 @@ metastore:
 它不是持久性存储。
 当Pod重新启动或被重新调度时，Alluxio日志将丢失。请仅在实验用例中使用。检查[emptyDir](https://kubernetes.io/docs/concepts/storage/volumes/#emptydir)了解更详细信息)。
 
-</details>
-<details><summary>Example: Multiple Secrets</summary>
+##### Example: Multiple Secrets
 
  可以将多个secrets同时挂载到master和workerPods。每个Pod区域的格式为`<secretName>:<mountPath>`
 
@@ -319,8 +310,7 @@ secrets:
 ```
 
 
-</details>
-<details><summary>Examples: Alluxio Storage Management</summary>
+##### Examples: Alluxio Storage Management
 
 Alluxio在worker Pods上管理本地存储，包括内存。[Multiple-Tier Storage](../core-services/Caching.md#分层存储管理) 可以使用以下参考配置来设置。
 
@@ -404,7 +394,6 @@ tieredstore:
     high: 0.95
     low: 0.7
 ```
-</details>
 
 
 #### 安装
@@ -502,8 +491,7 @@ $ mv worker/alluxio-worker-daemonset.yaml.template worker/alluxio-worker-daemons
 ```
 注意:确保该Kubernetes规范版本与所使用Alluxio Docker镜像版本是一致的。
 
-<details><summary>(Optional) Remote Storage Access</summary>
-
+##### (Optional) Remote Storage Access
 当Alluxio要连接到所部署在的Kubernetes集群之外存储主机时，可能还需要执行额外步骤。本节以下部分将说明如何配置可访问但不受Kubernetes管理的远程HDFS连接。
 
 **步骤1:为HDFS连接添加`hostAliases`。**Kubernetes Pods无法识别不由Kubernetes管理的网络主机名(因为不是一个Kubernetes Service)，除非已经通过hostAliases定义好。
@@ -549,7 +537,6 @@ kubectl create secret generic alluxio-hdfs-config --from-file=${HADOOP_CONF_DIR}
 这两个配置文件在`alluxio-master-statefulset.yaml`和`alluxio-worker-daemonset.yaml`中会引用到。Alluxio进程需要HDFS配置文件才能连接，这些文件在容器中的位置由属性`alluxio.underfs.hdfs.configuration`控制。
 
 **步骤3:修改`alluxio-configmap.yaml.template`。现在Pods已经知道如何连接到HDFS服务，下面更新`alluxio.master.journal.folder`和`alluxio.master.mount.table .root.ufs`并指向要连接的目标HDFS服务。
-</details>
 
 一旦完成所有先决条件和配置，就可以部署部署Alluxio了。
 
@@ -589,7 +576,7 @@ $ kubectl delete configmap alluxio-config
 
 本节将介绍如何使用`kubectl`升级Kubernetes集群中的Alluxio。
 
-<details><summary>Upgrading Alluxio</summary>
+##### Upgrading Alluxio
 
 **步骤1:升级docker镜像版本标签**
 
@@ -659,6 +646,7 @@ $ kubectl get pods
 ```
 
 你可以根据以下文档做更全面的确认 [Verify Alluxio](../deploy/Running-Alluxio-Locally.md#验证alluxio是否运行).
+</details>
 
 ### 访问Web UI
 
@@ -689,9 +677,6 @@ $ alluxio runTests
 $ kubectl get pv
 $ kubectl get pvc
 ```
-</details>
-
-</details>
 
 ## 高级设置
 
@@ -930,8 +915,8 @@ volumes:
 
 ***验证。*** 要验证短路读取和写入，请监控以下显示的指标
 1. Web UI的指标`Domain Socket Alluxio Read` 和 `Domain Socket Alluxio`Write
-1.或[metrics json](../operation/Metrics-System.md) as `cluster.BytesReadDomain` 和 `cluster.BytesWrittenDomain`
-1.或the [fsadmin metrics CLI](../operation/Admin-CLI.md) as `Short-circuit Read (Domain Socket)` 和` Alluxio Write (Domain Socket)`
+1. 或[metrics json](../operation/Metrics-System.md) as `cluster.BytesReadDomain` 和 `cluster.BytesWrittenDomain`
+1. 或the [fsadmin metrics CLI](../operation/Admin-CLI.md) as `Short-circuit Read (Domain Socket)` 和` Alluxio Write (Domain Socket)`
 
 ## 故障排除
 
