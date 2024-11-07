@@ -1,22 +1,5 @@
 # User Command Line Interface
 
-Alluxio's command line interface provides users with basic file system operations. You can invoke
-the following command line utility to get all the subcommands:
-
-```console
-$ ./bin/alluxio
-Usage: alluxio [COMMAND]
-       [format [-s]]
-       [getConf [key]]
-       [logLevel]
-       [runTests]
-       ...
-```
-
-## General operations
-
-This section lists usages and examples of general Alluxio operations with the exception of file
-system commands which are covered in the [Admin CLI doc](../operation/Admin-CLI.md).
 
 ### format
 
@@ -36,97 +19,7 @@ $ ./bin/alluxio format
 $ ./bin/alluxio format -s
 ```
 
-### formatJournal
 
-The `formatJournal` command formats the Alluxio master journal on this host.
-
-The Alluxio master stores various forms of metadata, including:
-- file system operations
-- where files are located on workers
-- journal transactions
-- under storage file metadata
-
-All this information is deleted if `formatJournal` is run.,
-
-> Warning: `formatJournal` should only be called while the cluster is not running.
-
-
-```console
-$ ./bin/alluxio formatJournal
-```
-
-### formatMasters
-
-The `formatMasters` command formats the Alluxio masters.
-
-This command defers to [formatJournal](#formatjournal),
-but if the UFS is an embedded journal it will format all master nodes listed in the 'conf/masters' file
-instead of just this host.
-
-The Alluxio master stores various forms of metadata, including:
-- file system operations
-- where files are located on workers
-- journal transactions
-- under storage file metadata
-
-All this information is deleted if `formatMasters` is run.,
-
-> Warning: `formatMasters` should only be called while the cluster is not running.
-
-
-```console
-$ ./bin/alluxio formatMasters
-```
-
-### formatWorker
-
-The `formatWorker` command formats the Alluxio worker on this host.
-
-An Alluxio worker caches files and objects.
-
-`formatWorker` deletes all the cached data stored in this worker node.
-Data in under storage will not be changed.
-
-> Warning: `formatWorker` should only be called while the cluster is not running.
-
-```console
-$ ./bin/alluxio formatWorker
-```
-
-### bootstrapConf
-
-The `bootstrapConf` command generates the bootstrap configuration file
-`${ALLUXIO_HOME}/conf/alluxio-site.properties` with `alluxio.master.hostname`
-set to the passed in value if the configuration file does not exist.
-
-<!-- Generated configuration file is empty except for "alluxio.master.hostname" -->
-
-```console
-$ ./bin/alluxio bootstrapConf <ALLUXIO_MASTER_HOSTNAME>
-```
-
-> Note: This command does not require the Alluxio cluster to be running.
-
-### fs
-
-See [File System Operations](#file-system-operations).
-
-### fsadmin
-
-The `fsadmin` command is meant for administrators of the Alluxio cluster.
-It provides added tools for diagnostics and troubleshooting.
-For more information see the [Admin CLI main page](../operation/Admin-CLI.md).
-
-> Note: This command requires the Alluxio cluster to be running.
-
-### getConf
-
-The `getConf` command prints the configured value for the given key.
-If the key is invalid, it returns a nonzero exit code.
-If the key is valid but isn't set,  an empty string is printed.
-If no key is specified, the full configuration is printed.
-
-Options:
 
 * `--master` option prints any configuration properties used by the master.
 * `--source` option prints the source of the configuration properties.
@@ -210,24 +103,6 @@ Status: CANCELED
 
 > Note: This command requires the Alluxio cluster to be running.
 
-### logLevel
-
-The `logLevel` command returns the current value of or updates the log level of a particular class
-on specific instances. Users are able to change Alluxio server-side log levels at runtime.
-
-The command follows the format `alluxio logLevel --logName=NAME [--target=<master|workers|job_master|job_workers|host:webPort[:role]>] [--level=LEVEL]`,
-where:
-* `--logName <arg>` indicates the logger's class (e.g. `alluxio.master.file.DefaultFileSystemMaster`)
-* `--target <arg>` lists the Alluxio master or workers to set.
-The target could be of the form `<master|workers|job_master|job_workers|host:webPort[:role]>` and multiple targets can be listed as comma-separated entries.
-`role` can be one of `master|worker|job_master|job_worker`. Using the `role` option is useful when an Alluxio process
-is configured to use a non-standard web port (e.g. if an Alluxio master does not use 19999 as its web port).
-The default target value is the primary master, primary job master, all workers and job workers.
-* `--level <arg>` If provided, the command changes to the given logger level,
-otherwise it returns the current logger level.
-
-See [here](../administration/Basic-Logging.md#modifying-server-logging-at-runtime)
-for more examples.
 
 > Note: This command requires the Alluxio cluster to be running.
 > You are not able to set the logger level on the standby masters.
@@ -243,11 +118,13 @@ The `runClass` command runs the main method of an Alluxio class.
 For example, to run the multi-mount demo:
 ```console
 $ ./bin/alluxio runClass alluxio.examples.MultiMount <HDFS_URL>
+adaddad
 ```
 
 ### runTest
 
 The `runTest` command runs end-to-end tests on an Alluxio cluster.
+adadwdad
 
 The usage is `runTest [--directory <path>] [--operation <operation type>] [--readType <read type>] [--writeType <write type>]`.
   * `--directory`
@@ -281,66 +158,7 @@ $ ./bin/alluxio runTests
 
 > Note: This command requires the Alluxio cluster to be running.
 
-### runJournalCrashTest
 
-The `runJournalCrashTest` simulates a failover to test recovery from the journal.
-
-> Note: This command will stop any Alluxio services running on the machine.
-
-### runHmsTests
-
-The `runHmsTests` aims to validate the configuration, connectivity, and permissions of an existing hive metastore
-which is an important component in compute workflows with Alluxio.
-
-* `-h` provides detailed guidance.
-* `-m <hive_metastore_uris>` (required) the full hive metastore uris to connect to an existing hive metastore.
-* `-d <database_name>` the database to run tests against. Use `default` database if not provided.
-* `-t [table_name_1,table_name_2,...]` tables to run tests against. Run tests against five out of all tables in the given database if not provided.
-* `-st <timeout>` socket timeout of hive metastore client in minutes.
-
-```console
-$ ./bin/alluxio runHmsTests -m thrift://<hms_host>:<hms_port> -d tpcds -t store_sales,web_sales
-```
-
-This tool is suggested to run from compute application environments and checks
-* if the given hive metastore uris are valid
-* if the hive metastore client connection can be established with the target server
-* if hive metastore client operations can be run against the given database and tables
-
-> Note: This command does not require the Alluxio cluster to be running.
-
-### runHdfsMountTests
-
-The `runHdfsMountTests` command aims to validate the configuration, connectivity and permissions of an HDFS path.
-It validates various aspects for connecting to HDFS with the given Alluxio configurations and identifies issues
-before the path is mounted to Alluxio.
-This tool will validate a few criteria and return the feedback.
-If a test failed, advice will be given correspondingly on how the user can rectify the setup.
-
-Usage: `runHdfsMountTests [--readonly] [--shared] [--option <key=val>] <hdfsURI>`
-* `--help` provides detailed guidance.
-* `--readonly` specifies the mount point should be readonly in Alluxio.
-* `--shared` specifies the mount point should be accessible for all Alluxio users.
-* `--option <key>=<val>` passes an property to this mount point.
-* `<hdfs-path>` (required) specifies the HDFS path you want to validate (then mount to Alluxio)
-
-The arguments to this command should be consistent to what you give to the
-[Mount command](#mount), in order to validate the setup for the mount.
-
-```console
-# If this is your mount command
-$ bin/alluxio fs mount --readonly --option alluxio.underfs.version=2.7 \
-  --option alluxio.underfs.hdfs.configuration=/etc/hadoop/core-site.xml:/etc/hadoop/hdfs-site.xml \
-  <alluxio-path> hdfs://<hdfs-path>
-
-# Pass the same options to runHdfsMountTests
-$ bin/alluxio runHdfsMountTests --readonly --option alluxio.underfs.version=2.7 \
-  --option alluxio.underfs.hdfs.configuration=/etc/hadoop/core-site.xml:/etc/hadoop/hdfs-site.xml \
-  hdfs://<hdfs-path>
-```
-
-> Note: This command DOES NOT mount the HDFS path to Alluxio.
-> This command does not require the Alluxio cluster to be running.
 
 ### runUfsIOTest
 
@@ -467,83 +285,7 @@ The `clearCache` command drops the OS buffer cache.
 
 > Note: This command does not require the Alluxio cluster to be running.
 
-### docGen
 
-The `docGen` command autogenerates documentation based on the current source code.
-
-Usage: `docGen [--metric] [--conf]`
-* `--metric` flag indicates to generate Metric docs
-* `--conf` flag indicates to generate Configuration docs
-
-Supplying neither flag will default to generating both docs.
-
-> Note: This command does not require the Alluxio cluster to be running.
-
-### version
-
-The `version` command prints Alluxio version.
-
-Usage: `version --revision [revision_length]`
-* `-r,--revision [revision_length]` Prints the git revision along with the Alluxio version. Optionally specify the revision length.
-
-```console
-$ ./bin/alluxio version
-```
-
-> Note: This command does not require the Alluxio cluster to be running.
-
-### validateConf
-
-The `validateConf` command validates the local Alluxio configuration files, checking for common misconfigurations.
-
-```console
-$ ./bin/alluxio validateConf
-```
-
-> Note: This command does not require the Alluxio cluster to be running.
-
-### validateEnv
-
-Before starting Alluxio, it is recommended to ensure that the system environment is compatible with
-running Alluxio services. The `validateEnv` command runs checks against the system and reports
-any potential problems that may prevent Alluxio from starting properly.
-
-The usage is `validateEnv COMMAND [NAME] [OPTIONS]`
-where `COMMAND` can be one of the following values:
-* `local`: run all validation tasks on the local machine
-* `master`: run master validation tasks on the local machine
-* `worker`: run worker validation tasks on the local machine
-* `all`: run corresponding validation tasks on all master and worker nodes
-* `masters`: run master validation tasks on all master nodes
-* `workers`: run worker validation tasks on all worker nodes
-* `list`: list all validation tasks
-
-```console
-# Runs all validation tasks on the local machine
-$ ./bin/alluxio validateEnv local
-
-# Runs corresponding validation tasks on all master and worker nodes
-$ ./bin/alluxio validateEnv all
-
-# Lists all validation tasks
-$ ./bin/alluxio validateEnv list
-```
-
-For all commands except `list`, `NAME` specifies the leading prefix of any number of tasks.
-If `NAME` is not given, all tasks for the given `COMMAND` will run.
-
-```console
-# Only run validation tasks that check your local system resource limits
-$ ./bin/alluxio validateEnv ulimit
-# Only run the tasks start with "ma", like "master.rpc.port.available" and "master.web.port.available"
-$ ./bin/alluxio validateEnv local ma
-```
-
-`OPTIONS` can be a list of command line options. Each option has the format
-`-<optionName> [optionValue]` For example, `[-hadoopConfDir <arg>]` could set the path to
-server-side hadoop configuration directory when running validating tasks.
-
-> Note: This command does not require the Alluxio cluster to be running.
 
 ### collectInfo
 
@@ -694,6 +436,7 @@ Here is number-permission mapping table:
 Adding `-R` option also changes the permission of child file and child directory recursively.
 
 For example, `chmod` can be used as a quick way to change the permission of file:
+adasdadadsdadasda
 
 ```console
 $ ./bin/alluxio fs chmod 755 /input/file1
@@ -749,6 +492,7 @@ for additional investigation or debugging.
 ```console
 $ ./bin/alluxio fs copyToLocal /output/part-00000 part-00000
 $ wc -l part-00000
+addsadsadasdas
 ```
 
 ### count
@@ -906,177 +650,7 @@ For example, `free` can be used to manually manage Alluxio's data caching.
 $ ./bin/alluxio fs free /unused/data
 ```
 
-### getCapacityBytes
 
-The `getCapacityBytes` command returns the maximum number of bytes Alluxio is configured to store.
-
-For example, `getCapacityBytes` can be used to verify if your cluster is set up as expected.
-
-```console
-$ ./bin/alluxio fs getCapacityBytes
-```
-
-### getCmdStatus
-
-The `getCmdStatus` command returns the detailed distributed command status based on a given JOB_CONTROL_ID.
-The detailed status includes:
-1. Successfully loaded or copied file paths.
-2. Statistics on the number of successful and failed file paths.
-3. Failed file paths, logged in a separate csv file.
-
-For example, `getCmdStatus` can be used to check what files are loaded in a distributed command, and how many succeeded or failed.
-
-```console
-$ ./bin/alluxio job getCmdStatus $JOB_CONTROL_ID
-Sample Output:
-Get command status information below:
-Successfully loaded path $FILE_PATH_1
-Successfully loaded path $FILE_PATH_2
-Total completed file count is 2, failed file count is 0
-```
-
-### getfacl
-
-The `getfacl` command returns the ACL entries for a specified file or directory.
-
-For example, `getfacl` can be used to verify that an ACL is changed successfully after a call to `setfacl`.
-
-```console
-$ ./bin/alluxio fs getfacl /testdir/testfile
-```
-
-### getSyncPathList
-
-The `getSyncPathList` command gets all the paths that are under active syncing right now.
-
-```console
-$ ./bin/alluxio fs getSyncPathList
-```
-
-### getUsedBytes
-
-The `getUsedBytes` command returns the number of used bytes in Alluxio.
-
-For example, `getUsedBytes` can be used to monitor the health of the cluster.
-
-```console
-$ ./bin/alluxio fs getUsedBytes
-```
-
-### head
-
-The `head` command prints the first 1 KB of data in a file to the console.
-
-Using the `-c [bytes]` option will print the first `n` bytes of data to the console.
-
-```console
-$ ./bin/alluxio fs head -c 2048 /output/part-00000
-```
-
-### help
-
-The `help` command prints the help message for a given `fs` subcommand.
-If the given command does not exist, it prints help messages for all supported subcommands.
-
-Examples:
-
-```console
-# Print all subcommands
-$ ./bin/alluxio fs help
-
-# Print help message for ls
-$ ./bin/alluxio fs help ls
-```
-
-### leader
-
-The `leader` command prints the current Alluxio leading master hostname.
-
-```console
-$ ./bin/alluxio fs leader
-```
-
-### load
-
-The `load` command moves data from the under storage system into Alluxio storage.
-For example, `load` can be used to prefetch data for analytics jobs.
-If `load` is run on a directory, files in the directory will be recursively loaded.
-```console
-$ ./bin/alluxio fs load <path> --submit [--bandwidth N] [--verify] [--partial-listing]
-```
-Options:
-* `--bandwidth` option specify how much ufs bandwidth we want to use to load files.
-* `--verify` option specify whether we want to verify that all the files are loaded.
-* `--partial-listing` option specify using batch listStatus API or traditional listStatus. We would retire this option when batch listStatus API gets mature.
-
-After submit the command, you can check the status by running the following
-```console
-$ ./bin/alluxio fs load <path> --progress [--format TEXT|JSON] [--verbose]
-```
-And you would get the following output:
-```console
-Progress for loading path '/dir-99':
-        Settings:       bandwidth: unlimited    verify: false
-        Job State: SUCCEEDED
-        Files Processed: 1000
-        Bytes Loaded: 125.00MB
-        Throughput: 2509.80KB/s
-        Block load failure rate: 0.00%
-        Files Failed: 0
-```
-Options:
-* `--format` option specify output format. TEXT as default
-* `--verbose` option output job details. 
-
-If you want to stop the command by running the following
-```console
-$ ./bin/alluxio fs load <path> --stop
-```
-
-If you just want sequential execution for couple files. You can use the following old version
-```console
-$ ./bin/alluxio fs load <path>
-```
-If there is a Alluxio worker on the machine this command is run from, the data will be loaded to that worker.
-Otherwise, a random worker will be selected to serve the data.
-
-If the data is already loaded into Alluxio, load is a no-op unless the `--local flag` is used.
-The `--local` flag forces the data to be loaded to a local worker
-even if the data is already available on a remote worker.
-```console
-$ ./bin/alluxio fs load <path> --local
-```
-
-### loadMetadata
-
-The `loadMetadata` command loads metadata about a path in the UFS to Alluxio.
-No data will be transferred.
-
-#### loadMetadata V1(legacy)
-
-This command is a client-side optimization without storing all returned `ls` results, preventing OOM for massive amount of small files.
-This is useful when data has been added to the UFS outside of Alluxio and users are expected to reference the new data.
-This command is more efficient than using the `ls` command since it does not store any directory or file information to be returned.
-
-Options:
-* `-R` option recursively loads metadata in subdirectories
-* `-F` option updates the metadata of the existing file forcibly
-
-For example, `loadMetadata` can be used to load metadata for a path in the UFS.
-The -F option will force the loading of metadata even if there are existing metadata entries for the path.
-```console
-$ ./bin/alluxio fs loadMetadata -R -F <path>
-```
-
-#### loadMetadata V2(new)
-
-The load metadata v2 is a better implementation of metadata sync that designs for object storage (e.g. s3),
-with better resource control and performance. 
-To use the v2 implementation, please attach the option `-v2` in your command. `-F` is no longer supported in v2. 
-The command will always load the metadata from UFS. If files are in alluxio already, they will be compared with and updated based on the UFS result. 
-The v2 implementation also has some unique options:
-```console
-$ ./bin/alluxio fs loadMetadata -v2 -R -d <type> -a <path>
 ```
 
 Options:
