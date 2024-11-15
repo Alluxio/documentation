@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Introduction](Overview.md)
+* [Overview](Overview.md)
 * [Overview](overview/README.md)
   * [Architecture](overview/Architecture.md)
   * [Job Service](overview/JobService.md)
@@ -10,7 +10,7 @@
 * [Core Services](core-services/README.md)
   * [Caching](core-services/Caching.md)
   * [Unified Namespace](core-services/Unified-Namespace.md)
-* [Install Alluxio](deploy/README.md)
+* [Install Alluxio](install-alluxio/README.md)
   * [Local Machine](deploy/Running-Alluxio-Locally.md)
   * [Cluster](deploy/Running-Alluxio-On-a-Cluster.md)
   * [Cluster with HA](deploy/Running-Alluxio-On-a-HA-Cluster.md)
@@ -53,7 +53,7 @@
   * [CephFS](ufs/CephFS.md)
 * [Security](security/Security.md)
 * [Operations](operation/README.md)
-  * [Configuration Settings](/os/user/stable/en/operation/User-CLI.md)
+  * [Configuration Settings](operation/configuration-settings.md)
   * [User CLI](operation/User-CLI.md)
   * [Admin CLI](operation/Admin-CLI.md)
   * [Web UI](operation/Web-Interface.md)
