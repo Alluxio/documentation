@@ -45,7 +45,7 @@ MapReduce任务中设置wordcount集写入Alluxio类型为`CACHE_THROUGH`：
 ```console
 $ ./bin/hadoop jar libexec/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar wordcount \
 -Dalluxio.user.file.writetype.default=CACHE_THROUGH \
--libjars {{site.ALLUXIO_CLIENT_JAR_PATH}} \
+-libjars /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar \
 <INPUT FILES> <OUTPUT DIRECTORY>
 ```
 

@@ -37,7 +37,7 @@ Please visit the
 page for more information about support for other distributions.
 
 If everything succeeds, you should see
-`alluxio-assembly-server-{{site.ALLUXIO_VERSION_STRING}}-jar-with-dependencies.jar` created in
+`alluxio-assembly-server-2.9.5-jar-with-dependencies.jar` created in
 the `${ALLUXIO_HOME}/assembly/server/target` directory.
 
 To enable active sync be sure to build using the `hdfsActiveSync` property.

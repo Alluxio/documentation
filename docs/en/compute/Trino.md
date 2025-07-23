@@ -19,7 +19,7 @@ latency when other storage systems are remote or the network is slow or congeste
 This guide is tested with `Trino-352`.
 * Alluxio has been set up and is running.
 * Make sure that the Alluxio client jar is available.
-  This Alluxio client jar file can be found at `{{site.ALLUXIO_CLIENT_JAR_PATH}}` in the tarball
+  This Alluxio client jar file can be found at `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` in the tarball
   downloaded from Alluxio [download page](https://www.alluxio.io/download).
 * Make sure that Hive Metastore is running to serve metadata information of Hive tables.
 
@@ -41,7 +41,7 @@ hive.metastore.uri=thrift://localhost:9083
 
 In order for Trino to be able to communicate with the Alluxio servers, the Alluxio client
 jar must be in the classpath of Trino servers.
-Put the Alluxio client jar `{{site.ALLUXIO_CLIENT_JAR_PATH}}` into the directory
+Put the Alluxio client jar `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` into the directory
 `${Trino_HOME}/plugin/hive-hadoop2/`
 (this directory may differ across versions) on all Trino servers. Restart the Trino workers and
 coordinator:

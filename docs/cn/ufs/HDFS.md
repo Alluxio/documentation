@@ -25,7 +25,7 @@ $ mvn install -Pufs-hadoop-3 -Dhadoop.version=3.1.0 -DskipTests
 
 如果想获取更多的版本支持，请访问[编译Alluxio主分支](Building-Alluxio-From-Source.html#distro-support)。
 
-如果一切顺利，你将在`${ALLUXIO_HOME}/assembly/server/target`目录下看到创建的`alluxio-assembly-server-{{site.ALLUXIO_VERSION_STRING}}-jar-with-dependencies.jar`文件
+如果一切顺利，你将在`${ALLUXIO_HOME}/assembly/server/target`目录下看到创建的`alluxio-assembly-server-2.9.5-jar-with-dependencies.jar`文件
 
 你需要通过修改`conf/alluxio-site.properties`来配置Alluxio使用底层存储系统，如果该配置文件不存在，则根据模版创建一个配置文件
 

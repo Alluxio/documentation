@@ -94,7 +94,7 @@ $ ./bin/alluxio-stop.sh local
 ## 编译选项
 
 ### 计算框架支持
-自Alluxio 1.7开始，编译后位于`{{site.ALLUXIO_CLIENT_JAR_PATH}}`的Alluxio客户端jar包将可适用于不同的计算框架（如：Spark、Flink，Presto等）。
+自Alluxio 1.7开始，编译后位于`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`的Alluxio客户端jar包将可适用于不同的计算框架（如：Spark、Flink，Presto等）。
 
 ### Hadoop发行版的支持
 
@@ -120,7 +120,7 @@ $ mvn clean install -pl underfs/hdfs/ \
 要启用`active sync`，请确保使用 `hdfsActiveSync` 属性来构建，
 请参考 [Active Sync for HDFS](../core-services/Unified-Namespace.md#hdfs元数据主动同步) 获得更多关于使用Active Sync的信息。
 
-如果你在`${ALLUXIO_HOME}/lib`目录中发现名为`alluxio-underfs-hdfs-<UFS_HADOOP_VERSION>-{{site.ALLUXIO_VERSION_STRING}}.jar`的jar，表明编译成功。
+如果你在`${ALLUXIO_HOME}/lib`目录中发现名为`alluxio-underfs-hdfs-<UFS_HADOOP_VERSION>-2.9.5.jar`的jar，表明编译成功。
 
 查看不同HDFS发行版的标志。
 <details><summary>Apache</summary>

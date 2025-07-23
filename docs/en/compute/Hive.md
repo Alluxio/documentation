@@ -12,7 +12,7 @@ that you can easily store Hive tables in Alluxio's tiered storage.
   before starting Hive. `$HIVE_HOME/bin/schematool -dbType derby -initSchema`
 * Alluxio has been [set up and is running](../deploy/Running-Alluxio-Locally.md).
 * Make sure that the Alluxio client jar is available.
-  This Alluxio client jar file can be found at `{{site.ALLUXIO_CLIENT_JAR_PATH}}` in the tarball
+  This Alluxio client jar file can be found at `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` in the tarball
   downloaded from Alluxio [download page](https://www.alluxio.io/download).
   Alternatively, advanced users can compile this client jar from the source code
   by following the [instructions](../contributor/Building-Alluxio-From-Source.md).
@@ -28,7 +28,7 @@ classpath so Hive can query and access data on Alluxio.
 Within Hive installation directory , set `HIVE_AUX_JARS_PATH` in `conf/hive-env.sh`:
 
 ```console
-$ export HIVE_AUX_JARS_PATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HIVE_AUX_JARS_PATH}
+$ export HIVE_AUX_JARS_PATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HIVE_AUX_JARS_PATH}
 ```
 
 ## Example: Create New Hive Tables in Alluxio

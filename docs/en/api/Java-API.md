@@ -43,7 +43,7 @@ include the artifact `alluxio-shaded-client` in your `pom.xml` like the followin
 <dependency>
   <groupId>org.alluxio</groupId>
   <artifactId>alluxio-shaded-client</artifactId>
-  <version>{{site.ALLUXIO_VERSION_STRING}}</version>
+  <version>2.9.5</version>
 </dependency>
 ```
 
@@ -61,16 +61,15 @@ They also both include in `alluxio-shaded-client` artifact.
 ### Alluxio Java API
 
 This section introduces the basic operations to use the Alluxio `FileSystem` interface.
-Read the [javadoc](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/file/FileSystem.html)
 for the complete list of API methods.
 All resources with the Alluxio Java API are specified through an
-[AlluxioURI](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/AlluxioURI.html)
+AlluxioURI
 which represents the path to the resource.
 
 #### Getting a File System Client
 
 To obtain an Alluxio File System client in Java code, use
-[`FileSystem.Factory#get()`](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/file/FileSystem.Factory.html#get--):
+`FileSystem.Factory#get()`:
 
 ```java
 FileSystem fs = FileSystem.Factory.get();
@@ -81,7 +80,7 @@ FileSystem fs = FileSystem.Factory.get();
 All metadata operations as well as opening a file for reading or creating a file for writing are
 executed through the `FileSystem` object. Since Alluxio files are immutable once written, the
 idiomatic way to create files is to use
-[`FileSystem#createFile(AlluxioURI)`](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/file/FileSystem.html#createFile-alluxio.AlluxioURI-),
+`FileSystem#createFile(AlluxioURI)`,
 which returns a stream object that can be used to write the file. For example:
 
 > Note: there are some file path name limitation when creating files through Alluxio. Please check [Alluxio limitations](../administration/Troubleshooting.md#file-path-limitations)
@@ -105,7 +104,7 @@ metadata (i.e. TTL or pin state) or getting an input stream to read the file.
 
 #### Reading Data
 
-Use [`FileSystem#openFile(AlluxioURI)`](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/file/FileSystem.html#openFile-alluxio.AlluxioURI-)
+Use `FileSystem#openFile(AlluxioURI)`
 to obtain a stream object that can be used to read a file. For example:
 
 ```java
@@ -246,7 +245,7 @@ Two configuration properties are available:
 
 The built-in policies include:
 
-* [LocalFirstPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/LocalFirstPolicy.html)
+* LocalFirstPolicy
 
   **This is the default policy.**
 
@@ -256,7 +255,7 @@ The built-in policies include:
 
   * If no worker meets capacity criteria, will randomly select a worker from the list of all workers.
 
-* [LocalFirstAvoidEvictionPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/LocalFirstAvoidEvictionPolicy.html)
+* LocalFirstAvoidEvictionPolicy
 
   This is the same as `LocalFirstPolicy` with the following addition:
 
@@ -266,26 +265,26 @@ The built-in policies include:
 
   * If no worker meets availability criteria, will randomly select a worker from the list of all workers.
 
-* [MostAvailableFirstPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/MostAvailableFirstPolicy.html)
+* MostAvailableFirstPolicy
 
   > A policy that returns the worker with the most available bytes.
 
   * If no worker meets availability criteria, will randomly select a worker from the list of all workers.
 
-* [RoundRobinPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/RoundRobinPolicy.html)
+* RoundRobinPolicy
 
   > A policy that chooses the worker for the next block in a round-robin manner
   > and skips workers that do not have enough space.
 
   * If no worker meets availability criteria, will randomly select a worker from the list of all workers.
 
-* [SpecificHostPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/SpecificHostPolicy.html)
+* SpecificHostPolicy
 
   > Always returns a worker with the hostname specified by property `alluxio.worker.hostname`.
 
   * If no value is set, will randomly select a worker from the list of all workers.
 
-* [DeterministicHashPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/DeterministicHashPolicy.html)
+* DeterministicHashPolicy
 
   > This policy maps the blockId to several deterministic Alluxio workers. The number of workers a block
   > can be mapped to can be specified by `alluxio.user.ufs.block.read.location.policy.deterministic.hash.shards`.
@@ -301,7 +300,7 @@ The built-in policies include:
   > Note that the hash function relies on the number of workers in the cluster, so if the number of
   > workers changes, the workers chosen by the policy for a given block will likely change.
 
-* [CapacityBaseRandomPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/CapacityBaseRandomPolicy.html)
+* CapacityBaseRandomPolicy
 
   > This policy chooses a worker with a probability equal to the worker's normalized capacity, 
   > i.e. the ratio of its capacity over the total capacity of all workers. It randomly distributes
@@ -320,7 +319,7 @@ The built-in policies include:
   > filled up and have availability close to 0, which would cause this policy to degrade to a
   > uniformly distributed random policy.
 
-* [CapacityBasedDeterministicHashPolicy](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/block/policy/CapacityBasedDeterministicHashPolicy.html)
+* CapacityBasedDeterministicHashPolicy
 
   > This policy is a combination of DeterministicHashPolicy and CapacityBaseRandomPolicy.
   > It ensures each block is always assigned to the same set of workers. Additionally, provided 
@@ -351,13 +350,8 @@ blocks to the highest tier.
 By default, data is written to the top tier. Users can modify the default setting through the
 `alluxio.user.file.write.tier.default` [property](../reference/Properties-List.md#user-configuration)
 or override it through an option to the 
-[`FileSystem#createFile(AlluxioURI, CreateFilePOptions)`](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/client/file/FileSystem.html#createFile-alluxio.AlluxioURI-alluxio.grpc.CreateFilePOptions-)
+`FileSystem#createFile(AlluxioURI, CreateFilePOptions)`
 API call.
-
-#### Javadoc
-
-For additional API information, please refer to the
-[Alluxio javadocs](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/index.html).
 
 ### Hadoop-Compatible Java Client
 
@@ -366,8 +360,6 @@ On top of the [Alluxio file system](#java-client), Alluxio also has a convenienc
 [Hadoop compatible `FileSystem` interface](https://cwiki.apache.org/confluence/display/HADOOP2/HCFS).
 This client translates Hadoop file operations to Alluxio file system operations,
 allowing users to reuse existing code written for Hadoop without modification.
-Read its [javadoc](https://docs.alluxio.io/os/javadoc/{{site.ALLUXIO_MAJOR_VERSION}}/alluxio/hadoop/FileSystem.html)
-for more details.
 
 #### Example
 

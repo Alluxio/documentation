@@ -316,7 +316,7 @@ RAMFS的size具体大小，应视机器配置和训练任务需求而定。
 
 #### 设置底层文件系统
 
-集群使用[Aliyun OSS](https://cn.aliyun.com/product/oss)作为Alluxio的底层文件系统，详细配置过程参见[在OSS上配置Alluxio](https://docs.alluxio.io/os/user/stable/cn/ufs/OSS.html)。
+集群使用[Aliyun OSS](https://cn.aliyun.com/product/oss)作为Alluxio的底层文件系统，详细配置过程参见[在OSS上配置Alluxio](../ufs/OSS.md)。
 
 #### 下载helm-chart
 
@@ -501,7 +501,7 @@ fuse:
 
 ## 参考文献
 
-[1] alluxio: Alluxio概览, https://docs.alluxio.io/os/user/stable/cn/Overview.html.
+[1] alluxio: Alluxio概览, https://documentation.alluxio.io/os-cn.
 
 [2] wikipedia: FUSE, https://zh.wikipedia.org/wiki/FUSE.
 

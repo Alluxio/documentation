@@ -6,7 +6,7 @@ Alluxio可以在Kubernetes上运行。本指南演示了如何使用Docker映像
 
 一个Kubernetes集群(版本> = 1.8)。在默认规范下，Alluxio workers可以通过设置`sizeLimit`参数来决定`emptyDir`卷的大小。这是Kubernetes 1.8版本中的一个Alpha特性。在使用前请确保此功能已启用。
 
-一个Alluxio Docker镜像[alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}/)。如果使用私有Docker注册表，请参阅Kubernetes [documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)。
+一个Alluxio Docker镜像[alluxio/alluxio](https://hub.docker.com/r/alluxio/alluxio/)。如果使用私有Docker注册表，请参阅Kubernetes [documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/)。
 确保[Kubernetes网络策略](https://kubernetes.io/docs/concepts/services-networking/network-policies/)允许应用程序(Alluxio客户端)和Alluxio Pods之间在已定义端口上的连接。
 
 ## 基本设置
@@ -21,7 +21,7 @@ Alluxio可以在Kubernetes上运行。本指南演示了如何使用Docker映像
 如果使用私有`helm` 仓库或使用原生Kubernetes规范，从Docker镜像中提取部署Alluxio所需的Kubernetes规范。
 
 ```console
-$ id=$(docker create alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:{{site.ALLUXIO_VERSION_STRING}})
+$ id=$(docker create alluxio/alluxio:2.9.5)
 $ docker cp $id:/opt/alluxio/integration/kubernetes/ - > kubernetes.tar
 $ docker rm -v $id 1>/dev/null
 $ tar -xvf kubernetes.tar
@@ -86,7 +86,7 @@ A.安装Helm
 B.必须有包括Alluxio helm chart的helm repro
 
 ```console
-$ helm repo add alluxio-charts https://alluxio-charts.storage.googleapis.com/openSource/{{site.ALLUXIO_VERSION_STRING}}
+$ helm repo add alluxio-charts https://alluxio-charts.storage.googleapis.com/openSource/2.9.5
 ```
  
 #### 配置
@@ -561,7 +561,7 @@ $ kubectl delete configmap alluxio-config
 您可以手动添加一个`initContainer`以便在Pod创建时格式化日志。`initContainer`将在创建Pod时运行`alluxio formatJournal`并格式化日志。
 ```yaml
 - name: journal-format
-  image: alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:{{site.ALLUXIO_VERSION_STRING}}
+  image: alluxio/alluxio:2.9.5
   imagePullPolicy: IfNotPresent
   securityContext:
     runAsUser: 1000
@@ -581,7 +581,7 @@ $ kubectl delete configmap alluxio-config
 **步骤1:升级docker镜像版本标签**
 
 每个Alluxio版本发布都会有相对应的docker镜像发布在
-[dockerhub](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}})。
+[dockerhub](https://hub.docker.com/r/alluxio/alluxio)。
 
 你应该更新所有Alluxio容器的`image`字段使用目标版本标签。标签`latest`将指向最新的稳定版本。
 
@@ -590,11 +590,11 @@ $ kubectl delete configmap alluxio-config
 ```yaml
 containers:
 - name: alluxio-master
-  image: alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:latest
+  image: alluxio/alluxio:latest
   imagePullPolicy: IfNotPresent
   ...
 - name: alluxio-job-master
-  image: alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:latest
+  image: alluxio/alluxio:latest
   imagePullPolicy: IfNotPresent
   ...
 ```
@@ -723,7 +723,7 @@ $ kubectl create -f alluxio-fuse.yaml
 注:
 运行Alluxio FUSE守护程序容器必须有`SYS_ADMIN`能力和`securityContext.privileged = TRUE`。需要Alluxio访问权限的应用程序容器不需要此特权。
 需要基于`ubuntu`而不是`alpine`的Docker镜像来运行FUSE守护程序。
-[alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}-fuse](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}-fuse/)应用程序容器可以在任何Docker镜像上运行。
+[alluxio/alluxio-fuse](https://hub.docker.com/r/alluxio/alluxio-fuse/)应用程序容器可以在任何Docker镜像上运行。
 
 验证一个容器可以不需要任何定制二进制代码或能力使用`hostPath`挂载到路径`/alluxio-fuse`的方式简单地挂载Alluxio FileSystem:
 

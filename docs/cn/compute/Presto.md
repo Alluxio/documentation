@@ -12,7 +12,7 @@
   本指南基于`presto-0.208`测试。
 * 已经安装并运行 Alluxio。
 * 确保 Alluxio 客户端 jar 包是可用的。
-  在从 Alluxio [下载页面](http://www.alluxio.io/download)下载的压缩包的`{{site.ALLUXIO_CLIENT_JAR_PATH}}`中，可以找到 Alluxio 客户端 jar 包。
+  在从 Alluxio [下载页面](http://www.alluxio.io/download)下载的压缩包的`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`中，可以找到 Alluxio 客户端 jar 包。
 * 确保 Hive metastore 正在运行以提供 Hive 表的元数据信息。
 
 ## 基础设置
@@ -29,7 +29,7 @@ hive.metastore.uri=thrift://localhost:9083
 
 ### 分发 Alluxio 客户端 jar 包给所有 Presto 服务器
 
-把 Alluxio 客户端 jar 包`{{site.ALLUXIO_CLIENT_JAR_PATH}}` 放到所有 Presto 服务器的`${PRESTO_HOME}/plugin/hive-hadoop2/`目录（该目录可能会因版本而不同）中。重启 Presto 服务：
+把 Alluxio 客户端 jar 包`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` 放到所有 Presto 服务器的`${PRESTO_HOME}/plugin/hive-hadoop2/`目录（该目录可能会因版本而不同）中。重启 Presto 服务：
 
 ```console
 $ ${PRESTO_HOME}/bin/launcher restart

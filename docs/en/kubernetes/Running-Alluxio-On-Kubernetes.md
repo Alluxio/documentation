@@ -13,7 +13,7 @@ on Kubernetes using the specification included in the Alluxio Docker image or `h
   Kubernetes version 1.11+.
   - Beta feature gates are [enabled by default](https://kubernetes.io/docs/reference/command-line-tools-reference/feature-gates/#feature-stages)
   for Kubernetes cluster installations
-- Cluster access to an Alluxio Docker image [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}/).
+- Cluster access to an Alluxio Docker image [alluxio/alluxio](https://hub.docker.com/r/alluxio/alluxio/).
 If using a private Docker registry, refer to the Kubernetes private image registry
 [documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/).
 - Ensure the cluster's [Kubernetes Network Policy](https://kubernetes.io/docs/concepts/services-networking/network-policies/)
@@ -38,7 +38,7 @@ The Alluxio Helm chart source code is located [here](https://github.com/Alluxio/
 Alternatively, you can extract the Helm chart directory from the Alluxio Docker image:
 
 ```console
-$ id=$(docker create alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:{{site.ALLUXIO_VERSION_STRING}})
+$ id=$(docker create alluxio/alluxio:2.9.5)
 $ docker cp $id:/opt/alluxio/integration/kubernetes/ - > kubernetes.tar
 $ docker rm -v $id 1>/dev/null
 $ tar -xvf kubernetes.tar
@@ -109,7 +109,7 @@ You can install helm following instructions [here](https://helm.sh/docs/intro/in
 B. A helm repo with the Alluxio helm chart must be available.
 
 ```console
-$ helm repo add alluxio-charts https://alluxio-charts.storage.googleapis.com/openSource/{{site.ALLUXIO_VERSION_STRING}}
+$ helm repo add alluxio-charts https://alluxio-charts.storage.googleapis.com/openSource/2.9.5
 ```
 
 #### Configuration
@@ -543,7 +543,7 @@ First, extract the pre-templated Kubernetes specification YAMLs
 from the Alluxio docker image:
 
 ```console
-$ id=$(docker create alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:{{site.ALLUXIO_VERSION_STRING}})
+$ id=$(docker create alluxio/alluxio:2.9.5)
 $ docker cp $id:/opt/alluxio/integration/kubernetes/ - > kubernetes.tar
 $ docker rm -v $id 1>/dev/null
 $ tar -xvf kubernetes.tar
@@ -693,7 +693,7 @@ This `initContainer` will run `alluxio formatJournal` when the Pod is created an
 
 ```yaml
 - name: journal-format
-  image: alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:{{site.ALLUXIO_VERSION_STRING}}
+  image: alluxio/alluxio:2.9.5
   imagePullPolicy: IfNotPresent
   securityContext:
     runAsUser: 1000
@@ -723,7 +723,7 @@ This section will go over how to upgrade Alluxio in your Kubernetes cluster with
 **Step 1: Upgrade the docker image version tag**
 
 Each released Alluxio version will have the corresponding docker image released on
-[dockerhub](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}).
+[dockerhub](https://hub.docker.com/r/alluxio/alluxio).
 
 You should update the `image` field of all the Alluxio containers to use the target version tag.
 Tag `latest` will point to the latest stable version.
@@ -734,11 +734,11 @@ below:
 ```yaml
 containers:
 - name: alluxio-master
-  image: alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:latest
+  image: alluxio/alluxio:latest
   imagePullPolicy: IfNotPresent
   ...
 - name: alluxio-job-master
-  image: alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}:latest
+  image: alluxio/alluxio:latest
   imagePullPolicy: IfNotPresent
   ...
 ```
@@ -1878,7 +1878,7 @@ spec:
     spec:
       containers:
       - name: alluxio-master
-        image: private-registry/{{site.ALLUXIO_DOCKER_IMAGE}}:{{site.ALLUXIO_VERSION_STRING}}
+        image: private-registry/alluxio:2.9.5
       imagePullSecrets:
       - name: ecr
       - name: dev

@@ -16,7 +16,7 @@ EOF
 )
 
 function update_string() {
-    find "${1}" -name '*.md' | xargs -t -n 1 perl -pi -e "s/\Q${2}\E/${3}/g"
+    find "${1}" -name '*.md' | xargs -t -n 1 perl -pi -e "s#\Q${2}\E#${3}#g"
 }
 
 

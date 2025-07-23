@@ -46,7 +46,7 @@ Delimit multiple properties with a semicolon (`;`).
 Example 1: use google cloud storage bucket as Alluxio root UFS
 ```console
 $ gcloud dataproc clusters create <cluster_name> \
---initialization-actions gs://alluxio-public/dataproc/{{site.ALLUXIO_VERSION_STRING}}/alluxio-dataproc.sh \
+--initialization-actions gs://alluxio-public/dataproc/2.9.5/alluxio-dataproc.sh \
 --metadata \
 alluxio_root_ufs_uri=gs://<my_bucket>,\
 alluxio_site_properties="fs.gcs.accessKeyId=<my_access_key>;fs.gcs.secretAccessKey=<my_secret_key>"
@@ -55,7 +55,7 @@ alluxio_site_properties="fs.gcs.accessKeyId=<my_access_key>;fs.gcs.secretAccessK
 Example 2: use Dataproc internal HDFS as Alluxio root UFS
 ```console
 $ gcloud dataproc clusters create <cluster_name> \
---initialization-actions gs://alluxio-public/dataproc/{{site.ALLUXIO_VERSION_STRING}}/alluxio-dataproc.sh \
+--initialization-actions gs://alluxio-public/dataproc/2.9.5/alluxio-dataproc.sh \
 --metadata \
 alluxio_root_ufs_uri="LOCAL",\
 alluxio_hdfs_version="2.9",\

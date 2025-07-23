@@ -63,7 +63,7 @@ $ ./bin/alluxio-stop.sh all
 ```
 3. 更新所有应用程序的 Alluxio 客户端 jar 路径。例如`Yarn`, `Spark`, `Hive` 和 `Presto`，在 Cloudera Manager 的 "YARN (包括MR2)" 部分，在 "Configuration" 选项卡中，搜索参数 "Gateway Client Environment Advanced Configuration Snippet (Safety Valve) for hadoop-env.sh"。然后将以下行添加到脚本中：
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
 如下所示：
    <figure><img src="../.gitbook/assets/screenshot_cdh_compute_hadoop_classpath.png" alt=""><figcaption></figcaption></figure>

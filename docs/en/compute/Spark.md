@@ -31,7 +31,7 @@ To access data from any number of those systems is orthogonal to the focus of
 this guide but covered by
 [Unified and Transparent Namespace](../core-services/Unified-Namespace.md).
 * Make sure that the Alluxio client jar is available.
-This Alluxio client jar file can be found at `{{site.ALLUXIO_CLIENT_JAR_PATH}}`
+This Alluxio client jar file can be found at `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`
 in the tarball distribution downloaded from Alluxio
 [download page](https://www.alluxio.io/download).
 Alternatively, advanced users can compile this client jar from the source code
@@ -41,7 +41,7 @@ by following the [instructions](../contributor/Building-Alluxio-From-Source.md).
 
 The Alluxio client jar must be distributed across the all nodes where Spark drivers
 or executors are running.
-Place the client jar on the same local path (e.g. `{{site.ALLUXIO_CLIENT_JAR_PATH}}`) on each node.
+Place the client jar on the same local path (e.g. `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`) on each node.
 
 The Alluxio client jar must be in the classpath of all Spark drivers and executors
 in order for Spark applications to access Alluxio.
@@ -49,8 +49,8 @@ Add the following line to `spark/conf/spark-defaults.conf` on every node running
 Also, make sure the client jar is copied to **every node running Spark**.
 
 ```
-spark.driver.extraClassPath   {{site.ALLUXIO_CLIENT_JAR_PATH}}
-spark.executor.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
+spark.driver.extraClassPath   /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
+spark.executor.extraClassPath /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 
 ## Examples: Use Alluxio as Input and Output

@@ -33,11 +33,11 @@
 接着，你可以用如下命令解压下载包。
 
 ```console
-$ tar -xzf alluxio-{{site.ALLUXIO_VERSION_STRING}}-bin.tar.gz
-$ cd alluxio-{{site.ALLUXIO_VERSION_STRING}}
+$ tar -xzf alluxio-2.9.5-bin.tar.gz
+$ cd alluxio-2.9.5
 ```
 
-这会创建一个包含所有的 Alluxio 源文件和 Java 二进制文件的文件夹`alluxio-{{site.ALLUXIO_VERSION_STRING}}`。在本教程中，这个文件夹的路径将被引用为`${ALLUXIO_HOME}`。
+这会创建一个包含所有的 Alluxio 源文件和 Java 二进制文件的文件夹`alluxio-2.9.5`。在本教程中，这个文件夹的路径将被引用为`${ALLUXIO_HOME}`。
 
 ## 配置 Alluxio
 

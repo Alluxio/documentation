@@ -14,7 +14,7 @@ Presto 在 0.256 版本中新增了对 [Iceberg 表](https://iceberg.apache.org/
 
 ### 在 Presto 连接器上安装 Alluxio client jar
 
-将位于 `{{site.ALLUXIO_CLIENT_JAR_PATH}}` 的 Alluxio client jar 复制到位于  `${PRESTO_HOME}/plugin/iceberg/` 的 Presto Iceberg 连接器路径中， 然后重启 Presto 服务器：
+将位于 `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` 的 Alluxio client jar 复制到位于  `${PRESTO_HOME}/plugin/iceberg/` 的 Presto Iceberg 连接器路径中， 然后重启 Presto 服务器：
 
 ```console
 $ ${PRESTO_HOME}/bin/launcher restart

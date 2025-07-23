@@ -12,12 +12,12 @@
 
 ## 配置Hive
 
-我们建议您从Alluxio[下载页面](http://www.alluxio.io/download)下载压缩包。或者，高级用户可以选择按照[这里](../contributor/Building-Alluxio-From-Source.md#计算框架支持)的说明来从源码编译这个客户端jar。Alluxio客户端jar可以在`{{site.ALLUXIO_CLIENT_JAR_PATH}}`找到。
+我们建议您从Alluxio[下载页面](http://www.alluxio.io/download)下载压缩包。或者，高级用户可以选择按照[这里](../contributor/Building-Alluxio-From-Source.md#计算框架支持)的说明来从源码编译这个客户端jar。Alluxio客户端jar可以在`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`找到。
 
 在shell或`conf/hive-env.sh`中设置`HIVE_AUX_JARS_PATH`：
 
 ```console
-$ export HIVE_AUX_JARS_PATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HIVE_AUX_JARS_PATH}
+$ export HIVE_AUX_JARS_PATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HIVE_AUX_JARS_PATH}
 ```
 
 
@@ -227,7 +227,7 @@ OVERWRITE INTO TABLE u_user;
 
 在浏览器中输入`http://master_hostname:port`以访问Alluxio Web UI，你可以看到相应文件夹以及Hive创建的文件：
 
-![HiveTableInAlluxio]({{ site.baseurl }}/img/screenshot_hive_table_in_alluxio.png)
+![HiveTableInAlluxio](../.gitbook/assets/screenshot_hive_table_in_alluxio.png)
 
 ```
 hive> select * from u_user;
@@ -235,4 +235,4 @@ hive> select * from u_user;
 
 你可以在命令行中看到相应查询结果：
 
-![HiveQueryResult]({{ site.baseurl }}/img/screenshot_hive_query_result.png)
+![HiveQueryResult](../.gitbook/assets/screenshot_hive_query_result.png)

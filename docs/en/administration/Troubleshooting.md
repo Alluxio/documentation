@@ -396,25 +396,25 @@ properties on all nodes running this framework. Here are some examples:
 - For MapReduce jobs, you can append the client jar to `$HADOOP_CLASSPATH`:
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
 See [MapReduce on Alluxio](../compute/Hadoop-MapReduce.md) for more details.
 
 - For Spark jobs, you can append the client jar to `$SPARK_CLASSPATH`:
 
 ```console
-$ export SPARK_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${SPARK_CLASSPATH}
+$ export SPARK_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${SPARK_CLASSPATH}
 ```
 See [Spark on Alluxio](../compute/Spark.md) for more details.
 
 Alternatively, add the following lines to `spark/conf/spark-defaults.conf`:
 
 ```
-spark.driver.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
-spark.executor.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
+spark.driver.extraClassPath /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
+spark.executor.extraClassPath /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 
-- For Presto, put Alluxio client jar `{{site.ALLUXIO_CLIENT_JAR_PATH}}` into the directory
+- For Presto, put Alluxio client jar `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` into the directory
 `${PRESTO_HOME}/plugin/hive-hadoop2/`
 Since Presto has long running processes, ensure they are restarted after the jar has been added.
 See [Presto on Alluxio](../compute/Presto.md) for more details.
@@ -422,7 +422,7 @@ See [Presto on Alluxio](../compute/Presto.md) for more details.
 - For Hive, set `HIVE_AUX_JARS_PATH` in `conf/hive-env.sh`:
 
 ```console
-$ export HIVE_AUX_JARS_PATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HIVE_AUX_JARS_PATH}
+$ export HIVE_AUX_JARS_PATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HIVE_AUX_JARS_PATH}
 ```
 Since Hive has long running processes, ensure they are restarted after the jar has been added.
 
@@ -430,7 +430,7 @@ If the corresponding classpath has been set but exceptions still exist, users ca
 whether the path is valid by:
 
 ```console
-$ ls {{site.ALLUXIO_CLIENT_JAR_PATH}}
+$ ls /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 See [Hive on Alluxio](../compute/Hive.md) for more details.
 

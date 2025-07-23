@@ -107,9 +107,9 @@ The spark docker image is the image we used when submitting the Spark task.
 This image needs to include the Alluxio client jar package. 
 You can obtain the Alluxio client jar package as follows:
 ```console
-$ id=$(docker create alluxio/alluxio:{{site.ALLUXIO_VERSION_STRING}})
-$ docker cp $id:/opt/alluxio/client/alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar \
-	$SPARK_HOME/jars/alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar
+$ id=$(docker create alluxio/alluxio:2.9.5)
+$ docker cp $id:/opt/alluxio/client/alluxio-2.9.5-client.jar \
+	$SPARK_HOME/jars/alluxio-2.9.5-client.jar
 $ docker rm -v $id 1>/dev/null
 ```
 
@@ -130,7 +130,7 @@ After the image is built, there are two ways to distribute the image:
 As mentioned at the beginning: In this experiment we will submit a Spark job to K8s. 
 The Spark job will perform a word count calculation on a certain file. 
 Before we kick off the Spark job, we need to upload the file to the Alluxio storage. 
-Here, for convenience, we directly upload the file `/opt/alluxio-{{site.ALLUXIO_VERSION_STRING}}/LICENSE` from the Alluxio master node (the file path may be slightly different due to the Alluxio version) 
+Here, for convenience, we directly upload the file `/opt/alluxio-2.9.5/LICENSE` from the Alluxio master node (the file path may be slightly different due to the Alluxio version) 
 to the Alluxio namespace.
 
 Use `kubectl exec` to enter the Alluxio master pod, and upload the `LICENSE` file from the current directory to the root directory in Alluxio:

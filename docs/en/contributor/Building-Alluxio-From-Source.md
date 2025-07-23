@@ -112,7 +112,7 @@ $ ./bin/alluxio-stop.sh local
 ### Compute Framework Support
 
 Since Alluxio 1.7, Alluxio client jar built and located at
-`{{site.ALLUXIO_CLIENT_JAR_PATH}}` will work with different compute frameworks
+`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` will work with different compute frameworks
 (e.g., Spark, Flink, Presto and etc) by default.
 
 ### Build different HDFS under storage
@@ -143,7 +143,7 @@ To enable active sync be sure to build using the `hdfsActiveSync` property.
 Please visit [Active Sync for HDFS](../core-services/Unified-Namespace.md#active-sync-for-hdfs)
 for more information on using active sync.
 
-If you find a jar named `alluxio-underfs-hdfs-<UFS_HADOOP_VERSION>-{{site.ALLUXIO_VERSION_STRING}}.jar` under `${ALLUXIO_HOME}/lib`, it indicates successful compilation.
+If you find a jar named `alluxio-underfs-hdfs-<UFS_HADOOP_VERSION>-2.9.5.jar` under `${ALLUXIO_HOME}/lib`, it indicates successful compilation.
 
 Checkout the flags for different HDFS distributions.
 

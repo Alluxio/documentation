@@ -68,7 +68,7 @@ $ ./bin/alluxio-stop.sh all
 ```
 3. Update the Alluxio client jar path for all your applications. For example, `Yarn`, `Spark`, `Hive` and `Presto`. eg., In the "YARN (MR2 Included)" section of the Cloudera Manager, in the "Configuration" tab, search for the parameter "Gateway Client Environment Advanced Configuration Snippet (Safety Valve) for hadoop-env.sh". Then add the following line to the script:
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
    It should look like:
    <figure><img src="../.gitbook/assets/screenshot_cdh_compute_hadoop_classpath.png" alt=""><figcaption></figcaption></figure>

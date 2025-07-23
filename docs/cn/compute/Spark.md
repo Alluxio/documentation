@@ -20,18 +20,18 @@ Spark 1.1 或更高版本的 Spark 应用程序可以通过其与 HDFS 兼容的
   从任意数量的这些系统中访问数据与本指南的重点是垂直的，
   [统一命名空间文档](../core-services/Unified-Namespace.md)介绍了相关内容。
 * 确保 Alluxio 客户端 jar 包是可用的。
-  在从 Alluxio [下载页面](http://www.alluxio.io/download)下载的压缩包的`{{site.ALLUXIO_CLIENT_JAR_PATH}}`中，可以找到 Alluxio 客户端 jar 包。
+  在从 Alluxio [下载页面](http://www.alluxio.io/download)下载的压缩包的`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`中，可以找到 Alluxio 客户端 jar 包。
   高级用户也可以从源代码编译该客户端 jar 包，可以参考[从源代码构建 Alluxio 的步骤](../contributor/Building-Alluxio-From-Source.md)。
 
 ## 基础设置
 
-将 Alluxio客户端 jar 包分发在运行 Spark driver 或 executor 的节点上。具体地说，将客户端 jar 包放在每个节点上的同一本地路径（例如`{{site.ALLUXIO_CLIENT_JAR_PATH}}`）。
+将 Alluxio客户端 jar 包分发在运行 Spark driver 或 executor 的节点上。具体地说，将客户端 jar 包放在每个节点上的同一本地路径（例如`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`）。
 
 将 Alluxio 客户端 jar 包添加到 Spark driver 和 executor 的 classpath 中，以便 Spark 应用程序能够使用客户端 jar 包在 Alluxio 中读取和写入文件。具体来说，在运行 Spark 的每个节点上，将以下几行添加到`spark/conf/spark-defaults.conf`中。
 
 ```
-spark.driver.extraClassPath   {{site.ALLUXIO_CLIENT_JAR_PATH}}
-spark.executor.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
+spark.driver.extraClassPath   /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
+spark.executor.extraClassPath /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 
 ## 示例：使用 Alluxio 作为输入和输出

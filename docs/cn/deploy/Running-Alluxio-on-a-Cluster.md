@@ -11,7 +11,7 @@
 * 要部署Alluxio群集，首先[下载](https://www.alluxio.io/download/) 预编译的Alluxio二进制文件，使用以下命令解压缩tarball，并将解压的目录复制到所有节点（包括运行master和worker的所有节点）
 
 ```console
-$ tar -xvzpf alluxio-{{site.ALLUXIO_VERSION_STRING}}-bin.tar.gz
+$ tar -xvzpf alluxio-2.9.5-bin.tar.gz
 ```
 
 *设置不需要密码的从master节点到worker节点的SSH登录。 

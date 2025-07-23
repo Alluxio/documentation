@@ -39,9 +39,9 @@ $ cd spark-2.4.4-bin-hadoop2.7
 Extract the Alluxio client jar from the Alluxio Docker image:
 
 ```console
-$ id=$(docker create alluxio/alluxio:{{site.ALLUXIO_VERSION_STRING}})
-$ docker cp $id:/opt/alluxio/client/alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar \
-  - > alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar
+$ id=$(docker create alluxio/alluxio:2.9.5)
+$ docker cp $id:/opt/alluxio/client/alluxio-2.9.5-client.jar \
+  - > alluxio-2.9.5-client.jar
 $ docker rm -v $id 1>/dev/null
 ```
 
@@ -49,7 +49,7 @@ Add the required Alluxio client jar and build a Docker image used for the Spark 
 pods. Run the following from the Spark distribution directory to add the Alluxio client jar.
 
 ```console
-$ cp <path_to_alluxio_client>/alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar jars/
+$ cp <path_to_alluxio_client>/alluxio-2.9.5-client.jar jars/
 ```
 > Note: Any jar copied to the `jars` directory is included in the Spark Docker image when built.
 

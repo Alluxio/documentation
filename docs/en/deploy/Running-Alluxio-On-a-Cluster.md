@@ -18,7 +18,7 @@ To deploy Alluxio in production, we highly recommend running Alluxio masters in
   directory to all nodes (including nodes running masters and workers).
   
   ```console
-  $ tar -xvzpf alluxio-{{site.ALLUXIO_VERSION_STRING}}-bin.tar.gz
+  $ tar -xvzpf alluxio-2.9.5-bin.tar.gz
   ```
   
 * Enable SSH login without password from the master node to worker nodes and from the master node to itself.
@@ -86,11 +86,11 @@ $ ./bin/alluxio copyDir conf/
 Once this command succeeds, all the Alluxio nodes will be correctly configured.
 
 This is the minimal configuration to start Alluxio. Additional configuration properties
-may be set as needed. See the [configuration properties reference](https://docs.alluxio.io/os/user/stable/en/reference/Properties-List.html)
+may be set as needed. See the [configuration properties reference](../reference/Properties-List.md)
 for more details.
 
 - You may need to set additional properties to enable Alluxio to access
-  the configured under storage (eg., [AWS S3 configuration](https://docs.alluxio.io/os/user/stable/en/overview/Getting-Started.html#bonus-configuration-for-aws))
+  the configured under storage (eg., [AWS S3 configuration](../overview/Getting-Started.md#bonus-configuration-for-aws))
 
 ## Start an Alluxio Cluster
 

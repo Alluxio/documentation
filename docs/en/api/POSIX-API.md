@@ -647,7 +647,7 @@ A special mount option is the `max_idle_threads=N` which defines the maximum num
 If the value is too small, FUSE may frequently create and destroy threads which will introduce extra performance overhead.
 Note that, libfuse introduce this mount option in 3.2 while Alluxio FUSE supports libfuse 2.9.X which does not have this mount option.
 
-The Alluxio docker image [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}/)
+The Alluxio docker image [alluxio/alluxio](https://hub.docker.com/r/alluxio/alluxio/)
 enables this property by modifying the [libfuse source code](https://github.com/Alluxio/libfuse/tree/fuse_2_9_5_customize_multi_threads).
 
 In alluxio docker image, the default value for `MAX_IDLE_THREADS` is 64. If you want to use another value in your container,
@@ -656,7 +656,7 @@ you could set it via environment variable at container start time:
 $ docker run -d --rm \
     ...
     --env MAX_IDLE_THREADS=128 \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} fuse
+    alluxio/alluxio fuse
 ```
 </details>
 <details><summary>Example: <code>allow_other</code> and <code>allow_root</code></summary>

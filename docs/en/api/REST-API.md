@@ -12,7 +12,7 @@ For portability with other language, the [Alluxio Java API](../api/Java-API.md))
 accessible via an HTTP proxy in the form of a REST API. Alluxio's Python and Go clients rely on 
 this REST API to talk to Alluxio.
 
-The [REST API documentation](https://docs.alluxio.io/os/restdoc/{{site.ALLUXIO_MAJOR_VERSION}}/proxy/index.html)
+The REST API documentation
 is generated as part of the Alluxio build and accessible through
 `${ALLUXIO_HOME}/core/server/proxy/target/miredot/index.html`. The main difference between
 the REST API and the Alluxio Java API is in how streams are represented. While the Alluxio Java API

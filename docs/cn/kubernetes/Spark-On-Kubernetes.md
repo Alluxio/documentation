@@ -29,16 +29,16 @@ $ cd spark-2.4.4-bin-hadoop2.7
 解压Alluxio Docker镜像中的Alluxio client：
 
 ```console
-$ id=$(docker create alluxio/alluxio:{{site.ALLUXIO_VERSION_STRING}})
-$ docker cp $id:/opt/alluxio/client/alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar \
-  - > alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar
+$ id=$(docker create alluxio/alluxio:2.9.5)
+$ docker cp $id:/opt/alluxio/client/alluxio-2.9.5-client.jar \
+  - > alluxio-2.9.5-client.jar
 $ docker rm -v $id 1>/dev/null
 ```
 
 添加所需的Alluxio client jar并构建用于Spark driver和executor pod的Docker镜像。从Spark发行版目录运行以下命令，从而添加Alluxio client jar。
 
 ```console
-$ cp <path_to_alluxio_client>/alluxio-{{site.ALLUXIO_VERSION_STRING}}-client.jar jars/
+$ cp <path_to_alluxio_client>/alluxio-2.9.5-client.jar jars/
 ```
 > 注：任何拷贝到jars目录的jar 文件在构建时都包含在Spark Docker镜像中。
 

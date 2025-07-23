@@ -22,7 +22,7 @@ covers the specific instructions for working with Iceberg tables.
 
 ### Install Alluxio client jar to Presto Iceberg connector
 
-Copy the Alluxio client jar located at `{{site.ALLUXIO_CLIENT_JAR_PATH}}` into Presto Iceberg 
+Copy the Alluxio client jar located at `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` into Presto Iceberg 
 connector's directory located at `${PRESTO_HOME}/plugin/iceberg/`. Then restart the Presto server:
 
 ```console

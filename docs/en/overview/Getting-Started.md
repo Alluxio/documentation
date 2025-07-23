@@ -32,11 +32,11 @@ desired release followed by the distribution built for default Hadoop.
 Unpack the downloaded file with the following commands.
 
 ```console
-$ tar -xzf alluxio-{{site.ALLUXIO_VERSION_STRING}}-bin.tar.gz
-$ cd alluxio-{{site.ALLUXIO_VERSION_STRING}}
+$ tar -xzf alluxio-2.9.5-bin.tar.gz
+$ cd alluxio-2.9.5
 ```
 
-This creates a directory `alluxio-{{site.ALLUXIO_VERSION_STRING}}` with all of the Alluxio
+This creates a directory `alluxio-2.9.5` with all of the Alluxio
 source files and Java binaries. Through this tutorial, the path of this directory will be referred
 to as `${ALLUXIO_HOME}`.
 
@@ -397,7 +397,7 @@ $ ./bin/alluxio format
 ```
 you might get the error message:
 ```
-alluxio-{{site.ALLUXIO_VERSION_STRING}}/bin/alluxio: Operation not permitted
+alluxio-2.9.5/bin/alluxio: Operation not permitted
 ```
 This can be caused by the newly added setting options to macOS. 
 To fix it, open `System Preferences` and open `Sharing`.

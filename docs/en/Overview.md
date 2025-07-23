@@ -22,10 +22,6 @@ Alluxio is one of the fastest growing open source projects that has attracted mo
 Today, Alluxio is deployed in production by [hundreds of organizations](https://www.alluxio.io/powered-by-alluxio)
 with the largest deployment exceeding 1,500 nodes.
 
-<p align="center">
-<img src="https://d39kqat1wpn1o5.cloudfront.net/app/uploads/2021/07/alluxio-overview-r071521.png" width="800" alt="Ecosystem"/>
-</p>
-
 ## Benefits
 
 Alluxio helps overcome the obstacles in extracting insight from data by simplifying how applications
@@ -82,13 +78,6 @@ To understand more details on Alluxio internals, please read
 To quickly get Alluxio up and running, take a look at our
 [Getting Started](overview/Getting-Started.md) page,
 which explains how to deploy Alluxio and run examples in a local environment.
-
-Also try our getting started tutorial for Presto & Alluxio via:
-
-<p align="center">
-<a href="https://www.alluxio.io/alluxio-presto-sandbox-docker/">
- <img src="https://www.alluxio.io/app/uploads/2019/07/laptop-docker.png" width="250" alt="Laptop with Docker"/></a>
-</p>
 
 ## Downloads and Useful Resources
 

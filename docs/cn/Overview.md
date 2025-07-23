@@ -27,10 +27,6 @@ Alluxio 是发展最快的开源大数据项目之一，已经吸引了超过 30
 
 到今天为止，Alluxio 已经在[数百家机构](https://www.alluxio.io/powered-by-alluxio)的生产中进行了部署，最大部署运行的集群规模超过 1500 个节点。
 
-<p align="center">
-<img src="https://d39kqat1wpn1o5.cloudfront.net/app/uploads/2021/07/alluxio-overview-r071521.png" width="800" alt="Ecosystem"/>
-</p>
-
 ## 优势
 
 通过简化应用程序访问其数据的方式（无论数据是什么格式或位置），Alluxio 能够帮助克服从数据中提取信息所面临的困难。Alluxio 的优势包括：
@@ -54,12 +50,6 @@ Alluxio 将三个关键领域的创新结合在一起，提供了一套独特的
 ## 快速上手指南
 
 如果打算快速地搭建 Alluxio 并运行，请阅读[快速上手指南](overview/Getting-Started.md)页面，该页面描述了如何部署 Alluxio 并在本地环境下运行示例。
-
-或者，你也可以尝试我们为Presto & Alluxio制作好的快速上手教程，具体点击如下图片链接:
-<p align="center">
-<a href="https://www.alluxio.io/alluxio-presto-sandbox-docker/">
- <img src="https://www.alluxio.io/app/uploads/2019/07/laptop-docker.png" width="250" alt="Laptop with Docker"/></a>
-</p>
 
 ## 下载和有用资源
 

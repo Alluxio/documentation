@@ -41,18 +41,18 @@ Apache Flink可以通过通用文件系统包装类（可用于Hadoop文件系�
 
 ### 布置Alluxio客户端Jar包
 
-为了与Alluxio通信，需要提供带有Alluxio核心客户端Jar包的Flink程序。我们推荐您直接从[http://www.alluxio.io/download](http://www.alluxio.io/download)下载压缩包。另外，高级用户可以选择用源文件编译产生客户端Jar包。遵循以下步骤：[here]({{ '/en/contributor/Building-Alluxio-From-Source.html' | relative_url }}),在 `{{site.ALLUXIO_CLIENT_JAR_PATH_BUILD}}`路径下可以找到客户端的Jar包。
+为了与Alluxio通信，需要提供带有Alluxio核心客户端Jar包的Flink程序。我们推荐您直接从[http://www.alluxio.io/download](http://www.alluxio.io/download)下载压缩包。另外，高级用户可以选择用源文件编译产生客户端Jar包。遵循以下步骤：[here](../contributor/Building-Alluxio-From-Source.md),在 `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`路径下可以找到客户端的Jar包。
 
 接下来需要让Alluxio `jar`文件对Flink可用，因为其中包含了配置好的`alluxio.hadoop.FileSystem`类。
 
 有以下几种方式实现：
 
-- 将`{{site.ALLUXIO_CLIENT_JAR_PATH}}`文件放在Flink的`lib`目录下（对于本地模式以及独立集群模式）。
-- 将`{{site.ALLUXIO_CLIENT_JAR_PATH}}`文件放在布置在Yarn中的Flink下的`ship`目录下。
+- 将`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`文件放在Flink的`lib`目录下（对于本地模式以及独立集群模式）。
+- 将`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`文件放在布置在Yarn中的Flink下的`ship`目录下。
 - 在`HADOOP_CLASSPATH`环境变量中指定该jar文件的路径（要保证该路径对集群中的所有节点都有效）。例如：
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 
 ### 将Alluxio额外属性转化为Flink属性

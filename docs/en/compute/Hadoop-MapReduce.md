@@ -8,7 +8,7 @@ MapReduce programs can read+write data stored in Alluxio.
 
 * Alluxio has been set up and is running.
 * Make sure that the Alluxio client jar is available on each machine.
-This Alluxio client jar file can be found at `{{site.ALLUXIO_CLIENT_JAR_PATH}}` in the tarball
+This Alluxio client jar file can be found at `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` in the tarball
 downloaded from the Alluxio [download page](https://www.alluxio.io/download).
 Alternatively, advanced users can compile the client jar from the source code by following the
 [instructions](../contributor/Building-Alluxio-From-Source.md).
@@ -46,17 +46,17 @@ The Alluxio client jar should also be added to the `HADOOP_CLASSPATH` environmen
 This makes the Alluxio client available to JVMs which are created when running `hadoop jar` command:
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
 
 You can use the `-libjars` command line option when using `hadoop jar ...`,
-specifying `{{site.ALLUXIO_CLIENT_JAR_PATH}}` as the argument of `-libjars`.
+specifying `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` as the argument of `-libjars`.
 Hadoop will place the jar in the Hadoop DistributedCache, making it available to all the nodes.
 For example, the following command adds the Alluxio client jar to the `-libjars` option:
 
 ```console
 $ ./bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar wordcount \
-  -libjars {{site.ALLUXIO_CLIENT_JAR_PATH}} <INPUT FILES> <OUTPUT DIRECTORY>
+  -libjars /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar <INPUT FILES> <OUTPUT DIRECTORY>
 ```
 
 Alternative configurations are described in the [Advanced Setup](#advanced-setup) section.
@@ -93,7 +93,7 @@ Now we can run a MapReduce job (using Hadoop 2.7.3 as example) for wordcount.
 
 ```console
 $ ./bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar wordcount \
-  -libjars {{site.ALLUXIO_CLIENT_JAR_PATH}} \
+  -libjars /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar \
   alluxio://localhost:19998/wordcount/input.txt \
   alluxio://localhost:19998/wordcount/output
 ```
@@ -121,7 +121,7 @@ From that guide, the recommended way to distribute the Alluxio client jar is to 
 cache, via the `-libjars` command line option.
 Another way to distribute the client jar is to manually distribute it to all the Hadoop nodes.
 
-You could place the client jar `{{site.ALLUXIO_CLIENT_JAR_PATH}}` in the `$HADOOP_HOME/lib`
+You could place the client jar `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` in the `$HADOOP_HOME/lib`
 (it may be `$HADOOP_HOME/share/hadoop/common/lib` for different versions of Hadoop) directory of
 every MapReduce node, and then restart Hadoop.
 Alternatively, add this jar to `mapreduce.application.classpath` system property for your Hadoop
@@ -163,7 +163,7 @@ to Alluxio:
 ```console
 $ ./bin/hadoop jar libexec/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar wordcount \
   -Dalluxio.user.file.writetype.default=CACHE_THROUGH \
-  -libjars {{site.ALLUXIO_CLIENT_JAR_PATH}} \
+  -libjars /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar \
   <INPUT FILES> <OUTPUT DIRECTORY>
 ```
 
@@ -209,12 +209,12 @@ configured correctly but the Alluxio client jar is not found on the classpath of
 You can append the client jar to `$HADOOP_CLASSPATH`:
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
 
 If the corresponding classpath has been set but exceptions still exist, users can check
 whether the path is valid by:
 
 ```console
-$ ls {{site.ALLUXIO_CLIENT_JAR_PATH}}
+$ ls /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```

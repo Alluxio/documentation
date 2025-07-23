@@ -1,6 +1,6 @@
 # S3 API
 
-Alluxio supports a [RESTful API](https://docs.alluxio.io/os/restdoc/{{site.ALLUXIO_MAJOR_VERSION}}/proxy/index.html)
+Alluxio supports a RESTful API
 that is compatible with the basic operations of the Amazon [S3 API](http://docs.aws.amazon.com/AmazonS3/latest/API/Welcome.html).
 
 The Alluxio S3 API should be used by applications designed to communicate with an S3-like storage

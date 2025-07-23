@@ -16,7 +16,7 @@
 同时，高级用户可以选择使用源代码来编译生成Alluxio Client的Jar包。
 你可以运行以下命令[编译Alluxio源代码](../contributor/Building-Alluxio-From-Source.md#计算框架支持)。
 
-新的Alluxio客户端Jar包可以在`{{site.ALLUXIO_CLIENT_JAR_PATH}}`中发现。
+新的Alluxio客户端Jar包可以在`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`中发现。
 
 ## 配置Hadoop
 
@@ -40,7 +40,7 @@
 其次, 在`conf`目录中`hadoop-env.sh`文件中修改`$HADOOP_CLASSPATH`：
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
 
 该配置确保Alluxio客户端jar包是利用的，对于通过Alluxio的URIs来创建和提交作业进行交互的MapReduce作业客户端。
@@ -53,22 +53,22 @@ $ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
 
 1.**使用-libjars命令行选项**
 
-你可以在使用`hadoop jar ...`的时候加入-libjars命令行选项，指定`{{site.ALLUXIO_CLIENT_JAR_PATH}}`为`-libjars`的参数。这条命令会把该Jar包放到Hadoop的DistributedCache中，使所有节点都可以访问到。例如，下面的命令就是将Alluxio客户端Jar包添加到`-libjars`选项中。
+你可以在使用`hadoop jar ...`的时候加入-libjars命令行选项，指定`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`为`-libjars`的参数。这条命令会把该Jar包放到Hadoop的DistributedCache中，使所有节点都可以访问到。例如，下面的命令就是将Alluxio客户端Jar包添加到`-libjars`选项中。
 
 ```console
 $ ./bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar wordcount \
--libjars {{site.ALLUXIO_CLIENT_JAR_PATH}} <INPUT FILES> <OUTPUT DIRECTORY>
+-libjars /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar <INPUT FILES> <OUTPUT DIRECTORY>
 ```
 
 有时候，你还需要设置环境变量`HADOOP_CLASSPATH`，让Alluxio客户端在运行hadoop jar命令时创建的客户端JVM可以使用jar包：
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
 
 2.**手动将Client Jar包分发到所有节点**
 
-为了在每个节点安装Alluxio,将客户端jar包`{{site.ALLUXIO_CLIENT_JAR_PATH}}`置于每个MapReduce节点的`$HADOOP_HOME/lib`（由于版本不同也可能是`$HADOOP_HOME/share/hadoop/common/lib`），然后重新启动Hadoop。
+为了在每个节点安装Alluxio,将客户端jar包`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`置于每个MapReduce节点的`$HADOOP_HOME/lib`（由于版本不同也可能是`$HADOOP_HOME/share/hadoop/common/lib`），然后重新启动Hadoop。
 另一种选择，在你的Hadoop部署中，把这个jar包添加到`mapreduce.application.classpath`系统属性，确保jar包在classpath上。
 为了在每个节点上安装Alluxio，将客户端Jar包`mapreduce.application.classpath`，该方法要注意的是所有Jar包必须再次安装，因为每个Jar包都更新到了最新版本。另一方面，当该Jar包已经在每个节点上的时候，就没有必要使用`-libjars`命令行选项了。
 
@@ -100,7 +100,7 @@ $ ./bin/alluxio fs copyFromLocal LICENSE /wordcount/input.txt
 
 ```console
 $ ./bin/hadoop jar share/hadoop/mapreduce/hadoop-mapreduce-examples-2.7.3.jar wordcount \
--libjars {{site.ALLUXIO_CLIENT_JAR_PATH}} \
+-libjars /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar \
 alluxio://localhost:19998/wordcount/input.txt \
 alluxio://localhost:19998/wordcount/output
 ```

@@ -2,7 +2,7 @@
 
 
 Docker can be used to simplify the deployment and management of Alluxio servers.
-Using the [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}/) Docker
+Using the [alluxio/alluxio](https://hub.docker.com/r/alluxio/alluxio/) Docker
 image available on Dockerhub, you can go from
 zero to a running Alluxio cluster with a couple of `docker run` commands.
 This document provides a tutorial for running Dockerized Alluxio on a single node
@@ -124,7 +124,7 @@ $ docker run -d --rm \
     -e ALLUXIO_JAVA_OPTS=" \
        -Dalluxio.master.hostname=localhost \
        -Dalluxio.master.mount.table.root.ufs=/opt/alluxio/underFSStorage" \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} master
+    alluxio/alluxio master
 ```
 
 Launch the Alluxio Worker
@@ -138,7 +138,7 @@ $ docker run -d --rm \
     -e ALLUXIO_JAVA_OPTS=" \
        -Dalluxio.worker.ramdisk.size=1G \
        -Dalluxio.master.hostname=localhost" \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} worker
+    alluxio/alluxio worker
 ```
 
 Notes:
@@ -190,7 +190,7 @@ $ docker run -d  --rm \
        -Dalluxio.master.hostname=alluxio-master \
        -Dalluxio.master.mount.table.root.ufs=/opt/alluxio/underFSStorage" \
     -v /tmp/alluxio_ufs:/opt/alluxio/underFSStorage \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} master
+    alluxio/alluxio master
 ```
 
 Launch the Alluxio worker
@@ -206,7 +206,7 @@ $ docker run -d --rm \
        -Dalluxio.worker.ramdisk.size=1G \
        -Dalluxio.master.hostname=alluxio-master \
        -Dalluxio.worker.hostname=alluxio-worker" \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} worker
+    alluxio/alluxio worker
 ```
 
 Notes:
@@ -242,8 +242,8 @@ To verify that the services came up, check `docker ps`. You should see something
 ```console
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                      NAMES
-1fef7c714d25        alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}     "/entrypoint.sh work…"   39 seconds ago      Up 38 seconds                                  alluxio-worker
-27f92f702ac2        alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}     "/entrypoint.sh mast…"   44 seconds ago      Up 43 seconds       0.0.0.0:19999->19999/tcp   alluxio-master
+1fef7c714d25        alluxio/alluxio     "/entrypoint.sh work…"   39 seconds ago      Up 38 seconds                                  alluxio-worker
+27f92f702ac2        alluxio/alluxio     "/entrypoint.sh mast…"   44 seconds ago      Up 43 seconds       0.0.0.0:19999->19999/tcp   alluxio-master
 ```
 
 If you don't see the containers, run `docker logs` on their container ids to see what happened.
@@ -341,7 +341,7 @@ $ docker run -d \
   -e ALLUXIO_JAVA_OPTS=" \
     -Dalluxio.master.embedded.journal.addresses=master-hostname-1:19200,master-hostname-2:19200,master-hostname-3:19200 \
     -Dalluxio.master.hostname=master-hostname-1" \
-  alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} master
+  alluxio/alluxio master
 ```
 
 Set the master rpc addresses for all the workers so that they can query the master nodes to find out the leader master.
@@ -351,7 +351,7 @@ $ docker run -d \
   ...
   -e ALLUXIO_JAVA_OPTS=" \
     -Dalluxio.master.rpc.addresses=master_hostname_1:19998,master_hostname_2:19998,master_hostname_3:19998" \
-  alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} worker
+  alluxio/alluxio worker
 ```
 
 You can find more on Embedded Journal configuration [here](../deploy/Running-Alluxio-On-a-HA-Cluster.md#raft-based-embedded-journal).
@@ -372,7 +372,7 @@ $ docker run -d \
     -Dalluxio.master.journal.folder=hdfs://[namenodeserver]:[namenodeport]/alluxio_journal \
     -Dalluxio.zookeeper.enabled=true \
     -Dalluxio.zookeeper.address=zkhost1:2181,zkhost2:2181,zkhost3:2181" \
-  alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} master
+  alluxio/alluxio master
 ```
 
 Set the same Zookeeper configuration for workers so that they can query Zookeeper
@@ -384,7 +384,7 @@ $ docker run -d \
   -e ALLUXIO_JAVA_OPTS="
     -Dalluxio.zookeeper.enabled=true \
     -Dalluxio.zookeeper.address=zkhost1:2181,zkhost2:2181,zkhost3:2181" \
-  alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} worker
+  alluxio/alluxio worker
 ```
 
 You can find more on ZooKeeper and shared journal configuration [here](../deploy/Running-Alluxio-On-a-HA-Cluster.md#zookeeper-and-shared-journal-storage).
@@ -420,7 +420,7 @@ $ mkdir -p /tmp/mnt && sudo chmod -R a+rwx /tmp/mnt
 
 <details><summary>Standalone FUSE</summary>
 
-The original [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}-fuse](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}-fuse/) has been deprecated. Now you can enable access to Alluxio on Docker host using the POSIX API by [alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}](https://hub.docker.com/r/alluxio/{{site.ALLUXIO_DOCKER_IMAGE}}/) Docker image, the same one used for launching Alluxio master and worker.
+The original [alluxio/alluxio-fuse](https://hub.docker.com/r/alluxio/alluxio-fuse/) has been deprecated. Now you can enable access to Alluxio on Docker host using the POSIX API by [alluxio/alluxio](https://hub.docker.com/r/alluxio/alluxio/) Docker image, the same one used for launching Alluxio master and worker.
 
 For example, the following commands run the alluxio-fuse container as a long-running client that presents Alluxio file system through a POSIX interface on the Docker host:
 
@@ -438,7 +438,7 @@ $ docker run -d --rm \
     --cap-add SYS_ADMIN \
     --device /dev/fuse \
     --security-opt apparmor:unconfined \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} fuse
+    alluxio/alluxio fuse
 ```
 
 Notes
@@ -467,7 +467,7 @@ $ docker run -d \
        -Dalluxio.worker.ramdisk.size=1G \
        -Dalluxio.master.hostname=localhost \
        -Dalluxio.worker.fuse.enabled=true" \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} worker
+    alluxio/alluxio worker
 ```
 
 Notes
@@ -503,10 +503,10 @@ $ docker run -d \
     --security-opt apparmor:unconfined \
     -e ALLUXIO_JAVA_OPTS=" \
        -Dalluxio.master.hostname=localhost" \
-    alluxio/{{site.ALLUXIO_DOCKER_IMAGE}} proxy
+    alluxio/alluxio proxy
 ```
 
-See [Properties List](https://docs.alluxio.io/os/user/edge/en/reference/Properties-List.html) for more
+See [Properties List](../reference/Properties-List.md) for more
 configuration options for Alluxio proxy server.
 
 ## Performance Optimization

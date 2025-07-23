@@ -145,7 +145,3 @@ in.read(...);
 in.close();
 ```
 
-### Javadoc
-
-想要获得更多API信息，请参考
-[Alluxio javadocs](https://docs.alluxio.io/os/javadoc/stable/index.html)

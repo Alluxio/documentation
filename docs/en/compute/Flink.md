@@ -52,21 +52,21 @@ jar. We recommend you to download the tarball from
 Alluxio [download page](https://www.alluxio.io/download/).
 Alternatively, advanced users can choose to compile this client jar from the source code
 by following the instructions [here](../contributor/Building-Alluxio-From-Source.md).
-The Alluxio client jar can be found at `{{site.ALLUXIO_CLIENT_JAR_PATH}}`.
+The Alluxio client jar can be found at `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`.
 
 We need to make the Alluxio `jar` file available to Flink, because it contains the configured
 `alluxio.hadoop.FileSystem` class.
 
 There are different ways to achieve that:
 
-- Put the `{{site.ALLUXIO_CLIENT_JAR_PATH}}` file into the `lib` directory of Flink (for local and
+- Put the `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` file into the `lib` directory of Flink (for local and
 standalone cluster setups)
-- Put the `{{site.ALLUXIO_CLIENT_JAR_PATH}}` file into the `ship` directory for Flink on YARN.
+- Put the `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` file into the `ship` directory for Flink on YARN.
 - Specify the location of the jar file in the `HADOOP_CLASSPATH` environment variable (make sure its
 available on all cluster nodes as well). For example like this:
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 
 ### Translate additional Alluxio site properties to Flink

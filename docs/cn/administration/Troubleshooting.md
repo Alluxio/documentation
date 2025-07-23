@@ -267,39 +267,39 @@ Alluxio有一个内置的探测机制来识别潜在的资源泄漏问题。此�
 - 对于MapReduce应用，可以将客户端jar包添加到`$HADOOP_CLASSPATH`：
 
 ```console
-$ export HADOOP_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${HADOOP_CLASSPATH}
+$ export HADOOP_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${HADOOP_CLASSPATH}
 ```
 在此处 [在Alluxio上运行Hadoop MapReduce](../compute/Hadoop-MapReduce.md) 查看更多详细信息。
 
 - 对于Spark应用，可以将客户端jar包添加到`$SPARK_CLASSPATH`：
 
 ```console
-$ export SPARK_CLASSPATH={{site.ALLUXIO_CLIENT_JAR_PATH}}:${SPARK_CLASSPATH}
+$ export SPARK_CLASSPATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar:${SPARK_CLASSPATH}
 ```
 在此处 [Apache Spark 使用 Alluxio](../compute/Spark.md) 查看更多详细信息。
 
 除了上述方法，还可以将以下配置添加到`spark/conf/spark-defaults.conf`中：
 
 ```
-spark.driver.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
-spark.executor.extraClassPath {{site.ALLUXIO_CLIENT_JAR_PATH}}
+spark.driver.extraClassPath /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
+spark.executor.extraClassPath /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 
-- 对于Presto，请将Alluxio客户端的jar`{{site.ALLUXIO_CLIENT_JAR_PATH}}`放置到Presto目录`${PRESTO_HOME}/plugin/hive-hadoop2/`中。
+- 对于Presto，请将Alluxio客户端的jar`/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar`放置到Presto目录`${PRESTO_HOME}/plugin/hive-hadoop2/`中。
 添加后，请重启Presto以确保配置生效。
 详情请见[Presto on Alluxio](../compute/Presto.md)。
 
 - 对于Hive，在`conf/hive-env.sh`中设置`HIVE_AUX_JARS_PATH`。
 
 ```console
-$ export HIVE_AUX_JARS_PATH={{site.ALLUXIO_CLIENT_JAR_PATH}}：${HIVE_AUX_JARS_PATH}。
+$ export HIVE_AUX_JARS_PATH=/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar：${HIVE_AUX_JARS_PATH}。
 ```
 添加后，请重启Hive以确保配置生效。
 
 如果已经设置相关的classpath，但是异常仍然存在，用户可以这样检测路径是否有效：
 
 ```console
-$ ls {{site.ALLUXIO_CLIENT_JAR_PATH}}
+$ ls /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar
 ```
 在此处 [在Alluxio上运行Apache Hive](../compute/Hive.md) 查看更多详细信息。
 

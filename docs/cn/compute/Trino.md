@@ -15,7 +15,7 @@ Alluxio 允许 Trino 从各种数据源获取数据，并将经常访问的数�
 这篇指南用 `Trino-352` 进行测试
 * Alluxio 已经被配置好而且开始运行
 * 确保 Alluxio client jar 可用
-  这个 Alluxio 客户端 jar 文件可以在从 Alluxio [下载页面](https://www.alluxio.io/download)下载的 tarball 中的 {{site.ALLUXIO_CLIENT_JAR_PATH}} 处找到
+  这个 Alluxio 客户端 jar 文件可以在从 Alluxio [下载页面](https://www.alluxio.io/download)下载的 tarball 中的 /<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar 处找到
 * 请确保 Hive MetaStore 正在运行以提供 Hive table 的元数据信息
 
 ## 基本配置
@@ -33,7 +33,7 @@ hive.metastore.uri=thrift://localhost:9083
 ### 将 Alluxio client  jar 分发到所有 Trino 服务器上
 
 为了使 Trino 能够与 Alluxio 服务器通信，必须将 Alluxio client jar 放在 Trino 服务器的 classpath 中。
-将 Alluxio client jar `{{site.ALLUXIO_CLIENT_JAR_PATH}}` 放到所有 Trino 服务器的路径
+将 Alluxio client jar `/<PATH_TO_ALLUXIO>/client/alluxio-2.9.5-client.jar` 放到所有 Trino 服务器的路径
 `${Trino_HOME}/plugin/hive-hadoop2/` 下
 (此目录在不同版本中可能有所不同)。重启 Trino worker 和
 coordinator:

@@ -2,7 +2,7 @@
 
 为了其他语言的可移植性，除使用[原生文件系统Java客户端](../api/FS-API.md)外，也可以通过REST API形式的HTTP代理访问Alluxio文件系统。
 
-[REST API documentation](https://docs.alluxio.io/os/restdoc/stable/proxy/index.html)作为Alluxio构建的一部分被生成，
+REST API documentation作为Alluxio构建的一部分被生成，
 可以通过`${ALLUXIO_HOME}/core/server/proxy/target/miredot/index.html`来访问。 REST API和Alluxio Java API之间的主要区别在于如何表示流。Alluxio Java API
 可以使用内存中的流，REST API将流的创建和访问分离（有关详细信息请参阅`create`和`open`REST API方法以及`streams`资源端点）。
 

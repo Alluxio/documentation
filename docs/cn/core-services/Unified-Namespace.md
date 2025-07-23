@@ -37,7 +37,7 @@ UFS命名空间和Alluxio命名空间可能不同步的情况。
 
 透明命名机制保证了Alluxio和底层存储系统命名空间身份一致性。
 
-![transparent]({{ site.baseurl }}/img/screenshot_transparent.png)
+![transparent](../.gitbook/assets/screenshot_transparent.png)
 
 当用户在Alluxio命名空间创建对象时，可以选择这些对象是否要在底层存储系统中持久化。对于需要持久化的对象，
 Alluxio会保存底层存储系统存储这些对象的路径。例如，一个用户在根目录下创建了一个`Users`目录及`Alice`和`Bob`两个子目录，底层存储系统也会保存相同的目录结构和命名。类似地，当用户在
